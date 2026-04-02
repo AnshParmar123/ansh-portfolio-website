@@ -4,7 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const projects = [
   {
@@ -43,38 +43,40 @@ const projects = [
 
 const Work = () => {
   useGSAP(() => {
-    let translateX: number = 0;
-    function setTranslateX() {
-      const box = document.getElementsByClassName("work-box");
-      const rectLeft = document
-        .querySelector(".work-container")!
-        .getBoundingClientRect().left;
-      const rect = box[0].getBoundingClientRect();
-      const parentWidth = box[0].parentElement!.getBoundingClientRect().width;
-      let padding: number =
-        parseInt(window.getComputedStyle(box[0]).padding) / 2;
-      translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
+    if (window.innerWidth <= 1024) {
+      gsap.set(".work-flex", { clearProps: "transform" });
+      return;
     }
 
-    setTranslateX();
+    const workSection = document.querySelector(".work-section") as HTMLElement | null;
+    const workFlex = document.querySelector(".work-flex") as HTMLElement | null;
 
-    let timeline = gsap.timeline({
+    if (!workSection || !workFlex) return;
+
+    const getDistance = () =>
+      Math.max(0, workFlex.scrollWidth - workSection.clientWidth + 40);
+
+    const animation = gsap.to(workFlex, {
+      x: () => -getDistance(),
+      ease: "none",
+      force3D: true,
       scrollTrigger: {
-        trigger: ".work-section",
+        trigger: workSection,
         start: "top top",
-        end: "bottom top",
-        scrub: true,
+        end: () => `+=${getDistance()}`,
+        scrub: 0.9,
         pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
         pinType: !ScrollTrigger.isTouch ? "transform" : "fixed",
         id: "work",
       },
     });
 
-    timeline.to(".work-flex", {
-      x: -translateX,
-      duration: 40,
-      delay: 0.2,
-    });
+    return () => {
+      animation.scrollTrigger?.kill();
+      animation.kill();
+    };
   }, []);
   return (
     <div className="work-section" id="work">
