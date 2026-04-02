@@ -179,6 +179,14 @@
   font-family: "Geist", sans-serif;
 }
 
+.landing-tagline {
+  margin: 16px 0 0;
+  max-width: 360px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 14px;
+  line-height: 22px;
+}
+
 /* .landing-intro h1 span {
    font-weight: 200; 
 } */

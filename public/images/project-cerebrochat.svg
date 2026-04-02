@@ -1,0 +1,12 @@
+<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="520" rx="28" fill="#101625"/>
+  <rect x="60" y="54" width="680" height="412" rx="26" fill="#121A2D"/>
+  <rect x="92" y="96" width="220" height="48" rx="16" fill="#7B61FF"/>
+  <rect x="488" y="168" width="220" height="48" rx="16" fill="#1D2840"/>
+  <rect x="92" y="238" width="290" height="48" rx="16" fill="#00F5D4" opacity=".8"/>
+  <rect x="414" y="308" width="294" height="48" rx="16" fill="#1D2840"/>
+  <circle cx="154" cy="378" r="30" fill="#1D2840"/>
+  <path d="M204 374H434" stroke="#E6EAF2" stroke-width="10" stroke-linecap="round" opacity=".85"/>
+  <text x="92" y="80" fill="#E6EAF2" font-size="34" font-family="Arial, sans-serif">CerebroChat</text>
+  <text x="92" y="430" fill="#97A4BD" font-size="22" font-family="Arial, sans-serif">Academic assistance chatbot with document-based answers</text>
+</svg>

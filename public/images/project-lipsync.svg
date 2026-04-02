@@ -1,0 +1,15 @@
+<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="520" rx="28" fill="#101625"/>
+  <rect x="48" y="48" width="704" height="424" rx="24" fill="url(#a)"/>
+  <path d="M208 276C244 220 309 184 383 184C475 184 555 239 594 320" stroke="#00F5D4" stroke-width="10" stroke-linecap="round"/>
+  <path d="M256 300C287 260 333 236 385 236C452 236 512 277 544 336" stroke="#7B61FF" stroke-width="10" stroke-linecap="round" opacity=".9"/>
+  <circle cx="384" cy="260" r="120" stroke="rgba(230,234,242,0.35)" stroke-width="2"/>
+  <text x="74" y="110" fill="#E6EAF2" font-size="34" font-family="Arial, sans-serif">LipSync AI</text>
+  <text x="74" y="150" fill="#97A4BD" font-size="22" font-family="Arial, sans-serif">Real-time lip tracking and speech prediction</text>
+  <defs>
+    <linearGradient id="a" x1="48" y1="48" x2="752" y2="472" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B0F19"/>
+      <stop offset="1" stop-color="#1A2138"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,11 @@
+<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="520" rx="28" fill="#101625"/>
+  <rect x="60" y="56" width="680" height="408" rx="24" fill="#131B2E"/>
+  <path d="M126 354L236 262L334 296L464 178L578 214L674 138" stroke="#00F5D4" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M126 382L236 332L334 346L464 288L578 306L674 248" stroke="#7B61FF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
+  <rect x="120" y="118" width="96" height="150" rx="18" fill="#1E2942"/>
+  <rect x="248" y="178" width="96" height="90" rx="18" fill="#24314D"/>
+  <rect x="376" y="146" width="96" height="122" rx="18" fill="#1E2942"/>
+  <text x="92" y="94" fill="#E6EAF2" font-size="34" font-family="Arial, sans-serif">InsightX</text>
+  <text x="92" y="430" fill="#97A4BD" font-size="22" font-family="Arial, sans-serif">Customer feedback analytics for strategy and product optimization</text>
+</svg>

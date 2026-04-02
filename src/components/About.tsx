@@ -6,9 +6,20 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
-          dolores numquam iusto Ratione earum ducimus autem id iure pariatur
-          dolorum quae maiores.
+          I am Ansh Parmar, an AIML student pursuing an Integrated MBA-Tech
+          degree from RAIT, DY Patil University. I am passionate about building
+          intelligent systems that combine machine learning with real-world
+          applications.
+        </p>
+        <p className="para">
+          My work focuses on computer vision, automation, and AI-driven problem
+          solving, where I aim to create impactful and scalable solutions. I
+          enjoy experimenting with new technologies and continuously improving
+          my technical and analytical skills.
+        </p>
+        <p className="para">
+          I am currently exploring opportunities in AI, machine learning, and
+          software development.
         </p>
       </div>
     </div>
