@@ -174,9 +174,13 @@
   margin: 0;
   letter-spacing: 2px;
   font-size: 28px;
-  line-height: 28px;
+  line-height: 1.12;
   font-weight: 500;
   font-family: "Geist", sans-serif;
+}
+.landing-intro h1 span {
+  display: inline-block;
+  margin-top: 6px;
 }
 
 .landing-tagline {
@@ -185,6 +189,30 @@
   color: rgba(255, 255, 255, 0.72);
   font-size: 14px;
   line-height: 22px;
+}
+.landing-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  max-width: 420px;
+}
+.landing-highlights span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 234, 242, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(230, 234, 242, 0.78);
+}
+.landing-availability {
+  margin: 16px 0 0;
+  max-width: 390px;
+  font-size: 13px;
+  line-height: 21px;
+  color: rgba(230, 234, 242, 0.58);
 }
 
 /* .landing-intro h1 span {

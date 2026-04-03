@@ -2,8 +2,10 @@
   position: fixed;
   width: 100vw;
   height: var(--vh);
-  /* background-image: linear-gradient(#cbb1ff, #d8c4ff); */
-  background-color: #eae5ec;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(0, 245, 212, 0.12), transparent 20%),
+    radial-gradient(circle at 82% 18%, rgba(123, 97, 255, 0.16), transparent 22%),
+    linear-gradient(140deg, #070b12 0%, #0b0f19 45%, #111827 100%);
   z-index: 999999999;
   display: flex;
   place-items: center;
@@ -12,16 +14,20 @@
 .loading-button {
   padding: 20px 50px;
   border-radius: 100px;
-  background-color: #000;
+  background: linear-gradient(135deg, rgba(5, 7, 13, 0.96), rgba(16, 22, 37, 0.96));
   overflow: hidden;
   font-size: 18px;
   font-weight: 500;
   position: relative;
   z-index: 9;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 18px 50px rgba(0, 0, 0, 0.35);
 }
 .loading-button::before {
   content: "";
-  background-color: #ffffff;
+  background: radial-gradient(circle, rgba(0, 245, 212, 0.9), rgba(123, 97, 255, 0.35));
   top: var(--mouse-y);
   left: var(--mouse-x);
   border-radius: 50%;
@@ -48,11 +54,11 @@
   min-width: 0px;
   min-height: 0px;
   border-radius: 100px;
-  background-color: #000;
+  background: linear-gradient(135deg, rgba(5, 7, 13, 0.98), rgba(16, 22, 37, 0.98));
   overflow: hidden;
   transition: 0.8s ease-in-out;
   transition-delay: 0.2s;
-  box-shadow: 0px 15px 15px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 18px 45px 0px rgba(0, 0, 0, 0.35);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +76,7 @@
   overflow: visible;
 }
 .loading-hover {
-  background-color: #a87cff;
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.6), rgba(123, 97, 255, 0.75));
   width: 250px;
   height: 120px;
   position: absolute;
@@ -92,7 +98,7 @@
 }
 .loading-content {
   position: relative;
-  background-color: #000;
+  background: transparent;
   width: 100%;
   overflow: hidden;
   transition: 0.6s;
@@ -107,7 +113,7 @@
   position: relative;
   letter-spacing: 2px;
   text-transform: uppercase;
-  width: var(--Lsize);
+  width: calc(var(--Lsize) + 90px);
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -115,7 +121,8 @@
   column-gap: 10px;
   text-align: center;
   transition: 1s;
-  max-width: var(--Lsize);
+  max-width: calc(var(--Lsize) + 90px);
+  font-size: 14px;
 }
 .loading-clicked .loading-content2 {
   opacity: 0;
@@ -137,7 +144,7 @@
   transform: translate(100%, -50%);
   width: 15px;
   height: 25px;
-  background-color: white;
+  background: linear-gradient(180deg, #ffffff, #9ffcf0);
   animation: blink 1s linear infinite;
 }
 .loading-icon {
@@ -191,12 +198,13 @@
   left: 50%;
   transform: translateX(-50%);
   top: 0;
-  color: var(--backgroundColor);
+  color: #e6eaf2;
 }
 .loader-title {
   font-weight: 700;
   font-size: 14px;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 @keyframes blink {
   0% {
@@ -257,7 +265,7 @@
   position: relative;
   width: 10px;
   height: 60px;
-  background-color: #000;
+  background-color: rgba(230, 234, 242, 0.85);
   display: block;
 }
 .loaderGame-line:nth-child(2n) {
@@ -272,7 +280,7 @@
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: #a87cff;
+  background: linear-gradient(135deg, #00f5d4, #7b61ff);
   animation: ball25 7s infinite;
   transform: translateY(10px);
   animation-timing-function: cubic-bezier(0.3, 1.18, 0.63, 1.28);
@@ -283,10 +291,11 @@
   left: 0;
   width: 100%;
   transform: translateY(-50%);
-  color: var(--backgroundColor);
-  font-size: 60px;
-  font-weight: 600;
+  color: rgba(230, 234, 242, 0.12);
+  font-size: 58px;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 .loading-marquee span {
   padding: 0px 50px;
@@ -296,7 +305,7 @@
   content: "";
   width: 20px;
   height: 20px;
-  background-color: var(--backgroundColor);
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.95), rgba(123, 97, 255, 0.95));
   position: absolute;
   top: 50%;
   border-radius: 50px;

@@ -35,7 +35,7 @@
 .what-box-in {
   flex-direction: column;
   height: 500px;
-  margin-left: 200px;
+  margin-left: 140px;
   position: relative;
   display: none;
 }
@@ -63,22 +63,27 @@
   padding: 10px 50px;
 }
 .what-content h3 {
-  font-size: 35px;
-  letter-spacing: 1px;
+  font-size: 31px;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
   margin: 0;
 }
 .what-content p {
-  font-size: 14px;
-  line-height: 18px;
-  font-weight: 200;
-  letter-spacing: 0.7px;
+  font-size: 15px;
+  line-height: 1.75;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  margin: 10px 0 0;
+  max-width: 34ch;
+  color: rgba(230, 234, 242, 0.78);
 }
 .what-content h4 {
   font-weight: 300;
-  letter-spacing: 1px;
-  margin: 0px;
-  font-size: 14px;
-  opacity: 0.3;
+  letter-spacing: 0.12em;
+  margin: 14px 0 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  opacity: 0.45;
 }
 .what-content-in {
   opacity: 0;
@@ -210,11 +215,12 @@
 }
 .what-content-in h5 {
   font-weight: 300;
-  opacity: 0.5;
+  opacity: 0.58;
   font-size: 12px;
-  letter-spacing: 1px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   font-family: "Geist", sans-serif;
-  margin-bottom: 5px;
+  margin: 18px 0 8px;
 }
 @keyframes whatBorders {
   80% {
@@ -230,11 +236,12 @@
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 .what-tags {
   font-size: 13px;
   font-weight: 400;
-  padding: 2px 7px;
+  padding: 4px 9px;
   background-color: rgba(255, 255, 255, 0.15);
   border: 1px solid #ffffff50;
   border-radius: 30px;
@@ -282,6 +289,13 @@
   .what-content {
     width: 380px;
   }
+  .what-content h3 {
+    font-size: 26px;
+  }
+  .what-content p {
+    font-size: 13px;
+    line-height: 1.7;
+  }
 }
 @media only screen and (max-width: 1024px) {
   .whatIDO {
@@ -299,6 +313,7 @@
   }
   .what-content p {
     font-size: 14px;
+    line-height: 1.75;
   }
   .what-noTouch:hover,
   .what-content-active {
@@ -355,7 +370,9 @@
     padding: 30px;
   }
   .what-content p {
-    font-size: 11px;
+    font-size: 12px;
+    line-height: 1.6;
+    max-width: none;
   }
   .what-noTouch:hover,
   .what-content-active {

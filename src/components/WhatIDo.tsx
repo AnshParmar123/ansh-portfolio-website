@@ -28,7 +28,7 @@ const WhatIDo = () => {
     <div className="whatIDO">
       <div className="what-box">
         <h2 className="title">
-          W<span className="hat-h2">HAT</span>
+          W<span className="hat-h2">HAT </span>
           <div>
             I<span className="do-h2"> DO</span>
           </div>
@@ -87,14 +87,14 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
 
             <div className="what-content-in">
-              <h3>PROGRAMMING</h3>
-              <h4>Description</h4>
+              <h3>Software Development</h3>
+              <h4>Focus Area</h4>
               <p>
-                I build real-world software systems with a strong foundation in
+                I build practical software systems with a strong foundation in
                 programming, frontend development, and scalable application
-                logic.
+                logic for real-world use cases.
               </p>
-              <h5>Skillset & tools</h5>
+              <h5>Core Stack</h5>
               <div className="what-content-flex">
                 <div className="what-tags">C</div>
                 <div className="what-tags">C++</div>
@@ -129,14 +129,14 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>AI / ML</h3>
-              <h4>Description</h4>
+              <h3>AI & Machine Learning</h3>
+              <h4>Focus Area</h4>
               <p>
-                My focus is on AI-driven problem solving across computer
+                My work focuses on AI-driven problem solving across computer
                 vision, intelligent automation, analytics, and applied machine
-                learning systems.
+                learning systems with practical implementation.
               </p>
-              <h5>Skillset & tools</h5>
+              <h5>Tools & Platforms</h5>
               <div className="what-content-flex">
                 <div className="what-tags">OpenCV</div>
                 <div className="what-tags">NumPy</div>

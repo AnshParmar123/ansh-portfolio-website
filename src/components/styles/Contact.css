@@ -26,14 +26,36 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
+.contact-note {
+  max-width: 280px;
+  color: rgba(230, 234, 242, 0.68);
+  line-height: 1.8;
+}
 a.contact-social {
   font-size: 25px;
   border-bottom: 1px solid #ccc;
+  width: fit-content;
+  padding: 6px 0;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+a.contact-social:hover {
+  color: #ffffff;
+  border-color: rgba(0, 245, 212, 0.55);
+  transform: translateX(4px);
 }
 .contact-box h2 {
   font-weight: 400;
   font-size: 23px;
   margin: 0;
+}
+.contact-cta {
+  max-width: 360px;
+  margin: 18px 0 12px;
+  color: rgba(230, 234, 242, 0.72);
+  line-height: 1.8;
 }
 .contact-box h2 > span {
   color: var(--accentColor);

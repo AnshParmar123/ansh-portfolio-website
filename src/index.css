@@ -62,9 +62,11 @@ body {
   height: auto;
   color: var(--textColor);
   background:
-    radial-gradient(circle at 18% 18%, rgba(0, 245, 212, 0.07), transparent 24%),
-    radial-gradient(circle at 82% 20%, rgba(123, 97, 255, 0.09), transparent 26%),
-    linear-gradient(135deg, #0b0f19, #111827);
+    radial-gradient(circle at 12% 16%, rgba(10, 255, 214, 0.22), transparent 24%),
+    radial-gradient(circle at 88% 12%, rgba(255, 92, 168, 0.18), transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(91, 123, 255, 0.18), transparent 32%),
+    linear-gradient(135deg, #02050a 0%, #07131d 28%, #102739 62%, #1b1032 100%);
+  background-attachment: fixed;
   flex-grow: 1;
   --cWidth: calc(100% - 30px);
   --cMaxWidth: 1920px;
@@ -101,12 +103,81 @@ body {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 30% 65%, rgba(0, 245, 212, 0.05), transparent 28%),
-    radial-gradient(circle at 72% 38%, rgba(123, 97, 255, 0.07), transparent 30%),
-    radial-gradient(circle at 50% 20%, rgba(123, 97, 255, 0.04), transparent 22%);
+    radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.04), transparent 14%),
+    radial-gradient(circle at 24% 58%, rgba(10, 255, 214, 0.12), transparent 24%),
+    radial-gradient(circle at 76% 30%, rgba(255, 92, 168, 0.1), transparent 26%),
+    radial-gradient(circle at 54% 18%, rgba(91, 123, 255, 0.09), transparent 18%),
+    linear-gradient(
+      120deg,
+      rgba(10, 255, 214, 0.02) 0%,
+      rgba(91, 123, 255, 0.04) 46%,
+      rgba(255, 92, 168, 0.018) 100%
+    );
   pointer-events: none;
   z-index: -3;
-  animation: backgroundDrift 30s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+  animation: backgroundDrift 26s ease-in-out infinite alternate;
+}
+.main-body > .container-main::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.4;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.018) 48%,
+      transparent 100%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.014) 48%,
+      transparent 100%
+    );
+  background-size: 120px 120px;
+  mask-image: radial-gradient(circle at center, black 48%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 48%, transparent 100%);
+}
+.main-body > .container-main::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.024), transparent 55%),
+    conic-gradient(
+      from 180deg at 50% 50%,
+      rgba(10, 255, 214, 0.12),
+      rgba(10, 255, 214, 0.01),
+      rgba(91, 123, 255, 0.1),
+      rgba(255, 92, 168, 0.1),
+      rgba(255, 92, 168, 0.01),
+      rgba(10, 255, 214, 0.12)
+    );
+  opacity: 0.22;
+  filter: blur(74px);
+  animation: orbitalGlow 24s linear infinite;
+}
+.main-body .section-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.014),
+      transparent 22%,
+      transparent 78%,
+      rgba(255, 255, 255, 0.014)
+    );
+  opacity: 0.5;
+  z-index: -1;
 }
 
 @keyframes watermarkFloat {
@@ -121,9 +192,19 @@ body {
 @keyframes backgroundDrift {
   0% {
     transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.82;
   }
   100% {
-    transform: translate3d(0, -1.5%, 0) scale(1.03);
+    transform: translate3d(0, -2%, 0) scale(1.08);
+    opacity: 1;
+  }
+}
+@keyframes orbitalGlow {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.04);
   }
 }
 

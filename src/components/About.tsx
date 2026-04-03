@@ -21,6 +21,20 @@ const About = () => {
           I am currently exploring opportunities in AI, machine learning, and
           software development.
         </p>
+        <div className="about-points">
+          <div>
+            <span>Focus</span>
+            Computer vision, intelligent automation, and practical AI systems
+          </div>
+          <div>
+            <span>Strength</span>
+            Translating technical ideas into usable, real-world products
+          </div>
+          <div>
+            <span>Goal</span>
+            Build meaningful software that is intelligent, scalable, and useful
+          </div>
+        </div>
       </div>
     </div>
   );

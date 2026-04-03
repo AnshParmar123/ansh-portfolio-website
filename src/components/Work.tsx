@@ -14,6 +14,8 @@ const projects = [
     description:
       "A computer vision system that detects lip movements and predicts speech for non-verbal communication. Uses real-time lip landmark extraction and converts it into text.",
     image: "/images/project-lipsync.svg",
+    impact: "Built for practical non-verbal communication support.",
+    highlights: ["Real-time landmark tracking", "Speech prediction pipeline", "Frontend-integrated workflow"],
   },
   {
     name: "Smart Attendance System",
@@ -22,6 +24,8 @@ const projects = [
     description:
       "AI-based attendance system using face recognition to eliminate proxy. Includes dashboards, CSV logs, and email alerts with images and attendance tracking.",
     image: "/images/project-attendance.svg",
+    impact: "Designed to reduce manual effort and eliminate proxy attendance.",
+    highlights: ["Face recognition attendance", "Role-based dashboards", "CSV logs and email alerts"],
   },
   {
     name: "CerebroChat",
@@ -30,6 +34,8 @@ const projects = [
     description:
       "AI-powered chatbot for academic assistance. Generates notes, cheat sheets, answers questions, and tracks study progress using uploaded documents.",
     image: "/images/project-cerebrochat.svg",
+    impact: "Improves study workflow with document-aware AI assistance.",
+    highlights: ["Document-grounded Q&A", "Study-note generation", "Progress-aware academic support"],
   },
   {
     name: "InsightX",
@@ -38,6 +44,8 @@ const projects = [
     description:
       "Customer feedback analysis system that processes CSV data to identify business gaps, suggest improvements, and optimize product strategies for better sales.",
     image: "/images/project-insightx.svg",
+    impact: "Turns raw feedback into clear business action points.",
+    highlights: ["CSV feedback processing", "Gap detection and insights", "Strategy-oriented recommendations"],
   },
 ];
 
@@ -99,6 +107,12 @@ const Work = () => {
                 <h4>Tools and features</h4>
                 <p>{project.tech}</p>
                 <p className="work-description">{project.description}</p>
+                <p className="work-impact">{project.impact}</p>
+                <div className="work-highlights">
+                  {project.highlights.map((highlight) => (
+                    <span key={highlight}>{highlight}</span>
+                  ))}
+                </div>
               </div>
               <WorkImage image={project.image} alt={project.name} />
             </div>
