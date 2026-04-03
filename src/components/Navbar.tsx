@@ -39,13 +39,9 @@ const Navbar = () => {
         <a href="/#" className="navbar-title" data-cursor="disable">
           ANSH
         </a>
-        <a
-          href="mailto:anshudayparmar@gmail.com"
-          className="navbar-connect"
-          data-cursor="disable"
-        >
-          anshudayparmar@gmail.com
-        </a>
+        <div className="navbar-connect">
+          कृष्णं वन्दे जगद्गुरुम् °•👁U👁•° 🌸
+        </div>
         <ul>
           <li>
             <a data-href="#about" href="#about">

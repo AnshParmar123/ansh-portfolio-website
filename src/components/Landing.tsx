@@ -11,11 +11,19 @@ const Landing = ({ children }: PropsWithChildren) => {
             <h1>
               ANSH
               <br />
-              <span>PARMAR</span>
+              <span>&nbsp;PARMAR</span>
             </h1>
             <p className="landing-tagline">
               Building intelligent AI systems that solve real-world problems
               with precision and impact.
+            </p>
+            <div className="landing-highlights">
+              <span>Computer Vision</span>
+              <span>AI Product Thinking</span>
+              <span>Software Development</span>
+            </div>
+            <p className="landing-availability">
+              Open to internships, AI/ML roles, and collaborative product work.
             </p>
           </div>
           <div className="landing-info">

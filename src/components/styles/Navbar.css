@@ -36,9 +36,17 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  font-size: 15px;
-  letter-spacing: 1px;
+  width: min(70vw, 760px);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
   font-weight: 500;
+  color: rgba(230, 234, 242, 0.9);
+  text-shadow:
+    0 0 18px rgba(123, 97, 255, 0.16),
+    0 0 24px rgba(0, 245, 212, 0.1);
+  pointer-events: none;
 }
 .navbar-title {
   font-weight: 700;
@@ -79,5 +87,16 @@
   }
   .navbar-title {
     font-size: 18px;
+  }
+}
+@media only screen and (max-width: 899px) {
+  .navbar-connect {
+    display: block;
+    width: min(76vw, 520px);
+    font-size: 12px;
+    top: 56px;
+  }
+  .header {
+    align-items: flex-start;
   }
 }

@@ -93,6 +93,27 @@
   margin-top: 14px !important;
   line-height: 1.6;
 }
+.work-impact {
+  margin-top: 14px !important;
+  color: rgba(230, 234, 242, 0.84) !important;
+  font-weight: 300;
+}
+.work-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.work-highlights span {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(230, 234, 242, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(230, 234, 242, 0.72);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 .work-image {
   display: flex;
   width: 100%;
@@ -173,6 +194,9 @@
   }
   .work-section h2 {
     font-size: 50px;
+  }
+  .work-highlights span {
+    font-size: 10px;
   }
 }
 @media only screen and (max-width: 1400px) {

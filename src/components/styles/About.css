@@ -41,6 +41,27 @@
   letter-spacing: 0.01em;
   color: rgba(230, 234, 242, 0.74);
 }
+.about-points {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+  max-width: 56ch;
+}
+.about-points div {
+  padding-left: 14px;
+  border-left: 2px solid rgba(123, 97, 255, 0.28);
+  color: rgba(230, 234, 242, 0.72);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.about-points span {
+  display: block;
+  margin-bottom: 4px;
+  color: rgba(230, 234, 242, 0.94);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
 
 @media only screen and (min-width: 600px) {
   .about-section {
@@ -78,6 +99,10 @@
     font-size: 1.02vw;
     line-height: 1.7vw;
   }
+  .about-points div {
+    font-size: 0.92vw;
+    line-height: 1.5vw;
+  }
 }
 @media only screen and (min-width: 1950px) {
   .about-me .about-lead {
@@ -87,5 +112,9 @@
   .about-me .about-secondary {
     font-size: 1.25rem;
     line-height: 2.1rem;
+  }
+  .about-points div {
+    font-size: 1.05rem;
+    line-height: 1.8rem;
   }
 }

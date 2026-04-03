@@ -1,0 +1,131 @@
+.certifications-section {
+  width: var(--cWidth);
+  max-width: var(--cMaxWidth);
+  margin: 40px auto 120px;
+  position: relative;
+  z-index: 1;
+  clear: both;
+}
+
+.certifications-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+.certifications-header h2 {
+  margin: 0;
+  font-size: 58px;
+  line-height: 0.98;
+  font-weight: 500;
+}
+
+.certifications-header h2 span {
+  color: var(--accentColor);
+}
+
+.certifications-header p {
+  max-width: 420px;
+  margin: 0;
+  color: rgba(230, 234, 242, 0.7);
+  line-height: 1.8;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.certificate-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(230, 234, 242, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.35s ease, border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(123, 97, 255, 0.28);
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.18);
+}
+
+.certificate-image-link {
+  display: block;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.certificate-image-link img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.certificate-info {
+  padding: 20px 20px 24px;
+}
+
+.certificate-issuer {
+  margin: 0 0 10px;
+  color: var(--accentColor);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.certificate-info h3 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.certificate-date {
+  margin: 12px 0 0;
+  color: rgba(230, 234, 242, 0.72);
+}
+
+.certificate-meta {
+  margin: 8px 0 0;
+  color: rgba(230, 234, 242, 0.52);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media only screen and (max-width: 1100px) {
+  .certifications-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .certifications-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .certifications-section {
+    margin: 20px auto 80px;
+  }
+
+  .certifications-header h2 {
+    font-size: 42px;
+  }
+
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-image-link img {
+    height: 210px;
+  }
+}

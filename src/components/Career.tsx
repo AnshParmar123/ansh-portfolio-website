@@ -24,6 +24,49 @@ const timelineItems = [
   },
 ];
 
+const academicYears = [
+  {
+    year: "Year 1",
+    semesters: [
+      { label: "Sem 1", sgpa: "8.50" },
+      { label: "Sem 2", sgpa: "8.31" },
+      { label: "Sem 3", sgpa: "8.69" },
+    ],
+  },
+  {
+    year: "Year 2",
+    semesters: [
+      { label: "Sem 4", sgpa: "7.88" },
+      { label: "Sem 5", sgpa: "8.36" },
+      { label: "Sem 6", sgpa: "8.50" },
+    ],
+  },
+  {
+    year: "Year 3",
+    semesters: [
+      { label: "Sem 7", sgpa: "9.25" },
+      { label: "Sem 8", sgpa: "8.73" },
+      { label: "Sem 9", sgpa: "Ongoing" },
+    ],
+  },
+  {
+    year: "Year 4",
+    semesters: [
+      { label: "Sem 10", sgpa: "Upcoming" },
+      { label: "Sem 11", sgpa: "Upcoming" },
+      { label: "Sem 12", sgpa: "Upcoming" },
+    ],
+  },
+  {
+    year: "Year 5",
+    semesters: [
+      { label: "Sem 13", sgpa: "Upcoming" },
+      { label: "Sem 14", sgpa: "Upcoming" },
+      { label: "Sem 15", sgpa: "Upcoming" },
+    ],
+  },
+];
+
 const Career = () => {
   return (
     <div className="career-section section-container">
@@ -46,6 +89,63 @@ const Career = () => {
               <p>{item.description}</p>
             </div>
           ))}
+        </div>
+        <div className="academics-section">
+          <div className="academics-header">
+            <div>
+              <span className="academics-eyebrow">Academic Performance</span>
+              <h3>Current CGPA: 8.53 / 10</h3>
+            </div>
+            <p>
+              Semester-wise SGPA across the integrated MBA-Tech journey so far,
+              with current performance calculated from completed semesters.
+            </p>
+          </div>
+          <div className="academics-grid">
+            {academicYears.map((item) => (
+              <div className="academics-card" key={item.year}>
+                <h4>{item.year}</h4>
+                <div className="academics-semesters">
+                  {item.semesters.map((semester) => (
+                    <div className="academics-semester" key={semester.label}>
+                      <span>{semester.label}</span>
+                      <strong>{semester.sgpa}</strong>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="interests-section">
+          <div className="interests-header">
+            <span className="academics-eyebrow">Beyond Academics</span>
+            <h3>Personal Interests</h3>
+            <p>
+              Outside of building projects, I enjoy staying active through
+              sports and spending time reading. These interests keep me
+              competitive, curious, and balanced.
+            </p>
+          </div>
+          <div className="interests-grid">
+            <div className="interest-card">
+              <h4>Sports</h4>
+              <div className="interest-tags">
+                <span>Football (Most)</span>
+                <span>Cricket</span>
+                <span>Badminton</span>
+                <span>Basketball</span>
+                <span>Table Tennis</span>
+              </div>
+            </div>
+            <div className="interest-card">
+              <h4>Reading</h4>
+              <div className="interest-tags">
+                <span>Books</span>
+                <span>Learning Through Reading</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
