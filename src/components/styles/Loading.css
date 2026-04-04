@@ -8,8 +8,8 @@
     linear-gradient(140deg, #070b12 0%, #0b0f19 45%, #111827 100%);
   z-index: 999999999;
   display: flex;
-  place-items: center;
   justify-content: center;
+  align-items: center;
 }
 .loading-button {
   padding: 20px 50px;
@@ -50,7 +50,10 @@
 .loading-wrap {
   --Lsize: 145px;
   padding: 6px;
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 66%;
+  transform: translate(-50%, -50%);
   min-width: 0px;
   min-height: 0px;
   border-radius: 100px;
@@ -66,7 +69,7 @@
 .loading-clicked {
   transition-delay: 0ms;
   transition-timing-function: cubic-bezier(0.33, 0.11, 1, 0.72);
-  transform: scale(1);
+  transform: translate(-50%, -50%) scale(1);
   min-width: calc(100vw + 5000px);
   border-radius: 5000px;
   min-height: calc(100vh + 500px);
@@ -287,30 +290,27 @@
 }
 .loading-marquee {
   position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  transform: translateY(-50%);
-  color: rgba(230, 234, 242, 0.12);
-  font-size: 58px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-.loading-marquee span {
-  padding: 0px 50px;
-  position: relative;
-}
-.loading-marquee span::before {
-  content: "";
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(135deg, rgba(0, 245, 212, 0.95), rgba(123, 97, 255, 0.95));
-  position: absolute;
-  top: 50%;
-  border-radius: 50px;
-  left: 0px;
+  left: 50%;
+  top: 46%;
+  width: min(92vw, 760px);
   transform: translate(-50%, -50%);
+  text-align: center;
+  display: grid;
+  gap: 14px;
+}
+.loading-welcome {
+  color: rgba(230, 234, 242, 0.96);
+  font-size: clamp(28px, 4vw, 46px);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.loading-signature {
+  color: rgba(230, 234, 242, 0.64);
+  font-size: clamp(14px, 1.8vw, 20px);
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 @keyframes ball25 {
   0% {
@@ -342,6 +342,7 @@
 @media only screen and (min-width: 1400px) {
   .loading-wrap {
     --Lsize: 210px;
+    top: 68%;
   }
   .loading-button {
     padding: 30px 70px;
@@ -350,9 +351,6 @@
   .loading-container {
     left: 70px;
   }
-  .loading-marquee {
-    font-size: 100px;
-  }
 }
 @media only screen and (min-width: 500px) {
   .loading-header {
@@ -360,6 +358,20 @@
   }
   .loader-title {
     font-size: 16px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .loading-marquee {
+    top: 42%;
+    gap: 10px;
+  }
+  .loading-wrap {
+    top: 63%;
+  }
+  .loading-content2 {
+    font-size: 12px;
+    width: calc(var(--Lsize) + 50px);
+    max-width: calc(var(--Lsize) + 50px);
   }
 }
 @media only screen and (min-width: 1200px) {

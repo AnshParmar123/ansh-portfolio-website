@@ -54,17 +54,31 @@
 
 .work-image {
   width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  box-sizing: border-box;
 }
 
 .work-image-in {
   width: 100%;
-  display: block;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .work-image img {
   width: 100%;
-  height: 230px;
-  object-fit: cover;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
   border-radius: 20px;
   display: block;
 }
@@ -252,7 +266,7 @@
   }
 
   .work-image img {
-    height: 210px;
+    height: 100%;
   }
 }
 
@@ -303,11 +317,16 @@
   }
 
   .work-image img {
-    height: 190px;
+    height: 100%;
     border-radius: 16px;
   }
 
   .work-image video {
+    border-radius: 16px;
+  }
+
+  .work-image {
+    height: 210px;
     border-radius: 16px;
   }
 }
