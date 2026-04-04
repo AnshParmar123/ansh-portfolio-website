@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
-import Marquee from "react-fast-marquee";
-
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
   const [loaded, setLoaded] = useState(false);
@@ -61,12 +59,8 @@ const Loading = ({ percent }: { percent: number }) => {
       </div>
       <div className="loading-screen">
         <div className="loading-marquee">
-          <Marquee>
-            <span> AI Systems Builder</span> <span>Computer Vision Developer</span>
-            <span> Problem Solver</span> <span>Machine Learning Explorer</span>
-            <span> AI Systems Builder</span> <span>Computer Vision Developer</span>
-            <span> Problem Solver</span> <span>Machine Learning Explorer</span>
-          </Marquee>
+          <div className="loading-welcome">Welcome to my portfolio</div>
+          <div className="loading-signature">Made with ❤️ by Ansh Parmar</div>
         </div>
         <div
           className={`loading-wrap ${clicked && "loading-clicked"}`}
