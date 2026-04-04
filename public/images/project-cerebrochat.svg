@@ -1,12 +1,24 @@
-<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="520" rx="28" fill="#101625"/>
-  <rect x="60" y="54" width="680" height="412" rx="26" fill="#121A2D"/>
-  <rect x="92" y="96" width="220" height="48" rx="16" fill="#7B61FF"/>
-  <rect x="488" y="168" width="220" height="48" rx="16" fill="#1D2840"/>
-  <rect x="92" y="238" width="290" height="48" rx="16" fill="#00F5D4" opacity=".8"/>
-  <rect x="414" y="308" width="294" height="48" rx="16" fill="#1D2840"/>
-  <circle cx="154" cy="378" r="30" fill="#1D2840"/>
-  <path d="M204 374H434" stroke="#E6EAF2" stroke-width="10" stroke-linecap="round" opacity=".85"/>
-  <text x="92" y="80" fill="#E6EAF2" font-size="34" font-family="Arial, sans-serif">CerebroChat</text>
-  <text x="92" y="430" fill="#97A4BD" font-size="22" font-family="Arial, sans-serif">Academic assistance chatbot with document-based answers</text>
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#0D1220"/>
+  <rect x="42" y="42" width="1116" height="636" rx="34" fill="url(#panel)"/>
+  <rect x="86" y="112" width="1028" height="496" rx="30" fill="#121B30"/>
+  <rect x="118" y="150" width="284" height="58" rx="20" fill="#7B61FF"/>
+  <rect x="684" y="236" width="330" height="56" rx="20" fill="#1F2B48"/>
+  <rect x="118" y="322" width="420" height="56" rx="20" fill="#00F5D4" opacity="0.82"/>
+  <rect x="578" y="410" width="436" height="56" rx="20" fill="#1F2B48"/>
+  <rect x="118" y="520" width="704" height="42" rx="21" fill="#18233D"/>
+  <circle cx="910" cy="540" r="24" fill="#7B61FF"/>
+  <circle cx="972" cy="540" r="24" fill="#00F5D4"/>
+  <text x="92" y="100" fill="#E6EAF2" font-size="44" font-family="Arial, sans-serif" font-weight="700">CerebroChat</text>
+  <text x="92" y="646" fill="#9EB0CC" font-size="24" font-family="Arial, sans-serif">AI assistant for academic Q&amp;A, smart summaries, and study planning</text>
+  <text x="140" y="188" fill="#E6EAF2" font-size="24" font-family="Arial, sans-serif">Summarize Unit 4 notes</text>
+  <text x="706" y="272" fill="#E6EAF2" font-size="22" font-family="Arial, sans-serif">Generated study plan</text>
+  <text x="140" y="358" fill="#0D1220" font-size="22" font-family="Arial, sans-serif">Document-grounded answer</text>
+  <text x="602" y="446" fill="#E6EAF2" font-size="22" font-family="Arial, sans-serif">Assignment and topic tracking</text>
+  <defs>
+    <linearGradient id="panel" x1="42" y1="42" x2="1158" y2="678" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B0F19"/>
+      <stop offset="1" stop-color="#1B2340"/>
+    </linearGradient>
+  </defs>
 </svg>

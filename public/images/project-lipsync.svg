@@ -1,15 +1,32 @@
-<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="520" rx="28" fill="#101625"/>
-  <rect x="48" y="48" width="704" height="424" rx="24" fill="url(#a)"/>
-  <path d="M208 276C244 220 309 184 383 184C475 184 555 239 594 320" stroke="#00F5D4" stroke-width="10" stroke-linecap="round"/>
-  <path d="M256 300C287 260 333 236 385 236C452 236 512 277 544 336" stroke="#7B61FF" stroke-width="10" stroke-linecap="round" opacity=".9"/>
-  <circle cx="384" cy="260" r="120" stroke="rgba(230,234,242,0.35)" stroke-width="2"/>
-  <text x="74" y="110" fill="#E6EAF2" font-size="34" font-family="Arial, sans-serif">LipSync AI</text>
-  <text x="74" y="150" fill="#97A4BD" font-size="22" font-family="Arial, sans-serif">Real-time lip tracking and speech prediction</text>
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#0D1220"/>
+  <rect x="42" y="42" width="1116" height="636" rx="34" fill="url(#panel)"/>
+  <circle cx="331" cy="340" r="156" fill="url(#faceGlow)" opacity="0.85"/>
+  <path d="M270 262C299 232 336 218 383 218C451 218 507 253 548 316" stroke="#00F5D4" stroke-width="10" stroke-linecap="round"/>
+  <path d="M256 330C301 286 350 266 405 266C475 266 533 301 566 355" stroke="#7B61FF" stroke-width="12" stroke-linecap="round"/>
+  <path d="M288 382C316 408 349 422 389 422C438 422 484 400 523 364" stroke="#FF8FB7" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="389" cy="318" r="119" stroke="rgba(230,234,242,0.2)" stroke-width="2"/>
+  <circle cx="389" cy="318" r="146" stroke="rgba(0,245,212,0.16)" stroke-width="2" stroke-dasharray="8 10"/>
+  <rect x="698" y="150" width="352" height="62" rx="18" fill="#1C2540"/>
+  <rect x="698" y="242" width="294" height="46" rx="16" fill="#152038"/>
+  <rect x="698" y="310" width="236" height="46" rx="16" fill="#152038"/>
+  <rect x="698" y="378" width="320" height="46" rx="16" fill="#152038"/>
+  <rect x="698" y="458" width="206" height="42" rx="21" fill="#00F5D4" opacity="0.16"/>
+  <text x="90" y="120" fill="#E6EAF2" font-size="44" font-family="Arial, sans-serif" font-weight="700">Lip Reading AI</text>
+  <text x="90" y="168" fill="#9EB0CC" font-size="24" font-family="Arial, sans-serif">AI vision system for lip tracking and silent speech recognition</text>
+  <text x="720" y="190" fill="#E6EAF2" font-size="24" font-family="Arial, sans-serif">Landmark Extraction</text>
+  <text x="720" y="274" fill="#9EB0CC" font-size="22" font-family="Arial, sans-serif">Visual speech pattern detection</text>
+  <text x="720" y="342" fill="#9EB0CC" font-size="22" font-family="Arial, sans-serif">Real-time text prediction</text>
+  <text x="720" y="410" fill="#9EB0CC" font-size="22" font-family="Arial, sans-serif">Sentiment-assisted interaction</text>
   <defs>
-    <linearGradient id="a" x1="48" y1="48" x2="752" y2="472" gradientUnits="userSpaceOnUse">
+    <linearGradient id="panel" x1="42" y1="42" x2="1158" y2="678" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0B0F19"/>
-      <stop offset="1" stop-color="#1A2138"/>
+      <stop offset="1" stop-color="#1B2340"/>
     </linearGradient>
+    <radialGradient id="faceGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(331 340) rotate(90) scale(156)">
+      <stop stop-color="#202B49"/>
+      <stop offset="0.7" stop-color="#11182B"/>
+      <stop offset="1" stop-color="#0B0F19"/>
+    </radialGradient>
   </defs>
 </svg>

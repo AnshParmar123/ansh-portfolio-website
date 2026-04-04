@@ -1,13 +1,25 @@
-<svg width="800" height="520" viewBox="0 0 800 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="520" rx="28" fill="#101625"/>
-  <rect x="52" y="52" width="696" height="416" rx="24" fill="#131B2E"/>
-  <rect x="88" y="104" width="180" height="220" rx="18" fill="#1E2942"/>
-  <circle cx="178" cy="180" r="48" stroke="#00F5D4" stroke-width="8"/>
-  <path d="M128 270C144 236 212 236 228 270" stroke="#00F5D4" stroke-width="8" stroke-linecap="round"/>
-  <rect x="316" y="112" width="396" height="34" rx="10" fill="#24314D"/>
-  <rect x="316" y="176" width="300" height="28" rx="10" fill="#7B61FF" opacity=".7"/>
-  <rect x="316" y="228" width="340" height="28" rx="10" fill="#24314D"/>
-  <rect x="316" y="280" width="260" height="28" rx="10" fill="#24314D"/>
-  <text x="88" y="90" fill="#E6EAF2" font-size="34" font-family="Arial, sans-serif">Smart Attendance System</text>
-  <text x="88" y="380" fill="#97A4BD" font-size="22" font-family="Arial, sans-serif">Face recognition attendance with dashboards and alerts</text>
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#0D1220"/>
+  <rect x="42" y="42" width="1116" height="636" rx="34" fill="url(#panel)"/>
+  <rect x="88" y="138" width="272" height="414" rx="28" fill="#18223C"/>
+  <circle cx="224" cy="258" r="74" stroke="#00F5D4" stroke-width="10"/>
+  <path d="M153 374C181 314 267 314 295 374" stroke="#00F5D4" stroke-width="10" stroke-linecap="round"/>
+  <rect x="450" y="138" width="620" height="88" rx="24" fill="#1B2642"/>
+  <rect x="450" y="262" width="524" height="48" rx="18" fill="#7B61FF" opacity="0.82"/>
+  <rect x="450" y="336" width="446" height="48" rx="18" fill="#233150"/>
+  <rect x="450" y="410" width="370" height="48" rx="18" fill="#233150"/>
+  <rect x="450" y="494" width="250" height="42" rx="21" fill="#00F5D4" opacity="0.18"/>
+  <path d="M255 230H193M224 198V320M193 289H255" stroke="rgba(230,234,242,0.18)" stroke-width="2"/>
+  <text x="90" y="108" fill="#E6EAF2" font-size="44" font-family="Arial, sans-serif" font-weight="700">Smart Attendance System</text>
+  <text x="90" y="594" fill="#9EB0CC" font-size="24" font-family="Arial, sans-serif">Biometric attendance dashboard with recognition, reports, and alerts</text>
+  <text x="478" y="192" fill="#E6EAF2" font-size="26" font-family="Arial, sans-serif">Recognition Dashboard</text>
+  <text x="478" y="296" fill="#E6EAF2" font-size="22" font-family="Arial, sans-serif">Proxy-free face identification</text>
+  <text x="478" y="370" fill="#9EB0CC" font-size="22" font-family="Arial, sans-serif">CSV logs and attendance history</text>
+  <text x="478" y="444" fill="#9EB0CC" font-size="22" font-family="Arial, sans-serif">Email notifications and reporting</text>
+  <defs>
+    <linearGradient id="panel" x1="42" y1="42" x2="1158" y2="678" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B0F19"/>
+      <stop offset="1" stop-color="#1A223D"/>
+    </linearGradient>
+  </defs>
 </svg>
