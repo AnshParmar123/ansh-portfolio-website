@@ -1,10 +1,10 @@
 .contact-section {
   margin: auto;
-  padding-bottom: 100px;
-  margin-top: 100px;
+  padding-bottom: clamp(3rem, 7vw, 6.25rem);
+  margin-top: clamp(3rem, 7vw, 6.25rem);
 }
 .contact-section h3 {
-  font-size: 60px;
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
   font-weight: 400;
   text-transform: uppercase;
   margin: 0;
@@ -12,6 +12,7 @@
 .contact-flex {
   display: flex;
   justify-content: space-between;
+  gap: clamp(2rem, 5vw, 4rem);
 }
 .contact-flex h4 {
   font-weight: 500;
@@ -32,7 +33,7 @@
   line-height: 1.8;
 }
 a.contact-social {
-  font-size: 25px;
+  font-size: clamp(1.25rem, 1.8vw, 1.5625rem);
   border-bottom: 1px solid #ccc;
   width: fit-content;
   padding: 6px 0;
@@ -48,7 +49,7 @@ a.contact-social:hover {
 }
 .contact-box h2 {
   font-weight: 400;
-  font-size: 23px;
+  font-size: clamp(1.125rem, 1.5vw, 1.4375rem);
   margin: 0;
 }
 .contact-cta {
@@ -69,25 +70,13 @@ a.contact-social:hover {
   opacity: 0.5;
 }
 @media only screen and (max-width: 1600px) {
-  .contact-section h3 {
-    font-size: 50px;
-  }
   .contact-box h2 {
     font-size: 20px;
-  }
-  a.contact-social {
-    font-size: 22px;
   }
 }
 @media only screen and (max-width: 1300px) {
-  .contact-section h3 {
-    font-size: 40px;
-  }
   .contact-box h2 {
     font-size: 18px;
-  }
-  a.contact-social {
-    font-size: 20px;
   }
   .contact-flex p {
     margin-top: 0px;

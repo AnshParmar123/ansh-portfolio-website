@@ -9,8 +9,8 @@
   height: auto;
   overflow: visible;
   margin: auto;
-  margin-bottom: 220px;
-  padding: 120px 0px 80px;
+  margin-bottom: clamp(6rem, 14vw, 13.75rem);
+  padding: clamp(5rem, 9vw, 7.5rem) 0 clamp(4rem, 6vw, 5rem);
 }
 .career-container {
   width: min(var(--cWidth), var(--cMaxWidth));
@@ -19,8 +19,8 @@
 }
 
 .career-section h2 {
-  font-size: 64px;
-  line-height: 64px;
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  line-height: 1;
   font-weight: 400;
   text-align: center;
   background: linear-gradient(0deg, #7f40ff, #ffffff);
@@ -28,8 +28,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  margin-top: 50px;
-  margin-bottom: 90px;
+  margin-top: clamp(1.5rem, 4vw, 3.125rem);
+  margin-bottom: clamp(3rem, 7vw, 5.625rem);
   letter-spacing: 0.02em;
 }
 .career-info {
@@ -37,18 +37,18 @@
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  gap: 44px;
+  gap: clamp(2rem, 4vw, 2.75rem);
   width: min(1180px, 100%);
 }
 .career-info-box {
   display: grid;
-  grid-template-columns: minmax(260px, 1fr) 120px minmax(340px, 1.1fr);
-  gap: 38px;
+  grid-template-columns: minmax(14rem, 1fr) clamp(5rem, 8vw, 7.5rem) minmax(18rem, 1.1fr);
+  gap: clamp(1.5rem, 3vw, 2.375rem);
   align-items: start;
   position: relative;
 }
 .career-info-box p {
-  font-size: 18px;
+  font-size: clamp(0.9rem, 1.2vw, 1.125rem);
   font-weight: 300;
   line-height: 1.8;
   margin: 0;
@@ -60,7 +60,7 @@
   gap: 10px;
 }
 .career-info h4 {
-  font-size: 31px;
+  font-size: clamp(1.375rem, 2.1vw, 1.9375rem);
   line-height: 1.05;
   letter-spacing: 0.02em;
   font-weight: 500;
@@ -69,7 +69,7 @@
 .career-info h5 {
   font-weight: 400;
   letter-spacing: 0.04em;
-  font-size: 19px;
+  font-size: clamp(1rem, 1.3vw, 1.1875rem);
   text-transform: none;
   margin: 0;
   color: var(--accentColor);
@@ -128,12 +128,12 @@
   font-weight: 600;
 }
 .academics-section {
-  margin-top: 120px;
+  margin-top: clamp(5rem, 9vw, 7.5rem);
 }
 .academics-header {
   display: flex;
   justify-content: space-between;
-  gap: 32px;
+  gap: clamp(1.5rem, 4vw, 2rem);
   align-items: flex-end;
   margin-bottom: 36px;
 }
@@ -150,7 +150,7 @@
 }
 .academics-header h3 {
   margin: 0;
-  font-size: 38px;
+  font-size: clamp(1.75rem, 3vw, 2.375rem);
   line-height: 1.05;
   font-weight: 500;
   overflow-wrap: anywhere;
@@ -164,7 +164,7 @@
 }
 .academics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.5rem), 1fr));
   gap: 18px;
   align-items: stretch;
 }
@@ -209,8 +209,8 @@
   flex-shrink: 0;
 }
 .interests-section {
-  margin-top: 90px;
-  margin-bottom: 120px;
+  margin-top: clamp(4rem, 7vw, 5.625rem);
+  margin-bottom: clamp(5rem, 9vw, 7.5rem);
 }
 .interests-header {
   max-width: 720px;
@@ -218,7 +218,7 @@
 }
 .interests-header h3 {
   margin: 0;
-  font-size: 36px;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
   line-height: 1.05;
   font-weight: 500;
 }
@@ -294,8 +294,8 @@
 }
 @media only screen and (max-width: 1400px) {
   .career-section h2 {
-    font-size: 50px;
-    line-height: 50px;
+    font-size: clamp(2.5rem, 5vw, 3.125rem);
+    line-height: 1;
   }
   .career-info h4 {
     font-size: 22px;
@@ -308,7 +308,7 @@
     font-size: 14px;
   }
   .career-info-box {
-    grid-template-columns: minmax(220px, 1fr) 100px minmax(280px, 1.05fr);
+    grid-template-columns: minmax(13rem, 1fr) 6.25rem minmax(17rem, 1.05fr);
     gap: 28px;
   }
   .academics-header h3 {
@@ -320,9 +320,9 @@
 }
 @media only screen and (max-width: 1025px) {
   .career-section {
-    padding: 70px 0px;
-    padding-top: 220px;
-    margin-top: -200px;
+    padding: clamp(4rem, 8vw, 5rem) 0;
+    padding-top: clamp(6rem, 16vw, 13.75rem);
+    margin-top: clamp(-12.5rem, -14vw, -5rem);
     margin-bottom: 0;
   }
   .career-info {
@@ -372,8 +372,8 @@
   }
   .career-section h2 {
     width: 100%;
-    font-size: 45px;
-    line-height: 45px;
+    font-size: clamp(2.5rem, 12vw, 2.8125rem);
+    line-height: 1;
     margin-top: 0px;
   }
   .career-info-box {

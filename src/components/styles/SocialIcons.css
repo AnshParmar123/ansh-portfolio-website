@@ -9,8 +9,8 @@
 }
 .social-icons {
   position: absolute;
-  left: -20px;
-  bottom: 20px;
+  left: clamp(-1rem, -1vw, -0.25rem);
+  bottom: clamp(1rem, 2vw, 1.25rem);
   display: none;
   flex-direction: column;
   gap: 8px;
@@ -26,8 +26,8 @@
   /* transform: scale(1.2); */
 }
 .social-icons span {
-  width: 50px;
-  height: 50px;
+  width: clamp(2.75rem, 4vw, 3.125rem);
+  height: clamp(2.75rem, 4vw, 3.125rem);
   position: relative;
   display: flex;
 }
@@ -39,7 +39,7 @@
   top: var(--siTop, 50%);
   transform: translate(-50%, -50%);
   display: flex;
-  font-size: 23px;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
   will-change: left, top;
   transition: transform 0.3s ease-out;
 }
@@ -48,13 +48,13 @@
   z-index: 99;
   display: flex;
   gap: 5px;
-  bottom: 40px;
+  bottom: clamp(2rem, 4vw, 2.5rem);
   right: 0;
   width: auto;
   text-wrap: nowrap;
   letter-spacing: 4px;
-  font-size: 15px;
-  line-height: 15px;
+  font-size: clamp(0.875rem, 1vw, 1.25rem);
+  line-height: 1;
   font-weight: 600;
   color: #5e5e5e;
   cursor: pointer;
@@ -87,15 +87,10 @@
     display: flex;
     gap: 20px;
   }
-  .social-icons a {
-    font-size: 28px;
-  }
 }
 @media only screen and (min-width: 768px) {
   .resume-button {
     transform: none;
-    font-size: 20px;
-    line-height: 20px;
   }
   .resume-button span {
     font-size: 23px;

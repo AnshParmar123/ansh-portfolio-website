@@ -10,12 +10,12 @@
   margin: auto;
 }
 .about-me {
-  padding: 50px 0px 0;
-  width: 560px;
-  max-width: calc(100% - 15px);
+  padding: clamp(3rem, 6vw, 5rem) 0 0;
+  width: min(100%, 35rem);
+  max-width: 100%;
 }
 .about-me h3 {
-  font-size: 25px;
+  font-size: clamp(1.25rem, 2vw, 1.5625rem);
   text-transform: uppercase;
   letter-spacing: 7px;
   font-weight: 400;
@@ -27,7 +27,7 @@
   max-width: 56ch;
 }
 .about-me .about-lead {
-  font-size: 24px;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
   font-weight: 500;
   line-height: 1.62;
   letter-spacing: 0.01em;
@@ -35,7 +35,7 @@
 }
 .about-me .about-secondary {
   margin-top: 20px;
-  font-size: 18px;
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
   font-weight: 400;
   line-height: 1.85;
   letter-spacing: 0.01em;
@@ -70,8 +70,8 @@
 }
 @media only screen and (min-width: 768px) {
   .about-me {
-    width: 560px;
-    max-width: calc(100% - 70px);
+    width: min(100%, 35rem);
+    max-width: 100%;
     transform: translateY(0%);
   }
   .about-section {
@@ -83,7 +83,7 @@
     width: var(--cWidth);
     justify-content: right;
     max-width: 1920px;
-    height: var(--vh);
+    min-height: var(--vh);
     padding: 0px;
     opacity: 1;
   }
@@ -92,16 +92,16 @@
     width: 52%;
   }
   .about-me .about-lead {
-    font-size: 1.42vw;
-    line-height: 2.12vw;
+    font-size: clamp(1.25rem, 1.42vw, 1.7rem);
+    line-height: 1.5;
   }
   .about-me .about-secondary {
-    font-size: 1.02vw;
-    line-height: 1.7vw;
+    font-size: clamp(1rem, 1.02vw, 1.25rem);
+    line-height: 1.7;
   }
   .about-points div {
-    font-size: 0.92vw;
-    line-height: 1.5vw;
+    font-size: clamp(0.9rem, 0.92vw, 1.05rem);
+    line-height: 1.65;
   }
 }
 @media only screen and (min-width: 1950px) {

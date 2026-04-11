@@ -1,7 +1,7 @@
 .certifications-section {
   width: var(--cWidth);
   max-width: var(--cMaxWidth);
-  margin: 40px auto 120px;
+  margin: clamp(2rem, 4vw, 2.5rem) auto clamp(5rem, 9vw, 7.5rem);
   position: relative;
   z-index: 1;
   clear: both;
@@ -10,14 +10,14 @@
 .certifications-header {
   display: flex;
   justify-content: space-between;
-  gap: 32px;
+  gap: clamp(1.5rem, 4vw, 2rem);
   align-items: flex-end;
   margin-bottom: 40px;
 }
 
 .certifications-header h2 {
   margin: 0;
-  font-size: 58px;
+  font-size: clamp(2.6rem, 4.7vw, 3.625rem);
   line-height: 0.98;
   font-weight: 500;
 }
@@ -35,8 +35,8 @@
 
 .certifications-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(3, minmax(min(100%, 18rem), 1fr));
+  gap: clamp(1.25rem, 2.5vw, 1.5rem);
 }
 
 .certificate-card {
@@ -65,7 +65,7 @@
 
 .certificate-image-link img {
   width: 100%;
-  height: 220px;
+  height: clamp(12rem, 18vw, 13.75rem);
   object-fit: cover;
   display: block;
 }
@@ -84,7 +84,7 @@
 
 .certificate-info h3 {
   margin: 0;
-  font-size: 22px;
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
   line-height: 1.35;
   font-weight: 500;
 }
@@ -103,7 +103,7 @@
 
 @media only screen and (max-width: 1100px) {
   .certifications-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(min(100%, 18rem), 1fr));
   }
 
   .certifications-header {
@@ -118,7 +118,7 @@
   }
 
   .certifications-header h2 {
-    font-size: 42px;
+    font-size: clamp(2.4rem, 9vw, 2.625rem);
   }
 
   .certifications-grid {

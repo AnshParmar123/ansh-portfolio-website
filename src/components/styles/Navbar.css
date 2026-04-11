@@ -3,7 +3,7 @@
   max-width: var(--cMaxWidth);
   width: var(--cWidth);
   justify-content: space-between;
-  padding: 20px 0px;
+  padding: clamp(1.25rem, 2vw, 2.1875rem) 0;
   margin-bottom: -100px;
   box-sizing: border-box;
   position: fixed;
@@ -13,13 +13,13 @@
   z-index: 9999;
 }
 .header ul {
-  font-size: 12px;
+  font-size: clamp(0.75rem, 1vw, 1rem);
   display: flex;
   flex-direction: column;
   margin: 0;
   padding: 0;
   list-style: none;
-  column-gap: 40px;
+  column-gap: clamp(2rem, 5vw, 5rem);
   row-gap: 8px;
   align-items: end;
 }
@@ -36,9 +36,9 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: min(70vw, 760px);
+  width: min(62vw, 47.5rem);
   text-align: center;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 1vw, 1rem);
   line-height: 1.35;
   letter-spacing: 0.03em;
   font-weight: 500;
@@ -50,7 +50,7 @@
 }
 .navbar-title {
   font-weight: 700;
-  font-size: 14px;
+  font-size: clamp(0.875rem, 1vw, 1.125rem);
   letter-spacing: 0.2px;
 }
 @media only screen and (min-width: 500px) {
@@ -75,18 +75,8 @@
   }
 }
 @media only screen and (min-width: 1200px) {
-  .header {
-    padding: 35px 0px;
-  }
   .header ul {
-    column-gap: 80px;
-    font-size: 16px;
-  }
-  .navbar-connect {
-    font-size: 16px;
-  }
-  .navbar-title {
-    font-size: 18px;
+    column-gap: clamp(3rem, 5vw, 5rem);
   }
 }
 @media only screen and (max-width: 899px) {
