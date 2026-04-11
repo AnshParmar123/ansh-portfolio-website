@@ -61,6 +61,7 @@ const projects = [
       "Location-based analysis",
       "Sales improvement suggestions",
     ],
+    github: "https://github.com/AnshParmar123/insight-x",
   },
 ];
 
@@ -101,7 +102,7 @@ const Work = () => {
                     View Details
                   </a>
                   <a
-                    href="https://github.com/AnshParmar123"
+                    href={project.github ?? "https://github.com/AnshParmar123"}
                     target="_blank"
                     rel="noreferrer"
                     data-cursor="disable"

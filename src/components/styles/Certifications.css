@@ -1,7 +1,8 @@
 .certifications-section {
   width: var(--cWidth);
   max-width: var(--cMaxWidth);
-  margin: clamp(2rem, 4vw, 2.5rem) auto clamp(5rem, 9vw, 7.5rem);
+  margin: 0 auto clamp(5rem, 9vw, 7.5rem);
+  padding-top: var(--sectionY);
   position: relative;
   z-index: 1;
   clear: both;
@@ -12,7 +13,7 @@
   justify-content: space-between;
   gap: clamp(1.5rem, 4vw, 2rem);
   align-items: flex-end;
-  margin-bottom: 40px;
+  margin-bottom: clamp(2rem, 4vw, 2.8rem);
 }
 
 .certifications-header h2 {
@@ -42,25 +43,28 @@
 .certificate-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.03);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.028));
   border: 1px solid rgba(230, 234, 242, 0.08);
   border-radius: 24px;
   overflow: hidden;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   transition: transform 0.35s ease, border-color 0.35s ease,
     box-shadow 0.35s ease;
 }
 
 .certificate-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-6px) scale(1.01);
   border-color: rgba(123, 97, 255, 0.28);
-  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.18);
+  box-shadow:
+    0 22px 46px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(0, 245, 212, 0.04);
 }
 
 .certificate-image-link {
   display: block;
   background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
 }
 
 .certificate-image-link img {
@@ -68,6 +72,11 @@
   height: clamp(12rem, 18vw, 13.75rem);
   object-fit: cover;
   display: block;
+  transition: transform 0.45s ease;
+}
+
+.certificate-card:hover .certificate-image-link img {
+  transform: scale(1.03);
 }
 
 .certificate-info {

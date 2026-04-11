@@ -1,51 +1,77 @@
 import { useEffect, useRef } from "react";
 import "./styles/Cursor.css";
-import gsap from "gsap";
 
 const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    let hover = false;
-    const cursor = cursorRef.current!;
-    const mousePos = { x: 0, y: 0 };
-    const cursorPos = { x: 0, y: 0 };
-    document.addEventListener("mousemove", (e) => {
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+
+    const mousePos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const cursorPos = { x: mousePos.x, y: mousePos.y };
+    let rafId = 0;
+    let hoverMode: "default" | "icons" = "default";
+
+    const onMouseMove = (e: MouseEvent) => {
       mousePos.x = e.clientX;
       mousePos.y = e.clientY;
-    });
-    requestAnimationFrame(function loop() {
-      if (!hover) {
+    };
+
+    const loop = () => {
+      if (hoverMode === "default") {
         const delay = 6;
         cursorPos.x += (mousePos.x - cursorPos.x) / delay;
         cursorPos.y += (mousePos.y - cursorPos.y) / delay;
-        gsap.to(cursor, { x: cursorPos.x, y: cursorPos.y, duration: 0.1 });
-        // cursor.style.transform = `translate(${cursorPos.x}px, ${cursorPos.y}px)`;
       }
-      requestAnimationFrame(loop);
-    });
-    document.querySelectorAll("[data-cursor]").forEach((item) => {
+
+      cursor.style.setProperty("--cursor-x", `${cursorPos.x}px`);
+      cursor.style.setProperty("--cursor-y", `${cursorPos.y}px`);
+      rafId = window.requestAnimationFrame(loop);
+    };
+
+    document.addEventListener("mousemove", onMouseMove, { passive: true });
+    rafId = window.requestAnimationFrame(loop);
+
+    const cleanups = Array.from(document.querySelectorAll("[data-cursor]")).map((item) => {
       const element = item as HTMLElement;
-      element.addEventListener("mouseover", (e: MouseEvent) => {
+      const onMouseOver = (e: MouseEvent) => {
         const target = e.currentTarget as HTMLElement;
         const rect = target.getBoundingClientRect();
 
         if (element.dataset.cursor === "icons") {
           cursor.classList.add("cursor-icons");
-
-          gsap.to(cursor, { x: rect.left, y: rect.top, duration: 0.1 });
-          //   cursor.style.transform = `translate(${rect.left}px,${rect.top}px)`;
+          cursorPos.x = rect.left + rect.width / 2;
+          cursorPos.y = rect.top + rect.height / 2;
           cursor.style.setProperty("--cursorH", `${rect.height}px`);
-          hover = true;
+          hoverMode = "icons";
         }
         if (element.dataset.cursor === "disable") {
           cursor.classList.add("cursor-disable");
         }
-      });
-      element.addEventListener("mouseout", () => {
+      };
+
+      const onMouseOut = () => {
         cursor.classList.remove("cursor-disable", "cursor-icons");
-        hover = false;
-      });
+        hoverMode = "default";
+      };
+
+      element.addEventListener("mouseover", onMouseOver);
+      element.addEventListener("mouseout", onMouseOut);
+
+      return () => {
+        element.removeEventListener("mouseover", onMouseOver);
+        element.removeEventListener("mouseout", onMouseOut);
+      };
     });
+
+    return () => {
+      window.cancelAnimationFrame(rafId);
+      document.removeEventListener("mousemove", onMouseMove);
+      cleanups.forEach((cleanup) => cleanup());
+    };
   }, []);
 
   return <div className="cursor-main" ref={cursorRef}></div>;

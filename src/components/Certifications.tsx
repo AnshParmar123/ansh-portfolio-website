@@ -88,7 +88,12 @@ const Certifications = () => {
               className="certificate-image-link"
               data-cursor="disable"
             >
-              <img src={certificate.image} alt={certificate.title} />
+              <img
+                src={certificate.image}
+                alt={certificate.title}
+                loading="lazy"
+                decoding="async"
+              />
             </a>
             <div className="certificate-info">
               <p className="certificate-issuer">{certificate.issuer}</p>

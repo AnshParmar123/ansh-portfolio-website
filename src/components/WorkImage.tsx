@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { MdArrowOutward } from "react-icons/md";
 
 interface Props {
@@ -36,11 +36,11 @@ const WorkImage = (props: Props) => {
             <MdArrowOutward />
           </div>
         )}
-        <img src={props.image} alt={props.alt} />
+        <img src={props.image} alt={props.alt} loading="lazy" decoding="async" />
         {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
       </a>
     </div>
   );
 };
 
-export default WorkImage;
+export default memo(WorkImage);

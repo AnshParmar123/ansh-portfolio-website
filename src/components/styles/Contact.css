@@ -1,7 +1,7 @@
 .contact-section {
   margin: auto;
   padding-bottom: clamp(3rem, 7vw, 6.25rem);
-  margin-top: clamp(3rem, 7vw, 6.25rem);
+  margin-top: var(--sectionY);
 }
 .contact-section h3 {
   font-size: clamp(2.5rem, 5vw, 3.75rem);
@@ -10,9 +10,10 @@
   margin: 0;
 }
 .contact-flex {
-  display: flex;
-  justify-content: space-between;
-  gap: clamp(2rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(1.6rem, 3vw, 2.1rem);
 }
 .contact-flex h4 {
   font-weight: 500;
@@ -22,6 +23,13 @@
 .contact-box {
   display: flex;
   flex-direction: column;
+  padding: clamp(1.2rem, 2vw, 1.6rem);
+  border: 1px solid rgba(230, 234, 242, 0.08);
+  border-radius: var(--panelRadius);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.028));
+  box-shadow: var(--panelShadow);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .contact-flex p {
   margin-top: 10px;
@@ -34,9 +42,9 @@
 }
 a.contact-social {
   font-size: clamp(1.25rem, 1.8vw, 1.5625rem);
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid rgba(230, 234, 242, 0.16);
   width: fit-content;
-  padding: 6px 0;
+  padding: 0.5rem 0;
   transition:
     color 0.25s ease,
     border-color 0.25s ease,
@@ -84,8 +92,8 @@ a.contact-social:hover {
 }
 @media only screen and (max-width: 900px) {
   .contact-flex {
-    flex-direction: column;
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   .contact-flex p {
     margin-bottom: 0px;
@@ -96,8 +104,5 @@ a.contact-social:hover {
   .contact-section {
     margin-top: 50px;
     padding-bottom: 50px;
-  }
-  .contact-container {
-    width: calc(100% - 25px);
   }
 }

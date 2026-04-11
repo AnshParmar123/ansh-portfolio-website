@@ -19,16 +19,47 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   );
 
   useEffect(() => {
+    let resizeFrame = 0;
+
     const resizeHandler = () => {
-      setSplitText();
-      setIsDesktopView(window.innerWidth > 1024);
+      window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(() => {
+        setSplitText();
+        setIsDesktopView(window.innerWidth > 1024);
+      });
     };
+
+    const revealTargets = Array.from(
+      document.querySelectorAll(
+        ".landing-section, .about-section, .whatIDO, .career-section, .certifications-section, .work-section, .techstack, .contact-section"
+      )
+    );
+
+    revealTargets.forEach((element) => {
+      element.classList.add("section-reveal");
+    });
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+    );
+
+    revealTargets.forEach((element) => revealObserver.observe(element));
+
     resizeHandler();
     window.addEventListener("resize", resizeHandler);
     return () => {
+      window.cancelAnimationFrame(resizeFrame);
       window.removeEventListener("resize", resizeHandler);
+      revealObserver.disconnect();
     };
-  }, [isDesktopView]);
+  }, []);
 
   return (
     <div className="container-main">

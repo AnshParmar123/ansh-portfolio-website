@@ -1,33 +1,42 @@
 .cursor-main {
   --size: 0px;
+  --cursor-x: 50vw;
+  --cursor-y: 50vh;
+  --cursor-scale: 1;
+  --cursor-opacity: 1;
   position: fixed;
-  top: calc(var(--size) / -2);
-  left: calc(var(--size) / -2);
+  top: 0;
+  left: 0;
   width: var(--size);
   height: var(--size);
   border-radius: 50px;
   pointer-events: none;
   z-index: 99;
   background-color: #e6c3ff;
-  box-shadow: 0px 0px 30px 0px rgb(175, 131, 255);
+  box-shadow: 0px 0px 18px 0px rgba(175, 131, 255, 0.75);
   mix-blend-mode: difference;
-  transition: top 0.3s ease-out, left 0.3s ease-out, width 0.3s ease-out,
-    height 0.3s ease-out;
+  opacity: var(--cursor-opacity);
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0)
+    translate(-50%, -50%) scale(var(--cursor-scale));
+  transition: transform 0.18s ease-out, opacity 0.2s ease-out,
+    box-shadow 0.2s ease-out;
+  will-change: transform, opacity;
 }
 .cursor-icons {
-  top: 10px;
-  left: 10px;
+  --cursor-scale: 0.82;
   height: calc(var(--cursorH) - 20px);
-  transition: all 0.5s ease-out, height 0.5s ease-in-out;
+  box-shadow: 0px 0px 12px 0px rgba(175, 131, 255, 0.55);
 }
 .cursor-disable {
-  --size: 0px;
+  --cursor-opacity: 0;
+  --cursor-scale: 0.2;
 }
 @media only screen and (min-width: 600px) {
   .cursor-main {
-    --size: 50px;
+    --size: 42px;
   }
   .cursor-disable {
-    --size: 0px;
+    --cursor-opacity: 0;
+    --cursor-scale: 0.2;
   }
 }
