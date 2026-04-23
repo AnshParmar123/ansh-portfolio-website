@@ -101,14 +101,18 @@ const Work = () => {
                   <a href="#contact" data-href="#contact">
                     View Details
                   </a>
-                  <a
-                    href={project.github ?? "https://github.com/AnshParmar123"}
-                    target="_blank"
-                    rel="noreferrer"
-                    data-cursor="disable"
-                  >
-                    GitHub
-                  </a>
+                  {project.github ? (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-cursor="disable"
+                    >
+                      GitHub
+                    </a>
+                  ) : (
+                    <span className="work-action-disabled">Not Deployed Yet</span>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { useRef, useMemo, useState, useEffect } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { EffectComposer, N8AO } from "@react-three/postprocessing";
@@ -24,11 +24,14 @@ const imageUrls = [
 ];
 const textures = imageUrls.map((url) => textureLoader.load(url));
 
-const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
+const sphereGeometry = new THREE.SphereGeometry(1, 20, 20);
 
-const spheres = [...Array(30)].map(() => ({
+const spheres = [...Array(18)].map(() => ({
   scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
 }));
+const sphereMaterialIndices = spheres.map(
+  () => Math.floor(Math.random() * imageUrls.length)
+);
 
 type SphereProps = {
   vec?: THREE.Vector3;
@@ -124,33 +127,104 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
   );
 }
 
+function TechStackScene({
+  isInteractive,
+  materials,
+  useAmbientOcclusion,
+}: {
+  isInteractive: boolean;
+  materials: THREE.MeshPhysicalMaterial[];
+  useAmbientOcclusion: boolean;
+}) {
+  return (
+    <Canvas
+      dpr={[1, 1.5]}
+      frameloop={isInteractive ? "always" : "demand"}
+      shadows
+      gl={{
+        alpha: true,
+        antialias: false,
+        depth: false,
+        powerPreference: "high-performance",
+        stencil: false,
+      }}
+      camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
+      onCreated={(state) => {
+        state.gl.toneMappingExposure = 1.35;
+        state.gl.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      }}
+      className="tech-canvas"
+    >
+      <ambientLight intensity={0.95} />
+      <spotLight
+        position={[20, 20, 25]}
+        penumbra={1}
+        angle={0.2}
+        color="white"
+        castShadow
+        shadow-mapSize={[512, 512]}
+      />
+      <directionalLight position={[0, 5, -4]} intensity={1.75} />
+      <Physics gravity={[0, 0, 0]} paused={!isInteractive}>
+        <Pointer isActive={isInteractive} />
+        {spheres.map((props, index) => (
+          <SphereGeo
+            key={index}
+            {...props}
+            material={materials[sphereMaterialIndices[index]]}
+            isActive={isInteractive}
+          />
+        ))}
+      </Physics>
+      <Environment
+        files="/models/char_enviorment.hdr"
+        environmentIntensity={0.42}
+        environmentRotation={[0, 4, 2]}
+      />
+      {useAmbientOcclusion && (
+        <EffectComposer enableNormalPass={false}>
+          <N8AO color="#0f002c" aoRadius={1.6} intensity={0.85} />
+        </EffectComposer>
+      )}
+    </Canvas>
+  );
+}
+
+const MemoizedTechStackScene = memo(TechStackScene);
+
 const TechStack = () => {
-  const [isActive, setIsActive] = useState(false);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [isInteractive, setIsInteractive] = useState(false);
+  const [useAmbientOcclusion, setUseAmbientOcclusion] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+    const mediaQuery = window.matchMedia(
+      "(max-width: 1024px), (pointer: coarse), (prefers-reduced-motion: reduce)"
+    );
+
+    const updateVisualMode = () => {
+      setUseAmbientOcclusion(!mediaQuery.matches);
     };
-    document.querySelectorAll(".header a").forEach((elem) => {
-      const element = elem as HTMLAnchorElement;
-      element.addEventListener("click", () => {
-        const interval = setInterval(() => {
-          handleScroll();
-        }, 10);
-        setTimeout(() => {
-          clearInterval(interval);
-        }, 1000);
-      });
-    });
-    window.addEventListener("scroll", handleScroll);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInteractive(Boolean(entry?.isIntersecting));
+      },
+      { threshold: 0.2, rootMargin: "10% 0px" }
+    );
+
+    updateVisualMode();
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    mediaQuery.addEventListener("change", updateVisualMode);
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+      mediaQuery.removeEventListener("change", updateVisualMode);
     };
   }, []);
+
   const materials = useMemo(() => {
     return textures.map(
       (texture) =>
@@ -167,46 +241,13 @@ const TechStack = () => {
   }, []);
 
   return (
-    <div className="techstack">
+    <div className="techstack" ref={sectionRef}>
       <h2> My Techstack</h2>
-
-      <Canvas
-        shadows
-        gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-        onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
-        className="tech-canvas"
-      >
-        <ambientLight intensity={1} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          castShadow
-          shadow-mapSize={[512, 512]}
-        />
-        <directionalLight position={[0, 5, -4]} intensity={2} />
-        <Physics gravity={[0, 0, 0]}>
-          <Pointer isActive={isActive} />
-          {spheres.map((props, i) => (
-            <SphereGeo
-              key={i}
-              {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
-              isActive={isActive}
-            />
-          ))}
-        </Physics>
-        <Environment
-          files="/models/char_enviorment.hdr"
-          environmentIntensity={0.5}
-          environmentRotation={[0, 4, 2]}
-        />
-        <EffectComposer enableNormalPass={false}>
-          <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
-        </EffectComposer>
-      </Canvas>
+      <MemoizedTechStackScene
+        isInteractive={isInteractive}
+        materials={materials}
+        useAmbientOcclusion={useAmbientOcclusion}
+      />
     </div>
   );
 };

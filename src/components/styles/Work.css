@@ -179,7 +179,8 @@
   margin-top: 4px;
 }
 
-.work-actions a {
+.work-actions a,
+.work-action-disabled {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -206,6 +207,13 @@
   box-shadow:
     0 10px 24px rgba(0, 0, 0, 0.18),
     0 0 22px rgba(0, 245, 212, 0.08);
+}
+
+.work-action-disabled {
+  cursor: default;
+  color: rgba(230, 234, 242, 0.58);
+  background: rgba(255, 255, 255, 0.025);
+  border-color: rgba(230, 234, 242, 0.08);
 }
 
 .work-link {
@@ -297,7 +305,8 @@
     border-radius: 22px;
   }
 
-  .work-actions a {
+  .work-actions a,
+  .work-action-disabled {
     min-width: 112px;
     padding: 10px 14px;
     font-size: 11px;

@@ -93,7 +93,6 @@ body {
     radial-gradient(circle at 88% 12%, rgba(255, 92, 168, 0.18), transparent 22%),
     radial-gradient(circle at 50% 100%, rgba(91, 123, 255, 0.18), transparent 32%),
     linear-gradient(135deg, #02050a 0%, #07131d 28%, #102739 62%, #1b1032 100%);
-  background-attachment: fixed;
   flex-grow: 1;
   --cWidth: min(calc(100% - (var(--pageX) * 2)), 112rem);
   --cMaxWidth: 120rem;
@@ -136,10 +135,10 @@ div {
   text-align: center;
   white-space: pre-line;
   color: rgba(255, 255, 255, 0.03);
-  filter: blur(1.5px);
+  filter: blur(1px);
   pointer-events: none;
   z-index: -2;
-  animation: watermarkFloat 18s ease-in-out infinite;
+  animation: watermarkFloat 22s ease-in-out infinite;
 }
 .main-body::after {
   content: "";
@@ -159,7 +158,7 @@ div {
   pointer-events: none;
   z-index: -3;
   mix-blend-mode: screen;
-  animation: backgroundDrift 26s ease-in-out infinite alternate;
+  animation: backgroundDrift 34s ease-in-out infinite alternate;
 }
 .main-body > .container-main::before {
   content: "";
@@ -203,8 +202,8 @@ div {
       rgba(10, 255, 214, 0.12)
     );
   opacity: 0.22;
-  filter: blur(44px);
-  animation: orbitalGlow 32s linear infinite;
+  filter: blur(28px);
+  animation: orbitalGlow 40s linear infinite;
 }
 .main-body .section-container::before {
   content: "";
@@ -241,8 +240,29 @@ div {
   background: var(--panelBg);
   border: 1px solid var(--panelBorder);
   box-shadow: var(--panelShadow);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (max-width: 1024px) {
+  .main-body::after,
+  .main-body > .container-main::after {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+
+  .main-body::before,
+  .main-body::after,
+  .main-body > .container-main::after,
+  .section-reveal {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 @keyframes watermarkFloat {

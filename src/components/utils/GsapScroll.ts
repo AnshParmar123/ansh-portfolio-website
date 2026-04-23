@@ -48,10 +48,12 @@ export function setCharTimeline(
       object.material.transparent = true;
       object.material.opacity = 0;
       object.material.emissive.set("#C8BFFF");
-      gsap.timeline({ repeat: -1, repeatRefresh: true }).to(object.material, {
-        emissiveIntensity: () => gsap.utils.random(1, 8, 0.1),
-        duration: () => gsap.utils.random(0.18, 0.48, 0.01),
-        delay: () => gsap.utils.random(0.02, 0.12, 0.01),
+      gsap.to(object.material, {
+        emissiveIntensity: 3.2,
+        duration: 1.6,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
       });
       screenLight = object;
     }
@@ -141,8 +143,8 @@ export function setAllTimeline() {
   careerTimeline
     .fromTo(
       ".career-timeline",
-      { maxHeight: "10%" },
-      { maxHeight: "100%", duration: 0.5 },
+      { scaleY: 0.1 },
+      { scaleY: 1, duration: 0.5, transformOrigin: "top center" },
       0
     )
 

@@ -25,7 +25,10 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       window.cancelAnimationFrame(resizeFrame);
       resizeFrame = window.requestAnimationFrame(() => {
         setSplitText();
-        setIsDesktopView(window.innerWidth > 1024);
+        setIsDesktopView((current) => {
+          const next = window.innerWidth > 1024;
+          return current === next ? current : next;
+        });
       });
     };
 
@@ -77,7 +80,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <Certifications />
             <Work />
             {isDesktopView && (
-              <Suspense fallback={<div>Loading....</div>}>
+              <Suspense fallback={null}>
                 <TechStack />
               </Suspense>
             )}
