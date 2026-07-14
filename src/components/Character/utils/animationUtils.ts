@@ -1,18 +1,32 @@
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
-import { eyebrowBoneNames, typingBoneNames } from "../../../data/boneData";
+import { eyebrowBoneNames } from "../../../data/boneData";
 
 const setAnimations = (gltf: GLTF) => {
   let character = gltf.scene;
   let mixer = new THREE.AnimationMixer(character);
-  if (gltf.animations) {
-    const introClip = gltf.animations.find(
-      (clip) => clip.name === "introAnimation"
-    );
-    const introAction = mixer.clipAction(introClip!);
+  // Only one clip ever drives the full body at a time (introAnimation).
+  // Previously "typing" was also played simultaneously, and Three.js blends
+  // overlapping clips rather than letting one win, which left the arms
+  // stuck in a half-extended pose. Keeping a single full-body clip removes
+  // that entire class of bug.
+  const introClip = gltf.animations.find(
+    (clip) => clip.name === "introAnimation"
+  );
+  if (introClip) {
+    const introAction = mixer.clipAction(introClip);
     introAction.setLoop(THREE.LoopOnce, 1);
     introAction.clampWhenFinished = true;
     introAction.play();
+    // Snap straight to the settled final pose instead of relying on real-time
+    // playback to reach it. requestAnimationFrame (and therefore mixer.update)
+    // is throttled or fully paused by the browser whenever the tab isn't
+    // visible/focused, which can freeze this clip mid-gesture indefinitely
+    // (e.g. someone switches tabs while the page is loading). Forcing the
+    // pose deterministically here means it is always correct on first paint,
+    // independent of how many animation frames actually ran.
+    introAction.time = introClip.duration;
+    mixer.update(0);
     const clipNames = ["key1", "key2", "key5", "key6"];
     clipNames.forEach((name) => {
       const clip = THREE.AnimationClip.findByName(gltf.animations, name);
@@ -24,21 +38,18 @@ const setAnimations = (gltf: GLTF) => {
         console.error(`Animation "${name}" not found`);
       }
     });
-    let typingAction: THREE.AnimationAction | null = null;
-    typingAction = createBoneAction(gltf, mixer, "typing", typingBoneNames);
-    if (typingAction) {
-      typingAction.enabled = true;
-      typingAction.play();
-      typingAction.timeScale = 1.2;
-    }
   }
   function startIntro() {
-    const introClip = gltf.animations.find(
-      (clip) => clip.name === "introAnimation"
-    );
     const introAction = mixer.clipAction(introClip!);
     introAction.clampWhenFinished = true;
     introAction.reset().play();
+    // Guarantee the settled pose even if requestAnimationFrame gets
+    // throttled/paused mid-clip (backgrounded tab, low-power mode, etc.) and
+    // never accumulates enough real time on its own to finish naturally.
+    setTimeout(() => {
+      introAction.time = introClip!.duration;
+      mixer.update(0);
+    }, introClip!.duration * 1000 + 300);
     setTimeout(() => {
       const blink = gltf.animations.find((clip) => clip.name === "Blink");
       mixer.clipAction(blink!).play().fadeIn(0.5);

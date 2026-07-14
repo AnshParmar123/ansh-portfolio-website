@@ -39,7 +39,7 @@ const Scene = () => {
 
       const camera = new THREE.PerspectiveCamera(14.5, aspect, 0.1, 1000);
       camera.position.z = 10;
-      camera.position.set(0, 13.1, 24.7);
+      camera.position.set(0, 13.1, 34);
       camera.zoom = 1.1;
       camera.updateProjectionMatrix();
 
@@ -57,6 +57,13 @@ const Scene = () => {
       let isDisposed = false;
 
       loadCharacter().then((gltf) => {
+        // Guards against React StrictMode's dev-only double-invoke of effects:
+        // if this effect instance was already torn down (cleanup ran) before
+        // the decrypt+parse finished, bail out instead of populating/rendering
+        // into a disposed scene. Without this, a stale in-flight load could
+        // silently keep decrypting/rendering in the background (extra CPU
+        // load) and race with the live instance over shared refs.
+        if (isDisposed) return;
         if (gltf) {
           const animations = setAnimations(gltf);
           if (hoverDivRef.current) {
@@ -69,7 +76,9 @@ const Scene = () => {
           headBone = character.getObjectByName("spine006") || null;
           screenLight = character.getObjectByName("screenlight") || null;
           progress.loaded().then(() => {
+            if (isDisposed) return;
             setTimeout(() => {
+              if (isDisposed) return;
               light.turnOnLights();
               animations.startIntro();
             }, 2500);
