@@ -46,7 +46,7 @@ const academicYears = [
     semesters: [
       { label: "Sem 7", sgpa: "9.25" },
       { label: "Sem 8", sgpa: "8.73" },
-      { label: "Sem 9", sgpa: "Ongoing" },
+      { label: "Sem 9", sgpa: "9.43" },
     ],
   },
   {
@@ -94,7 +94,7 @@ const Career = () => {
           <div className="academics-header">
             <div>
               <span className="academics-eyebrow">Academic Performance</span>
-              <h3>Current CGPA: 8.53 / 10</h3>
+              <h3>Current CGPA: 8.63 / 10</h3>
             </div>
             <p>
               Semester-wise SGPA across the integrated MBA-Tech journey so far,

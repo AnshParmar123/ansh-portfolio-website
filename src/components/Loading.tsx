@@ -249,12 +249,12 @@ export const setProgress = (setLoading: (value: number) => void) => {
     } else {
       clearInterval(interval);
       interval = setInterval(() => {
-        percent = percent + Math.round(Math.random());
+        percent = percent + 1;
         setLoading(percent);
         if (percent > 91) {
           clearInterval(interval);
         }
-      }, 2000);
+      }, 250);
     }
   }, 100);
 
