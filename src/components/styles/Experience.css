@@ -1,0 +1,53 @@
+.experience-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: auto;
+  margin-bottom: clamp(5rem, 10vw, 9rem);
+  padding: var(--sectionY) 0;
+}
+.experience-container {
+  width: min(var(--cWidth), var(--cMaxWidth));
+  position: relative;
+  z-index: 1;
+}
+.experience-section h2 {
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  line-height: 1;
+  font-weight: 400;
+  text-align: center;
+  background: linear-gradient(0deg, #ffb347 0%, #ff6f61 45%, #fff3e6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-top: 0;
+  margin-bottom: clamp(3rem, 7vw, 5.625rem);
+  letter-spacing: 0.02em;
+}
+@media only screen and (max-width: 1400px) {
+  .experience-section h2 {
+    font-size: clamp(2.5rem, 5vw, 3.125rem);
+    line-height: 1;
+  }
+}
+@media only screen and (max-width: 1025px) {
+  .experience-section {
+    padding: var(--sectionY) 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .experience-section h2 {
+    width: 100%;
+    font-size: clamp(2.5rem, 12vw, 2.8125rem);
+    line-height: 1;
+    margin-top: 0px;
+  }
+  .experience-section {
+    padding-top: 90px;
+  }
+}

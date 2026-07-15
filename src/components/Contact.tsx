@@ -70,6 +70,9 @@ const Contact = () => {
             <h5>
               <MdCopyright /> 2026
             </h5>
+            <p className="contact-tagline" lang="sa">
+              कृष्णं वन्दे जगद्गुरुम् °•👁U👁•° 🌸
+            </p>
           </div>
         </div>
       </div>

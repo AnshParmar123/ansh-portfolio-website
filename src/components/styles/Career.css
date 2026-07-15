@@ -22,7 +22,7 @@
   line-height: 1;
   font-weight: 400;
   text-align: center;
-  background: linear-gradient(0deg, #7f40ff, #ffffff);
+  background: linear-gradient(0deg, #ffb347 0%, #ff6f61 45%, #fff3e6 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -59,7 +59,7 @@
   line-height: 1.8;
   margin: 0;
   color: rgba(230, 234, 242, 0.82);
-  background: rgba(11, 15, 25, 0.32);
+  background: rgba(24, 13, 22, 0.32);
   border: 1px solid rgba(230, 234, 242, 0.06);
   border-radius: 1rem;
   padding: 1rem 1.1rem;
@@ -102,9 +102,9 @@
   height: 100%;
   background-image: linear-gradient(
     to bottom,
-    rgba(123, 97, 255, 0.18),
-    rgba(123, 97, 255, 0.72) 45%,
-    rgba(0, 245, 212, 0.4) 100%
+    rgba(255, 111, 97, 0.18),
+    rgba(255, 111, 97, 0.72) 45%,
+    rgba(217, 79, 112, 0.4) 100%
   );
 }
 .career-dot {
@@ -112,11 +112,11 @@
   left: 50%;
   top: 0;
   transform: translate(-50%, 0);
-  background: radial-gradient(circle, #f3f5ff 0%, #7b61ff 55%, #00f5d4 100%);
+  background: radial-gradient(circle, #fff3e6 0%, #ff6f61 55%, #d94f70 100%);
   width: 12px;
   height: 12px;
   border-radius: 50px;
-  box-shadow: 0 0 10px rgba(123, 97, 255, 0.8), 0 0 28px rgba(0, 245, 212, 0.24);
+  box-shadow: 0 0 10px rgba(255, 111, 97, 0.8), 0 0 28px rgba(217, 79, 112, 0.24);
   animation: timeline 0.8s linear infinite forwards;
 }
 .career-info-center {
@@ -133,7 +133,7 @@
   padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid rgba(230, 234, 242, 0.08);
-  background: rgba(11, 15, 25, 0.38);
+  background: rgba(24, 13, 22, 0.38);
   color: rgba(230, 234, 242, 0.72);
   font-size: 12px;
   letter-spacing: 0.18em;
@@ -193,7 +193,7 @@
 .academics-card:hover,
 .interest-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(123, 97, 255, 0.24);
+  border-color: rgba(255, 111, 97, 0.24);
   box-shadow: 0 16px 42px rgba(0, 0, 0, 0.18);
 }
 .academics-card h4 {
@@ -212,7 +212,7 @@
   gap: 12px;
   padding: 10px 12px;
   border-radius: 14px;
-  background: rgba(11, 15, 25, 0.34);
+  background: rgba(24, 13, 22, 0.34);
 }
 .academics-semester span {
   color: rgba(230, 234, 242, 0.68);
@@ -276,7 +276,7 @@
   padding: 8px 12px;
   border-radius: 999px;
   border: 1px solid rgba(230, 234, 242, 0.08);
-  background: rgba(11, 15, 25, 0.34);
+  background: rgba(24, 13, 22, 0.34);
   color: rgba(230, 234, 242, 0.76);
   font-size: 12px;
   letter-spacing: 0.06em;
@@ -291,7 +291,7 @@
   50%,
   70%,
   90% {
-    box-shadow: 0px 0px 5px 2px #d29bff;
+    box-shadow: 0px 0px 5px 2px #ffc38a;
   }
   10%,
   30%,
@@ -299,17 +299,17 @@
   100%,
   64%,
   80% {
-    box-shadow: 0px 0px 5px 2px #d29bff, 0px 0px 15px 5px #d097ff,
-      0px 0px 110px 20px #f2c0ff;
+    box-shadow: 0px 0px 5px 2px #ffc38a, 0px 0px 15px 5px #ffb37e,
+      0px 0px 110px 20px #ffe0c2;
   }
 }
 @keyframes timeline2 {
   0% {
-    box-shadow: 0px 0px 5px 2px #d29bff;
+    box-shadow: 0px 0px 5px 2px #ffc38a;
   }
   100% {
-    box-shadow: 0px 0px 5px 2px #d29bff, 0px 0px 15px 5px #d097ff,
-      0px 0px 110px 20px #f2c0ff;
+    box-shadow: 0px 0px 5px 2px #ffc38a, 0px 0px 15px 5px #ffb37e,
+      0px 0px 110px 20px #ffe0c2;
   }
 }
 @media only screen and (max-width: 1400px) {

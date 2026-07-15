@@ -25,6 +25,24 @@ const Landing = ({ children }: PropsWithChildren) => {
             <p className="landing-availability">
               Open to internships, AI/ML roles, and collaborative product work.
             </p>
+            <div className="landing-cta-row">
+              <a
+                href="#work"
+                className="landing-cta landing-cta-primary"
+                data-href="#work"
+              >
+                View Work
+              </a>
+              <a
+                href="/documents/Ansh_Parmar_Resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="landing-cta landing-cta-secondary"
+                data-cursor="disable"
+              >
+                Resume
+              </a>
+            </div>
           </div>
           <div className="landing-info">
             <h3>An AIML Student</h3>
@@ -32,11 +50,10 @@ const Landing = ({ children }: PropsWithChildren) => {
               <div className="landing-h2-1">AI Builder</div>
               <div className="landing-h2-2">Developer</div>
             </h2>
-            <h2>
-              <div className="landing-h2-info">Developer</div>
-              <div className="landing-h2-info-1">AI Builder</div>
-            </h2>
           </div>
+        </div>
+        <div className="landing-scroll-cue" aria-hidden="true">
+          <span></span>
         </div>
         {children}
       </div>

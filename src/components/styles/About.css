@@ -17,10 +17,10 @@
   border-radius: var(--panelRadius);
   background:
     linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)),
-    rgba(7, 12, 22, 0.55);
+    rgba(15, 8, 15, 0.9);
   box-shadow: var(--panelShadow);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .about-me h3 {
   font-size: clamp(1rem, 1.4vw, 1.2rem);
@@ -60,7 +60,7 @@
 .about-points div {
   padding: 1rem 1rem 1rem 1.1rem;
   border: 1px solid rgba(230, 234, 242, 0.08);
-  border-left: 2px solid rgba(123, 97, 255, 0.32);
+  border-left: 2px solid rgba(255, 111, 97, 0.32);
   border-radius: 1rem;
   background: rgba(255, 255, 255, 0.03);
   color: rgba(230, 234, 242, 0.72);

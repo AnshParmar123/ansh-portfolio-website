@@ -4,9 +4,11 @@ import Career from "./Career";
 import Certifications from "./Certifications";
 import Contact from "./Contact";
 import Cursor from "./Cursor";
+import Experience from "./Experience";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
+import SunsetScene from "./Scenery/SunsetScene";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import setSplitText from "./utils/splitText";
@@ -34,7 +36,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
 
     const revealTargets = Array.from(
       document.querySelectorAll(
-        ".landing-section, .about-section, .whatIDO, .career-section, .certifications-section, .work-section, .techstack, .contact-section"
+        ".landing-section, .about-section, .whatIDO, .career-section, .experience-section, .certifications-section, .work-section, .techstack, .contact-section"
       )
     );
 
@@ -66,6 +68,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
 
   return (
     <div className="container-main">
+      <SunsetScene />
       <Cursor />
       <Navbar />
       <SocialIcons />
@@ -77,6 +80,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <About />
             <WhatIDo />
             <Career />
+            <Experience />
             <Certifications />
             <Work />
             {isDesktopView && (
