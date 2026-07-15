@@ -119,8 +119,7 @@ div {
   position: relative;
   isolation: isolate;
 }
-.main-body::before {
-  content: "ANSH\A PARMAR";
+.brand-watermark {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -131,10 +130,11 @@ div {
   letter-spacing: 0.08em;
   text-align: center;
   white-space: pre-line;
-  color: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.14);
+  mix-blend-mode: overlay;
   filter: blur(1px);
   pointer-events: none;
-  z-index: -2;
+  z-index: -25;
   animation: watermarkFloat 22s ease-in-out infinite;
 }
 .main-body > .container-main::before {
@@ -205,7 +205,7 @@ div {
     scroll-behavior: auto;
   }
 
-  .main-body::before,
+  .brand-watermark,
   .section-reveal {
     animation: none !important;
     transition: none !important;
@@ -289,7 +289,7 @@ div {
   }
 }
 @media screen and (max-width: 900px) {
-  .main-body::before {
+  .brand-watermark {
     letter-spacing: 0.06em;
   }
   .techstack h2 {
