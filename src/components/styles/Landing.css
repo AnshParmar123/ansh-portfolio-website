@@ -166,7 +166,7 @@
   padding: clamp(1rem, 2vw, 1.25rem);
   border: 1px solid rgba(230, 234, 242, 0.06);
   border-radius: 1.5rem;
-  background: rgba(19, 10, 18, 0.34);
+  background: rgba(15, 8, 15, 0.86);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -331,7 +331,7 @@
   padding: clamp(1rem, 2vw, 1.25rem);
   border: 1px solid rgba(230, 234, 242, 0.06);
   border-radius: 1.5rem;
-  background: rgba(19, 10, 18, 0.26);
+  background: rgba(15, 8, 15, 0.86);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.16);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -372,7 +372,7 @@ h2.landing-info-h2 {
   height: 120%;
   z-index: 3;
   border-radius: 0.75rem;
-  background: rgba(19, 10, 18, 0.5);
+  background: rgba(15, 8, 15, 0.65);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   -webkit-mask-image: linear-gradient(0deg, black 40%, transparent 100%);

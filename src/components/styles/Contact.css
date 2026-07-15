@@ -26,7 +26,9 @@
   padding: clamp(1.2rem, 2vw, 1.6rem);
   border: 1px solid rgba(230, 234, 242, 0.08);
   border-radius: var(--panelRadius);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.028));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
+    rgba(15, 8, 15, 0.86);
   box-shadow: var(--panelShadow);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
