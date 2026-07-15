@@ -129,15 +129,24 @@ function Player({
   );
 }
 
+const GOAL_WIDTH = 176;
+const GOAL_TOP = 612;
+const GOAL_BOTTOM = 670;
+
 function buildGoal(xStart: number) {
-  const width = 124;
-  const verticals = 7;
+  const width = GOAL_WIDTH;
+  const verticals = 8;
   let net = "";
   for (let i = 0; i <= verticals; i++) {
-    const vx = xStart + 6 + (i * (width - 12)) / verticals;
-    net += ` M${vx.toFixed(1)},636 L${vx.toFixed(1)},670`;
+    const vx = xStart + 8 + (i * (width - 16)) / verticals;
+    net += ` M${vx.toFixed(1)},${GOAL_TOP} L${vx.toFixed(1)},${GOAL_BOTTOM}`;
   }
-  const netH = ` M${xStart + 6},644 L${xStart + width - 6},644 M${xStart + 6},652 L${xStart + width - 6},652 M${xStart + 6},660 L${xStart + width - 6},660`;
+  const step = (GOAL_BOTTOM - GOAL_TOP) / 4;
+  let netH = "";
+  for (let i = 1; i <= 3; i++) {
+    const vy = GOAL_TOP + step * i;
+    netH += ` M${xStart + 8},${vy} L${xStart + width - 8},${vy}`;
+  }
   return {
     net: net + netH,
     xStart,
@@ -149,11 +158,11 @@ function Goal({ x }: { x: number }) {
   const g = buildGoal(x);
   return (
     <g className="sunset-goal">
-      <rect x={x + 6} y="636" width={g.width - 12} height="34" className="sunset-goal-net" />
+      <rect x={x + 8} y={GOAL_TOP} width={g.width - 16} height={GOAL_BOTTOM - GOAL_TOP} className="sunset-goal-net" />
       <path d={g.net} />
-      <rect x={x} y="632" width="6" height="42" fill="#f4f2f6" />
-      <rect x={x + g.width - 6} y="632" width="6" height="42" fill="#f4f2f6" />
-      <rect x={x} y="632" width={g.width} height="6" fill="#f4f2f6" />
+      <rect x={x} y={GOAL_TOP - 4} width="8" height={GOAL_BOTTOM - GOAL_TOP + 8} fill="#f4f2f6" />
+      <rect x={x + g.width - 8} y={GOAL_TOP - 4} width="8" height={GOAL_BOTTOM - GOAL_TOP + 8} fill="#f4f2f6" />
+      <rect x={x} y={GOAL_TOP - 4} width={g.width} height="8" fill="#f4f2f6" />
     </g>
   );
 }
@@ -227,10 +236,10 @@ const SunsetScene = () => {
             <ellipse cx="175" cy="58" rx="50" ry="24" />
           </symbol>
           <filter id="softBlurSmall" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="4" />
+            <feGaussianBlur stdDeviation="3" />
           </filter>
           <filter id="softBlurLarge" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="10" />
+            <feGaussianBlur stdDeviation="6" />
           </filter>
         </defs>
 
@@ -347,24 +356,24 @@ const SunsetScene = () => {
           <circle cx="800" cy="784" r="4" fill="rgba(255,255,255,0.85)" />
 
           {/* single goal, at the end where the match action is */}
-          <Goal x={1336} />
+          <Goal x={1300} />
 
           {/* keeper */}
-          <Player x={1398} y={725} scale={0.7} jersey="#e0c23e" shorts="#181018" pose="goalie" runnerClassName="sunset-shuffle-right" />
+          <Player x={1388} y={725} scale={0.9} jersey="#e0c23e" shorts="#181018" pose="goalie" runnerClassName="sunset-shuffle-right" />
 
           {/* the action: Messi and a teammate one-touch passing, marked by a defender */}
           <circle
             className="sunset-messi-spot"
-            cx="1315"
+            cx="1300"
             cy="778"
-            r="60"
+            r="70"
             fill="url(#messiSpot)"
             filter="url(#softBlurLarge)"
           />
           <Player
             x={1230}
             y={800}
-            scale={1.05}
+            scale={1.3}
             jersey="#7cc1f2"
             shorts="#181018"
             pose="run"
@@ -372,18 +381,18 @@ const SunsetScene = () => {
             runnerClassName="sunset-messi sunset-pass-a"
           />
           <Player
-            x={1315}
+            x={1330}
             y={808}
-            scale={0.9}
+            scale={1.1}
             jersey="#d64545"
             shorts="#181018"
             pose="runMirror"
             runnerClassName="sunset-jockey"
           />
           <Player
-            x={1400}
+            x={1510}
             y={800}
-            scale={0.95}
+            scale={1.15}
             jersey="#5aa9e6"
             shorts="#f2f0ea"
             pose="runMirror"
@@ -392,7 +401,7 @@ const SunsetScene = () => {
           />
 
           {/* the ball, passed back and forth between the two teammates */}
-          <g transform="translate(1315,793)">
+          <g transform="translate(1370,793)">
             <g className="sunset-pass-ball">
               <ellipse cx="0" cy="20" rx="14" ry="4" fill="rgba(6,3,10,0.3)" />
               <circle r="13" fill="#f4f1e9" />
@@ -401,7 +410,7 @@ const SunsetScene = () => {
           </g>
 
           {/* referee following the play */}
-          <Player x={1500} y={755} scale={0.75} jersey="#141018" shorts="#141018" pose="ref" runnerClassName="sunset-jog-right" />
+          <Player x={1560} y={755} scale={0.95} jersey="#141018" shorts="#141018" pose="ref" runnerClassName="sunset-jog-right" />
         </g>
       </svg>
     </div>

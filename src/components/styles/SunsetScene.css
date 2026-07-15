@@ -27,7 +27,7 @@
 }
 
 .sunset-flood-glow {
-  animation: sunset-flood-pulse 5s ease-in-out infinite;
+  opacity: 0.88;
 }
 
 .sunset-pitch-line {
@@ -62,7 +62,7 @@
 }
 
 .sunset-messi-spot {
-  animation: sunset-flood-pulse 3.4s ease-in-out infinite;
+  opacity: 0.85;
 }
 
 .sunset-pass-ball {
@@ -171,47 +171,47 @@
 /* one shared 12s story: pass, pass, shoot, GOAL, brief celebration, invisible reset */
 @keyframes sunset-pass-ball {
   0% {
-    transform: translate(-85px, 0) rotate(0deg);
+    transform: translate(-140px, 0) rotate(0deg);
     opacity: 1;
   }
   14% {
-    transform: translate(0, -22px) rotate(90deg);
+    transform: translate(0, -24px) rotate(90deg);
     opacity: 1;
   }
   28% {
-    transform: translate(85px, 0) rotate(180deg);
+    transform: translate(140px, 0) rotate(180deg);
     opacity: 1;
   }
   42% {
-    transform: translate(0, -22px) rotate(270deg);
+    transform: translate(0, -24px) rotate(270deg);
     opacity: 1;
   }
   56% {
-    transform: translate(-85px, 0) rotate(360deg);
+    transform: translate(-140px, 0) rotate(360deg);
     opacity: 1;
   }
   64% {
-    transform: translate(-45px, -15px) rotate(400deg);
+    transform: translate(-70px, -15px) rotate(400deg);
     opacity: 1;
   }
   76% {
-    transform: translate(60px, -105px) rotate(560deg);
+    transform: translate(0, -105px) rotate(560deg);
     opacity: 1;
   }
   84% {
-    transform: translate(83px, -140px) rotate(650deg);
+    transform: translate(18px, -140px) rotate(650deg);
     opacity: 1;
   }
   89% {
-    transform: translate(83px, -140px) rotate(650deg);
+    transform: translate(18px, -140px) rotate(650deg);
     opacity: 0;
   }
   91% {
-    transform: translate(-85px, 0) rotate(0deg);
+    transform: translate(-140px, 0) rotate(0deg);
     opacity: 0;
   }
   100% {
-    transform: translate(-85px, 0) rotate(0deg);
+    transform: translate(-140px, 0) rotate(0deg);
     opacity: 1;
   }
 }
@@ -397,18 +397,20 @@
     display: none;
   }
   .sunset-sun-halo,
-  .sunset-flood-glow,
-  .sunset-messi-spot,
+  .sunset-cloud-near,
   .sunset-pass-ball,
   .sunset-pass-a,
   .sunset-pass-b,
   .sunset-jockey,
   .sunset-jog-right,
-  .sunset-shuffle-right {
+  .sunset-shuffle-right,
+  .sunset-goal {
     animation: none;
+    will-change: auto;
   }
-  .sunset-cloud-near {
-    animation-duration: 90s;
+  .sunset-flood-glow,
+  .sunset-messi-spot {
+    filter: none;
   }
 }
 
@@ -425,14 +427,14 @@
   .sunset-bird-1,
   .sunset-bird-2,
   .sunset-bird-3,
-  .sunset-flood-glow,
-  .sunset-messi-spot,
   .sunset-pass-ball,
   .sunset-pass-a,
   .sunset-pass-b,
   .sunset-jockey,
   .sunset-jog-right,
-  .sunset-shuffle-right {
+  .sunset-shuffle-right,
+  .sunset-goal {
     animation: none !important;
+    will-change: auto !important;
   }
 }
