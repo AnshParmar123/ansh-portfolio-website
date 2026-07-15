@@ -129,9 +129,9 @@ function Player({
   );
 }
 
-const GOAL_WIDTH = 176;
-const GOAL_TOP = 612;
-const GOAL_BOTTOM = 670;
+const GOAL_WIDTH = 230;
+const GOAL_TOP = 675;
+const GOAL_BOTTOM = 752;
 
 function buildGoal(xStart: number) {
   const width = GOAL_WIDTH;
@@ -356,10 +356,10 @@ const SunsetScene = () => {
           <circle cx="800" cy="784" r="4" fill="rgba(255,255,255,0.85)" />
 
           {/* single goal, at the end where the match action is */}
-          <Goal x={1300} />
+          <Goal x={1150} />
 
           {/* keeper */}
-          <Player x={1388} y={725} scale={0.9} jersey="#e0c23e" shorts="#181018" pose="goalie" runnerClassName="sunset-shuffle-right" />
+          <Player x={1265} y={760} scale={1.15} jersey="#e0c23e" shorts="#181018" pose="goalie" runnerClassName="sunset-shuffle-right" />
 
           {/* the action: Messi and a teammate one-touch passing, marked by a defender */}
           <circle
@@ -373,7 +373,7 @@ const SunsetScene = () => {
           <Player
             x={1230}
             y={800}
-            scale={1.3}
+            scale={1.6}
             jersey="#7cc1f2"
             shorts="#181018"
             pose="run"
@@ -383,7 +383,7 @@ const SunsetScene = () => {
           <Player
             x={1330}
             y={808}
-            scale={1.1}
+            scale={1.35}
             jersey="#d64545"
             shorts="#181018"
             pose="runMirror"
@@ -392,7 +392,7 @@ const SunsetScene = () => {
           <Player
             x={1510}
             y={800}
-            scale={1.15}
+            scale={1.4}
             jersey="#5aa9e6"
             shorts="#f2f0ea"
             pose="runMirror"
@@ -410,7 +410,7 @@ const SunsetScene = () => {
           </g>
 
           {/* referee following the play */}
-          <Player x={1560} y={755} scale={0.95} jersey="#141018" shorts="#141018" pose="ref" runnerClassName="sunset-jog-right" />
+          <Player x={1555} y={755} scale={1.15} jersey="#141018" shorts="#141018" pose="ref" runnerClassName="sunset-jog-right" />
         </g>
       </svg>
     </div>

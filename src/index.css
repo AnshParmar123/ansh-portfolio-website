@@ -130,8 +130,8 @@ div {
   letter-spacing: 0.08em;
   text-align: center;
   white-space: pre-line;
-  color: rgba(255, 255, 255, 0.14);
-  mix-blend-mode: overlay;
+  color: rgba(8, 3, 10, 0.4);
+  mix-blend-mode: multiply;
   filter: blur(1px);
   pointer-events: none;
   z-index: -25;
