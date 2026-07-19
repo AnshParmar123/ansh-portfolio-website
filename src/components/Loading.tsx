@@ -1,19 +1,13 @@
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
-const loadingMessages = [
-  "Initializing AI engine...",
-  "Analyzing patterns...",
-  "Generating intelligent recommendations...",
-  "Processing data...",
-  "Optimizing output...",
-];
-
-const loadingStages = [
-  "Neural systems online",
-  "Visual pipeline calibrated",
-  "Experience layer syncing",
+const loadingLog = [
+  "compiling render tree",
+  "hydrating components",
+  "optimizing render pipeline",
+  "linking asset pipeline",
+  "finalizing experience",
 ];
 
 const VISITED_KEY = "portfolio_visited";
@@ -23,11 +17,27 @@ const isRepeatVisit =
 
 // Repeat visits within the same session skip the "theater" delays entirely
 // so returning recruiters/reviewers aren't stuck watching the loader again.
+//
+// The reveal runs on its OWN fixed clock (CHARGE_DURATION) — not tied to the
+// real asset-load percent. Real load speed varies with network/cache, and
+// (as measured) decrypting + parsing the 3D character can block the main
+// thread for seconds at a time, which starves any JS-timer-driven animation
+// mid-flight. So instead of ticking intermediate frames in JS, we only ever
+// set TWO target states — "revealing" and "released" — and let the CSS
+// `transition` on each element interpolate between them. That interpolation
+// is scheduled by the browser's style/compositor engine, not by our JS
+// callbacks, so it stays smooth even while the main thread is busy loading
+// the character. The real load can only gate *when* the reveal is allowed to
+// resolve (it holds at the near-complete state if assets aren't ready yet),
+// never how fast it visually builds.
+const CHARGE_DURATION = isRepeatVisit ? 550 : 2600;
+const CHARGE_TARGET = 97;
+const RELEASE_DURATION = 550;
 const COMPLETE_DELAY = isRepeatVisit ? 80 : 200;
-const READY_DELAY = isRepeatVisit ? 100 : 300;
-const FX_DELAY = isRepeatVisit ? 40 : 100;
-const REMOVE_DELAY = isRepeatVisit ? 150 : 400;
-const FALLBACK_TIMEOUT = isRepeatVisit ? 3000 : 6000;
+const READY_DELAY = isRepeatVisit ? 120 : 500;
+const FX_DELAY = isRepeatVisit ? 40 : 120;
+const REMOVE_DELAY = isRepeatVisit ? 150 : 450;
+const FALLBACK_TIMEOUT = isRepeatVisit ? 3000 : 8000;
 
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
@@ -35,41 +45,119 @@ const Loading = ({ percent }: { percent: number }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [messageIndex, setMessageIndex] = useState(0);
-  const displayPercent = loaded ? 100 : Math.min(percent, 100);
-  const circumference = 2 * Math.PI * 52;
-  const progressOffset = circumference - (displayPercent / 100) * circumference;
+  const [chargeActive, setChargeActive] = useState(false);
+  const [chargeComplete, setChargeComplete] = useState(false);
+  const [assetsReady, setAssetsReady] = useState(false);
+  const [numberPercent, setNumberPercent] = useState(0);
+  // Two-state target the CSS transitions animate toward: 0 -> CHARGE_TARGET
+  // while revealing, then CHARGE_TARGET -> 100 on release. The number shown
+  // in text is a separate best-effort wall-clock counter (see below); it can
+  // lag slightly under heavy load but the visuals never do.
+  const visualPercent = loaded ? 100 : chargeActive ? CHARGE_TARGET : 0;
+  const visualDuration = loaded ? RELEASE_DURATION : CHARGE_DURATION;
+  const displayPercent = loaded ? 100 : Math.min(numberPercent, CHARGE_TARGET);
+  const stageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     window.sessionStorage.setItem(VISITED_KEY, "1");
   }, []);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)");
+    if (mediaQuery.matches) return;
+
+    function handlePointerMove(e: PointerEvent) {
+      const mx = ((e.clientX / window.innerWidth) * 2 - 1).toFixed(3);
+      const my = ((e.clientY / window.innerHeight) * 2 - 1).toFixed(3);
+      stageRef.current?.style.setProperty("--mx", mx);
+      stageRef.current?.style.setProperty("--my", my);
+    }
+
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    return () => window.removeEventListener("pointermove", handlePointerMove);
+  }, []);
+
+  useEffect(() => {
     const messageTimer = window.setInterval(() => {
-      setMessageIndex((current) => (current + 1) % loadingMessages.length);
+      setMessageIndex((current) => (current + 1) % loadingLog.length);
     }, 1400);
 
     return () => window.clearInterval(messageTimer);
   }, []);
 
+  // Trigger the reveal on the next paint (a double-rAF, not a single one, so
+  // the browser has definitely committed the 0% state first — otherwise the
+  // very first style write can coalesce with this one and the CSS
+  // transition has nothing to animate from).
+  useEffect(() => {
+    let raf1 = 0;
+    let raf2 = 0;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => setChargeActive(true));
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
+  }, []);
+
+  // The authored reveal is "complete" a fixed CHARGE_DURATION after it
+  // started — this setTimeout can still be delayed by main-thread load, but
+  // that only ever pushes completion later, never earlier, so it can't
+  // undercut the intended minimum reveal time.
+  useEffect(() => {
+    if (!chargeActive) return;
+    const timer = window.setTimeout(() => setChargeComplete(true), CHARGE_DURATION);
+    return () => window.clearTimeout(timer);
+  }, [chargeActive]);
+
+  // Best-effort numeric readout for the text label, independent of the CSS
+  // transitions driving the actual visuals — safe to lag under load since
+  // it's just digits, not the spectacle.
+  useEffect(() => {
+    if (!chargeActive) return;
+    const start = Date.now();
+    const id = window.setInterval(() => {
+      const t = Math.min(1, (Date.now() - start) / CHARGE_DURATION);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setNumberPercent(Math.round(eased * CHARGE_TARGET));
+      if (t >= 1) window.clearInterval(id);
+    }, 80);
+    return () => window.clearInterval(id);
+  }, [chargeActive]);
+
+  // Real readiness signal from the actual asset load — only gates *when*
+  // the reveal is allowed to resolve, never how fast it visually builds.
+  useEffect(() => {
+    if (percent >= 100) setAssetsReady(true);
+  }, [percent]);
+
   useEffect(() => {
     if (loaded) return;
+    if (!chargeComplete || !assetsReady) return;
 
-    const normalCompleteTimer =
-      percent >= 100
-        ? window.setTimeout(() => {
-            setLoaded(true);
-          }, COMPLETE_DELAY)
-        : undefined;
+    const completeTimer = window.setTimeout(() => {
+      setLoaded(true);
+    }, COMPLETE_DELAY);
+
+    return () => window.clearTimeout(completeTimer);
+  }, [chargeComplete, assetsReady, loaded]);
+
+  useEffect(() => {
+    if (loaded) return;
 
     const fallbackTimer = window.setTimeout(() => {
       setLoaded(true);
     }, FALLBACK_TIMEOUT);
 
-    return () => {
-      if (normalCompleteTimer) window.clearTimeout(normalCompleteTimer);
-      window.clearTimeout(fallbackTimer);
-    };
-  }, [percent, loaded]);
+    return () => window.clearTimeout(fallbackTimer);
+  }, [loaded]);
+
+  function handleSkip() {
+    if (loaded) return;
+    setChargeActive(true);
+    setLoaded(true);
+  }
 
   useEffect(() => {
     if (!loaded || isLoaded) return;
@@ -113,141 +201,89 @@ const Loading = ({ percent }: { percent: number }) => {
     };
   }, [isLoaded, setIsLoading]);
 
-  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
-    const { currentTarget: target } = e;
-    const rect = target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    target.style.setProperty("--mouse-x", `${x}px`);
-    target.style.setProperty("--mouse-y", `${y}px`);
-  }
+  const fillScale = visualPercent / 100;
 
   return (
     <>
       <div className="loading-header">
-        <a href="/#" className="loader-title" data-cursor="disable">
+        <a href="/#" className="loader-mark" data-cursor="disable">
           Ansh Parmar
         </a>
-        <div className={`loaderGame ${clicked && "loader-out"}`}>
-          <div className="loaderGame-container">
-            <div className="loaderGame-in">
-              {[...Array(27)].map((_, index) => (
-                <div className="loaderGame-line" key={index}></div>
-              ))}
-            </div>
-            <div className="loaderGame-ball"></div>
+        <div className="loading-header-right">
+          <div className={`loader-status ${clicked ? "loader-status-out" : ""}`} aria-hidden="true">
+            <span className="loader-status-dot"></span>
+            {loaded ? "Ready" : "Loading"}
           </div>
+          {!loaded && (
+            <button type="button" className="loader-skip" onClick={handleSkip}>
+              Skip
+            </button>
+          )}
         </div>
       </div>
-      <div className={`loading-screen ${clicked ? "loading-screen-out" : ""}`}>
-        <div className="loading-neural-grid" aria-hidden="true">
-          {[...Array(10)].map((_, index) => (
-            <span key={index}></span>
-          ))}
+      <div
+        className={`loading-screen ${clicked ? "loading-screen-out" : ""}`}
+        onClick={handleSkip}
+      >
+        <div className="loading-aurora" aria-hidden="true">
+          <span className="loading-aurora-blob loading-aurora-1"></span>
+          <span className="loading-aurora-blob loading-aurora-2"></span>
+          <span className="loading-aurora-blob loading-aurora-3"></span>
         </div>
+        <div className="loading-grid" aria-hidden="true"></div>
+        <div className="loading-grain" aria-hidden="true"></div>
+        <div className="loading-glow" aria-hidden="true"></div>
+        <div className={`loading-flash ${loaded ? "loading-flash-active" : ""}`} aria-hidden="true"></div>
+
         <div
-          className={`loading-wrap ${clicked && "loading-clicked"}`}
-          onMouseMove={(e) => handleMouseMove(e)}
+          className={`loading-stage ${clicked ? "loading-stage-out" : ""}`}
+          ref={stageRef}
         >
-          <div className="loading-card">
-            <div className="loading-card-rim" aria-hidden="true"></div>
-            <div className="loading-shell">
-              <div className="loading-main">
-                <div className="loading-copy">
-                  <div className="loading-kicker">
-                    <span></span>
-                    Neural interface loading
-                  </div>
-                  <h1>Welcome to my portfolio</h1>
-                  <p className="loading-message" key={messageIndex}>
-                    {loaded ? "Experience ready." : loadingMessages[messageIndex]}
-                  </p>
-                </div>
+          <p className="loading-eyebrow">
+            Portfolio <span>&middot;</span> {String(displayPercent).padStart(2, "0")}%
+          </p>
 
-                <div className="loading-intel-row" aria-hidden="true">
-                  <span>Vision</span>
-                  <span>AI/ML</span>
-                  <span>Systems</span>
-                </div>
+          <h1 className="loading-title" aria-label="Ansh Parmar">
+            <span className="loading-title-track">Ansh Parmar</span>
+            <span
+              className="loading-title-fill"
+              style={
+                {
+                  "--reveal": `${visualPercent}%`,
+                  transitionDuration: `${visualDuration}ms`,
+                } as CSSProperties
+              }
+              aria-hidden="true"
+            >
+              Ansh Parmar
+            </span>
+          </h1>
 
-                <div className="loading-core-zone">
-                  <div className="loading-progress-ring" aria-hidden="true">
-                    <svg viewBox="0 0 120 120" className="loading-ring-svg">
-                      <circle className="loading-ring-track" cx="60" cy="60" r="52" />
-                      <circle
-                        className="loading-ring-bar"
-                        cx="60"
-                        cy="60"
-                        r="52"
-                        style={{
-                          strokeDasharray: circumference,
-                          strokeDashoffset: progressOffset,
-                        }}
-                      />
-                    </svg>
-                    <div className="loading-orb">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                      <i></i>
-                    </div>
-                    <div className="loading-ring-value">
-                      <strong>{displayPercent}</strong>
-                      <small>%</small>
-                    </div>
-                  </div>
-
-                  <div className="loading-stages" aria-hidden="true">
-                    {loadingStages.map((stage, index) => (
-                      <div className="loading-stage" key={stage}>
-                        <span className="loading-stage-dot"></span>
-                        <p>{stage}</p>
-                        <b>{index + 1}</b>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="loading-side">
-                <div className="loading-panel">
-                  <div className="loading-panel-head">
-                    <span>Live system preview</span>
-                    <b>{loaded ? "Ready" : "Syncing"}</b>
-                  </div>
-                  <div className="loading-skeleton" aria-hidden="true">
-                    <div className="skeleton-header">
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div className="skeleton-grid">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                    <div className="skeleton-line skeleton-wide"></div>
-                    <div className="skeleton-line"></div>
-                  </div>
-                </div>
-
-                <div className={`loading-progress ${loaded ? "loading-complete" : ""}`}>
-                  <div className="loading-progress-top">
-                    <span>{loaded ? "Complete" : "Loading"}</span>
-                    <strong>{displayPercent}%</strong>
-                  </div>
-                  <div className="loading-progress-track">
-                    <div
-                      className="loading-progress-bar"
-                      style={{ width: `${displayPercent}%` }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
+          <div
+            className="loading-meter"
+            role="progressbar"
+            aria-valuenow={displayPercent}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          >
+            <div
+              className="loading-meter-fill"
+              style={{ transform: `scaleX(${fillScale})`, transitionDuration: `${visualDuration}ms` }}
+            >
+              <span className="loading-meter-head" aria-hidden="true"></span>
             </div>
-
-            <p className="loading-signature">Made with ❤️ by Ansh Parmar</p>
           </div>
         </div>
+
+        <div className="loading-hud" aria-hidden="true">
+          <span className="loading-hud-tag">sys</span>
+          <span className="loading-hud-line" key={messageIndex}>
+            {loaded ? "experience.ready()" : loadingLog[messageIndex]}
+          </span>
+          <span className="loading-hud-cursor"></span>
+        </div>
+
+        <p className="loading-signature">Made with ❤️ by Ansh Parmar</p>
       </div>
     </>
   );
@@ -280,6 +316,10 @@ export const setProgress = (setLoading: (value: number) => void) => {
     setLoading(100);
   }
 
+  function stop() {
+    clearInterval(interval);
+  }
+
   function loaded() {
     return new Promise<number>((resolve) => {
       clearInterval(interval);
@@ -294,5 +334,5 @@ export const setProgress = (setLoading: (value: number) => void) => {
       }, 2);
     });
   }
-  return { loaded, percent, clear };
+  return { loaded, percent, clear, stop };
 };
