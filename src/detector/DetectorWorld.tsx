@@ -3,6 +3,9 @@ import { profile } from "../data/profile";
 import { PATH_LENGTH, sections } from "../data/sections";
 import type { SectionId } from "../data/types";
 import { tierSettings, type Tier } from "../lib/capability";
+import Converge from "../type/Converge";
+import FeedOverlay from "../vision/FeedOverlay";
+import { useVision } from "../vision/useVision";
 import SectionOverlay from "./SectionOverlay";
 import { Atmosphere } from "./atmosphere";
 import { clamp, damp, focalLength, project, type Camera } from "./projection";
@@ -49,6 +52,7 @@ export default function DetectorWorld({
   const [acquired, setAcquired] = useState<SectionId | null>(null);
   const [open, setOpen] = useState<SectionId | null>(null);
   const settings = tierSettings[tier];
+  const vision = useVision();
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const slabRefs = useRef(new Map<SectionId, HTMLElement | null>());
@@ -255,7 +259,14 @@ export default function DetectorWorld({
         Skip to section list
       </a>
 
-      <div className="feed" aria-hidden="true">
+      {/* The visitor's own camera, when they have allowed it. Sits behind
+          everything; the atmosphere dims so the feed reads through. */}
+      <FeedOverlay vision={vision} />
+
+      <div
+        className={`feed${vision.state === "running" ? " feed-live" : ""}`}
+        aria-hidden="true"
+      >
         <canvas ref={canvasRef} />
         {/* Feed grade in CSS: vignette, scanlines, grain. No extra GPU pass. */}
         <div className="feed-grade" />
@@ -267,6 +278,7 @@ export default function DetectorWorld({
         {sections.map((section) => {
           const slab = slabs[section.id];
           const isIdentity = section.id === "identity";
+          const isLocked = section.id === acquired;
           return (
             <article
               key={section.id}
@@ -289,18 +301,37 @@ export default function DetectorWorld({
                 <em>{section.confidence.toFixed(2)}</em>
               </span>
 
+              {/* Copy resolves out of noise as the detector locks on. The
+                  settled string is always in the DOM (see Converge), so this is
+                  presentation only — crawlers and screen readers get the text. */}
               <h2 className="slab-display">
-                {slab.display}
-                {slab.displaySub && <span>{slab.displaySub}</span>}
+                <Converge as="span" text={slab.display} active={isLocked} />
+                {slab.displaySub && (
+                  <Converge
+                    as="span"
+                    className="slab-display-sub"
+                    text={slab.displaySub}
+                    active={isLocked}
+                  />
+                )}
               </h2>
 
-              {slab.lead && <p className="slab-lead">{slab.lead}</p>}
+              {slab.lead && (
+                <Converge
+                  as="p"
+                  className="slab-lead"
+                  text={slab.lead}
+                  active={isLocked}
+                />
+              )}
 
               <dl className="slab-rows">
                 {slab.rows.map((row) => (
                   <div key={row.key + row.value}>
                     <dt>{row.key}</dt>
-                    <dd>{row.value}</dd>
+                    <dd>
+                      <Converge text={row.value} active={isLocked} duration={620} />
+                    </dd>
                   </div>
                 ))}
               </dl>
@@ -352,6 +383,76 @@ export default function DetectorWorld({
           ))}
         </ul>
       </nav>
+
+      {/* ── the camera offer ─────────────────────────────────────────────
+          Deliberately blunt about what happens and what does not. The privacy
+          claim is the feature here, so it is stated before the ask, not buried
+          after it. */}
+      <aside className="consent" data-state={vision.state}>
+        {vision.state === "off" && (
+          <>
+            <span className="hud consent-eyebrow">Live demo</span>
+            <p className="consent-copy">
+              Ansh builds computer vision. Let the detector run on you — face
+              tracking and lip landmarks, the same techniques behind LipSync AI
+              and Smart Attendance.
+            </p>
+            <p className="consent-privacy hud">
+              Runs entirely in your browser · nothing uploaded · nothing stored
+            </p>
+            <button type="button" className="consent-go" onClick={vision.start}>
+              Turn on camera
+            </button>
+          </>
+        )}
+
+        {vision.state === "loading" && (
+          <>
+            <span className="hud consent-eyebrow">Loading detector</span>
+            <p className="consent-copy">
+              Fetching the model — about 7 MB, once.
+            </p>
+            <button type="button" className="consent-stop" onClick={vision.stop}>
+              Cancel
+            </button>
+          </>
+        )}
+
+        {vision.state === "running" && (
+          <>
+            <span className="hud consent-eyebrow consent-live">
+              <span className="feed-dot" /> Detector running on your camera
+            </span>
+            <p className="consent-privacy hud">
+              Local only · no frame leaves this device
+            </p>
+            <button type="button" className="consent-stop" onClick={vision.stop}>
+              Stop camera
+            </button>
+          </>
+        )}
+
+        {vision.state === "denied" && (
+          <>
+            <span className="hud consent-eyebrow">Camera declined</span>
+            <p className="consent-copy">
+              No problem — the site works exactly the same without it.
+            </p>
+            <button type="button" className="consent-go" onClick={vision.start}>
+              Change your mind
+            </button>
+          </>
+        )}
+
+        {(vision.state === "error" || vision.state === "unsupported") && (
+          <>
+            <span className="hud consent-eyebrow">Camera unavailable</span>
+            <p className="consent-copy">
+              {vision.error ?? "This browser will not open a camera here."}
+            </p>
+          </>
+        )}
+      </aside>
 
       {progress.current < 0.02 && (
         <p className="feed-hint hud" aria-hidden="true">
