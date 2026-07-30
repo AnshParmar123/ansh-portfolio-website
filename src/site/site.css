@@ -1,0 +1,794 @@
+/**
+ * Site styles.
+ *
+ * Layout is a two-column editorial grid at desktop: a narrow rail carrying the
+ * section number, and a wide column carrying the content. It collapses to one
+ * column below 900px. Nothing here is decorative — the visual interest comes
+ * from type size contrast and from rules, not from ornament.
+ */
+
+/* ── reveal ───────────────────────────────────────────────────────── */
+/* Only applied when the reveal hook is mounted, so no-JS shows everything. */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.js-reveal [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s cubic-bezier(0.22, 0.68, 0.24, 1),
+    transform 0.7s cubic-bezier(0.22, 0.68, 0.24, 1);
+}
+
+/* ── topbar ───────────────────────────────────────────────────────── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.9rem var(--pad-x);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar-name {
+  font-size: var(--t-small);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 1.4rem;
+  margin-left: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.topbar-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.topbar-nav a {
+  position: relative;
+  padding-bottom: 2px;
+  white-space: nowrap;
+  transition: color 0.18s ease;
+}
+
+.topbar-nav a:hover {
+  color: var(--ink);
+}
+
+/* The active-section marker is a rule under the label, not a colour change —
+   it survives against any background and does not shift layout. */
+.topbar-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s cubic-bezier(0.22, 0.68, 0.24, 1);
+}
+
+.topbar-nav a[aria-current="true"] {
+  color: var(--ink);
+}
+
+.topbar-nav a[aria-current="true"]::after {
+  transform: scaleX(1);
+}
+
+.topbar-cta {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  color: var(--ink-2);
+  white-space: nowrap;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.topbar-cta:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── hero ─────────────────────────────────────────────────────────── */
+.hero {
+  max-width: var(--wide);
+  margin-inline: auto;
+  padding: clamp(3.5rem, 9vw, 8rem) var(--pad-x) clamp(4rem, 8vw, 7rem);
+}
+
+.hero-eyebrow {
+  color: var(--accent);
+}
+
+.hero-name {
+  margin: clamp(1rem, 2.5vw, 2rem) 0 0;
+  font-size: var(--t-display);
+  font-weight: 600;
+  line-height: 0.84;
+  letter-spacing: -0.045em;
+}
+
+.hero-line {
+  display: block;
+}
+
+/* Second line indented and lighter: gives the masthead a diagonal that stops
+   two stacked words reading as a logo lockup. */
+.hero-line-2 {
+  margin-left: 0.09em;
+  color: var(--ink-2);
+}
+
+.hero-foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  margin-top: clamp(2rem, 4vw, 3.25rem);
+  padding-top: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--line);
+}
+
+.hero-lead {
+  max-width: 26ch;
+  font-size: var(--t-lead);
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.hero-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.hero-facts li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.hero-fact-value {
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.hero-availability {
+  color: var(--ink-3);
+}
+
+/* ── buttons ──────────────────────────────────────────────────────── */
+.btn {
+  padding: 0.8rem 1.5rem;
+  border: 1px solid var(--line-strong);
+  font-size: var(--t-small);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.btn:hover {
+  border-color: var(--ink);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── section shell ────────────────────────────────────────────────── */
+.section {
+  max-width: var(--wide);
+  margin-inline: auto;
+  padding: var(--sec-y) var(--pad-x);
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.section-index {
+  color: var(--accent);
+  padding-top: 0.55rem;
+}
+
+.section-title {
+  font-size: var(--t-h2);
+  letter-spacing: -0.035em;
+}
+
+.section-summary {
+  max-width: var(--measure);
+  margin-top: 0.6rem;
+  color: var(--ink-2);
+  font-size: var(--t-lead);
+  line-height: 1.4;
+  letter-spacing: -0.012em;
+}
+
+.section-body {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  /* Aligns with the section title, leaving the number rail empty. */
+  padding-left: 6.5rem;
+}
+
+/* ── work ─────────────────────────────────────────────────────────── */
+.work {
+  display: grid;
+  gap: clamp(3.5rem, 8vw, 7rem);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+/* Alternate which side the shot sits on, so a list of four does not read as a
+   template. */
+.project:nth-child(even) .project-shot {
+  order: 2;
+}
+
+.project-shot {
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.project-shot img {
+  width: 100%;
+  transition: transform 0.6s cubic-bezier(0.22, 0.68, 0.24, 1);
+}
+
+.project:hover .project-shot img {
+  transform: scale(1.02);
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.project-num {
+  color: var(--accent);
+}
+
+.project-name {
+  margin-top: 0.7rem;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  letter-spacing: -0.035em;
+}
+
+.project-tagline {
+  margin-top: 0.5rem;
+  font-size: var(--t-h3);
+  line-height: 1.35;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+}
+
+.project-copy {
+  max-width: var(--measure);
+  margin-top: 0.9rem;
+  color: var(--ink-2);
+}
+
+.project-features {
+  margin-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+
+.project-features li {
+  position: relative;
+  padding: 0.6rem 0 0.6rem 1.35rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: var(--t-small);
+}
+
+/* Centred on the row rather than pinned to an em offset, which drifted out of
+   alignment as soon as a feature wrapped to two lines. */
+.project-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.project-nolink {
+  margin-top: 1.2rem;
+  color: var(--ink-3);
+}
+
+/* ── tags ─────────────────────────────────────────────────────────── */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+}
+
+.tags li {
+  padding: 0.3rem 0.65rem;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── links ────────────────────────────────────────────────────────── */
+.link-arrow {
+  display: inline-block;
+  margin-top: 1.25rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--line-strong);
+  font-size: var(--t-small);
+  font-weight: 500;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.link-arrow:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── cards / columns ──────────────────────────────────────────────── */
+.cols-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+.card {
+  padding: clamp(1.25rem, 2.5vw, 1.9rem);
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+}
+
+.card-title {
+  font-size: var(--t-h3);
+  letter-spacing: -0.022em;
+}
+
+.card-copy {
+  max-width: 42ch;
+  margin-top: 0.7rem;
+  color: var(--ink-2);
+}
+
+.card-label {
+  margin-top: 1.4rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+}
+
+/* ── timeline ─────────────────────────────────────────────────────── */
+.timeline {
+  border-top: 1px solid var(--line);
+}
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 2.5vw, 1.85rem) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline-when {
+  color: var(--accent);
+  padding-top: 0.35rem;
+}
+
+.timeline-title {
+  font-size: var(--t-h3);
+  letter-spacing: -0.022em;
+}
+
+.timeline-org {
+  margin-top: 0.2rem;
+  color: var(--ink-3);
+  font-size: var(--t-small);
+}
+
+.timeline-copy {
+  max-width: var(--measure);
+  margin-top: 0.75rem;
+  color: var(--ink-2);
+}
+
+/* ── grades ───────────────────────────────────────────────────────── */
+.grades-head {
+  margin-bottom: 1.75rem;
+}
+
+.grades-cgpa {
+  margin-top: 0.5rem;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.grades-cgpa strong {
+  font-weight: 500;
+}
+
+.grades-cgpa span {
+  color: var(--ink-3);
+  font-size: 0.4em;
+  letter-spacing: 0;
+}
+
+.grades-note {
+  max-width: var(--measure);
+  margin-top: 0.75rem;
+  color: var(--ink-2);
+}
+
+.grades-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.grades-year {
+  padding: 1rem;
+  background: var(--bg);
+}
+
+.grades-year > .mono {
+  margin-bottom: 0.6rem;
+  color: var(--ink-2);
+}
+
+.grades-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.grades-value {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.grades-pending {
+  color: var(--ink-3);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.beyond > .mono {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+/* ── certifications ───────────────────────────────────────────────── */
+.certs {
+  border-top: 1px solid var(--line);
+}
+
+.cert {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 9rem 5rem;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.18s ease;
+}
+
+.cert:hover {
+  background: var(--bg-raised);
+}
+
+.cert-title {
+  font-size: 1.02rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+}
+
+.cert-issuer {
+  margin-top: 0.2rem;
+  color: var(--ink-3);
+  font-size: var(--t-small);
+}
+
+.cert-date {
+  color: var(--ink-2);
+}
+
+.cert-view {
+  justify-self: end;
+  color: var(--ink-3);
+  transition: color 0.18s ease;
+}
+
+.cert:hover .cert-view {
+  color: var(--accent);
+}
+
+/* ── about ────────────────────────────────────────────────────────── */
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: start;
+}
+
+.about-copy {
+  display: grid;
+  gap: 1.1rem;
+  max-width: var(--measure);
+  color: var(--ink-2);
+}
+
+.about-lead {
+  color: var(--ink);
+  font-size: var(--t-lead);
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+
+.facts {
+  border-top: 1px solid var(--line);
+}
+
+.facts > div {
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.facts dt {
+  margin-bottom: 0.3rem;
+}
+
+.facts dd {
+  color: var(--ink);
+}
+
+/* ── contact ──────────────────────────────────────────────────────── */
+.contact-email {
+  display: inline-block;
+  font-size: clamp(1.5rem, 4.5vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  /* Underline sits away from the descenders and thickens on hover. */
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 0.08em;
+  transition: border-color 0.18s ease, color 0.18s ease;
+  word-break: break-word;
+}
+
+.contact-email:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.contact-note {
+  max-width: var(--measure);
+  margin-top: 1.25rem;
+  color: var(--ink-2);
+}
+
+.contact-links {
+  margin-top: 2rem;
+  border-top: 1px solid var(--line);
+  max-width: 34rem;
+}
+
+.contact-links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--t-small);
+  font-weight: 500;
+  transition: padding-left 0.22s ease, color 0.18s ease;
+}
+
+.contact-links a:hover {
+  padding-left: 0.6rem;
+  color: var(--accent);
+}
+
+/* ── footer ───────────────────────────────────────────────────────── */
+.footer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-sunken);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+  max-width: var(--wide);
+  margin-inline: auto;
+  padding: 2.5rem var(--pad-x) 3rem;
+}
+
+.footer-name {
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+.footer-meta {
+  margin-left: auto;
+}
+
+.footer-tagline {
+  width: 100%;
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+/* ── responsive ───────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .section-head {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .section-index {
+    padding-top: 0.4rem;
+  }
+
+  .section-body {
+    padding-left: 0;
+  }
+
+  .hero-foot {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .hero-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  .project,
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .project:nth-child(even) .project-shot {
+    order: 0;
+  }
+
+  .timeline li {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .cert {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 0.35rem;
+  }
+
+  .cert-date {
+    grid-column: 1;
+  }
+
+  .cert-view {
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    align-self: center;
+  }
+}
+
+@media (max-width: 620px) {
+  .topbar-nav {
+    display: none;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .footer-meta {
+    margin-left: 0;
+  }
+}
+
+/* ── print ────────────────────────────────────────────────────────── */
+/* The site doubles as a CV when someone hits print, so drop the chrome and
+   flip to ink-on-paper rather than printing a black page. */
+@media print {
+  .topbar,
+  .skip-link,
+  .hero-actions,
+  .footer-links {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .section {
+    padding: 1.5rem 0;
+    break-inside: avoid;
+  }
+
+  .project-shot,
+  .card,
+  .grades-year {
+    background: none;
+    border-color: #ccc;
+  }
+
+  a {
+    color: #000;
+  }
+}

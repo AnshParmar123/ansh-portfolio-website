@@ -6,14 +6,13 @@
  */
 
 /**
- * Stable ids for every detectable region of the site.
+ * Stable section ids.
  *
  * There is deliberately no separate "stack" section: the old TechStack widget
- * and WhatIDo both listed tools, so the tool lists now live inside `capability`
+ * and WhatIDo both listed tools, so the tool lists live inside `capability`
  * rather than being printed twice.
  */
 export type SectionId =
-  | "identity"
   | "about"
   | "capability"
   | "work"
@@ -22,24 +21,14 @@ export type SectionId =
   | "credentials"
   | "contact";
 
-/**
- * A detection target. `label` is what the HUD prints as the class name, and
- * `confidence` is a fixed per-section value — it is styling, not a real score,
- * so it stays deterministic across reloads rather than looking like noise.
- */
 export interface SectionMeta {
   id: SectionId;
-  /** HUD class label, e.g. "WORK". Kept short — it renders inside the box. */
+  /** Short name used in the nav and the running index. */
   label: string;
-  /** Human heading used by the flat renderer. */
+  /** Full heading shown at the top of the section. */
   heading: string;
-  /** One line describing the section, printed under the label on acquire. */
+  /** One line of standfirst under the heading. */
   summary: string;
-  confidence: number;
-  /** Position along the camera's forward path, in world units. */
-  depth: number;
-  /** Lateral/vertical offset so targets do not stack in a single column. */
-  offset: [x: number, y: number];
 }
 
 export interface Project {
