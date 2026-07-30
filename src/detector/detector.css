@@ -1,0 +1,544 @@
+/**
+ * Detector world styles.
+ *
+ * The world is DOM type placed in perspective. Slabs are authored at
+ * SLAB_BASE_PX (900px) wide and then CSS-scaled by the projection, so every size
+ * below is in px at that authoring width and scales as one piece.
+ *
+ * The "raw feed" grade (vignette, scanlines) is CSS rather than a WebGL post
+ * pass — same look, no extra render target.
+ */
+
+/* ── feed ─────────────────────────────────────────────────────────── */
+.feed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: var(--feed);
+}
+
+.feed canvas {
+  display: block;
+}
+
+.feed-grade,
+.feed-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Vignette. Kept light — a heavier falloff was swallowing the floor rules and
+   leaving the frame reading as flat black. */
+.feed-grade {
+  background:
+    radial-gradient(
+      ellipse 130% 110% at 50% 45%,
+      transparent 52%,
+      rgba(3, 6, 9, 0.34) 86%,
+      rgba(2, 4, 6, 0.68) 100%
+    ),
+    linear-gradient(rgba(90, 160, 180, 0.03), rgba(90, 160, 180, 0.03));
+}
+
+.feed-scan {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.022) 0px,
+    rgba(255, 255, 255, 0.022) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ── stage ────────────────────────────────────────────────────────── */
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ── slab ─────────────────────────────────────────────────────────── */
+.slab {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 900px; /* SLAB_BASE_PX — the projection scales from this */
+  padding: 34px 40px 38px;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;
+  cursor: pointer;
+  transform-origin: 50% 50%;
+  /* transform / opacity / z-index are written per-frame by the loop */
+  will-change: transform, opacity;
+}
+
+.slab[data-acquired="true"] {
+  pointer-events: auto;
+}
+
+/* Corner brackets, snapped to the slab's own box so they always read as a
+   frame around the content rather than floating near it. */
+.slab-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/**
+ * A soft scrim behind the slab's type. The atmosphere rules recede straight
+ * through where the headline sits, so type needs its own darker ground to stay
+ * legible — translucent and feathered, so depth still shows through.
+ *
+ * It lives on `.slab` at z-index -1, NOT inside `.slab-frame`: the frame is
+ * absolutely positioned, which paints it above the static text, and putting the
+ * scrim there veiled the very content it was supposed to sit behind. `.slab`
+ * already establishes a stacking context via its transform, so -1 stays local.
+ */
+.slab::before {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 78% 68% at 42% 50%,
+    rgba(6, 8, 11, 0.78) 0%,
+    rgba(6, 8, 11, 0.58) 55%,
+    rgba(6, 8, 11, 0) 100%
+  );
+}
+
+.sbr {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid rgba(150, 187, 200, 0.28);
+  transition: width 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    height 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.3s ease;
+}
+
+.slab[data-acquired="true"] .sbr {
+  width: 52px;
+  height: 52px;
+  border-color: var(--acquire);
+}
+
+.sbr-tl {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+.sbr-tr {
+  top: 0;
+  right: 0;
+  border-left: 0;
+  border-bottom: 0;
+}
+.sbr-bl {
+  bottom: 0;
+  left: 0;
+  border-right: 0;
+  border-top: 0;
+}
+.sbr-br {
+  bottom: 0;
+  right: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* Class label rides the slab's top-left corner. */
+.slab-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px;
+  background: rgba(6, 8, 11, 0.75);
+  border: 1px solid rgba(150, 187, 200, 0.3);
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: border-color 0.3s ease;
+}
+
+.slab[data-acquired="true"] .slab-label {
+  border-color: var(--acquire);
+}
+
+.slab-label b {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.slab-label em {
+  color: var(--acquire);
+  font-style: normal;
+}
+
+/* ── display type ─────────────────────────────────────────────────── */
+.slab-display {
+  margin: 22px 0 0;
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.slab-display span {
+  display: block;
+  color: var(--ink-dim);
+}
+
+/* The identity slab is the masthead: the name, set as large as the frame
+   allows, because it is the first thing anyone reads. */
+.slab-identity .slab-display {
+  font-size: 168px;
+  letter-spacing: -0.05em;
+}
+
+.slab-lead {
+  max-width: 30ch;
+  margin: 20px 0 0;
+  font-size: 26px;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.slab-identity .slab-lead {
+  max-width: 34ch;
+  font-size: 28px;
+}
+
+/* ── data rows ────────────────────────────────────────────────────── */
+.slab-rows {
+  margin: 28px 0 0;
+  border-top: 1px solid rgba(150, 187, 200, 0.2);
+}
+
+.slab-rows > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(150, 187, 200, 0.2);
+}
+
+.slab-rows dt {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+.slab-rows dd {
+  margin: 0;
+  max-width: 62%;
+  font-size: 19px;
+  line-height: 1.3;
+  color: var(--ink);
+  text-align: right;
+}
+
+.slab[data-acquired="true"] .slab-rows dd {
+  color: var(--acquire);
+}
+
+.slab-open {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 8px 14px;
+  border: 1px solid var(--acquire);
+  color: var(--acquire);
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.slab[data-acquired="true"] .slab-open {
+  opacity: 1;
+}
+
+.slab[data-acquired="true"]:hover .slab-open {
+  background: var(--acquire);
+  color: #06080b;
+}
+
+/* ── chrome ───────────────────────────────────────────────────────── */
+.feed-head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.9rem var(--pageX);
+}
+
+.feed-name {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.feed-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.feed-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--acquire);
+  border-radius: 50%;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.feed-range {
+  margin-left: auto;
+}
+
+.feed-range span {
+  color: var(--acquire);
+}
+
+.feed-head .mode-toggle {
+  padding: 0.4rem 0.7rem;
+  background: rgba(6, 8, 11, 0.6);
+  border: 1px solid var(--feed-line-strong);
+  color: var(--ink-dim);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: var(--step-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.feed-head .mode-toggle:hover {
+  border-color: var(--acquire);
+  color: var(--acquire);
+}
+
+/* ── detection index (keyboard/AT path) ───────────────────────────── */
+/* Anchored right: slab content is left-aligned and its "Open" button reaches
+   into the lower-left, where this list used to sit on top of it. */
+.feed-index {
+  position: fixed;
+  right: var(--pageX);
+  bottom: 1.5rem;
+  z-index: 40;
+  width: 11rem;
+  text-align: right;
+}
+
+.feed-index-label {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.feed-index ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--feed-line);
+}
+
+.feed-index li {
+  border-bottom: 1px solid var(--feed-line);
+}
+
+.feed-index button {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.32rem 0;
+  background: transparent;
+  border: 0;
+  color: var(--ink-faint);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: var(--step-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.16s ease;
+}
+
+.feed-index button:hover {
+  color: var(--ink);
+}
+
+.feed-index button[data-acquired="true"] {
+  color: var(--acquire);
+}
+
+.feed-index button[data-acquired="true"] .feed-index-class::before {
+  content: "▸ ";
+}
+
+/* The range value is a distance in metres — leave it lowercase so "10.0m"
+   doesn't read as "10.0M" megabytes. */
+.feed-range span {
+  text-transform: none;
+}
+
+/* ── hint ─────────────────────────────────────────────────────────── */
+.feed-hint {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  z-index: 40;
+  transform: translateX(-50%);
+  animation: fade-cycle 3s ease-in-out infinite;
+}
+
+@keyframes fade-cycle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.scroll-spacer {
+  position: relative;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ── overlay ──────────────────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: start center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(3, 5, 8, 0.84);
+  backdrop-filter: blur(6px);
+  overflow-y: auto;
+  animation: overlay-in 0.2s ease both;
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.overlay-panel {
+  position: relative;
+  width: min(100%, 62rem);
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  background: var(--feed-raised);
+  border: 1px solid var(--feed-line-strong);
+  /* The "acquire" wipe: the panel opens out of the frame that spawned it. */
+  animation: panel-in 0.34s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    clip-path: inset(46% 8% 46% 8%);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.overlay-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.overlay-close {
+  margin-left: auto;
+  padding: 0.35rem 0.65rem;
+  background: transparent;
+  border: 1px solid var(--feed-line-strong);
+  color: var(--ink-dim);
+  cursor: pointer;
+  font-family: var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.overlay-close:hover {
+  border-color: var(--lock);
+  color: var(--lock);
+}
+
+.overlay-title {
+  margin-top: 0.6rem;
+  font-size: var(--step-h2);
+}
+
+.overlay-summary {
+  margin-top: 0.3rem;
+  color: var(--ink-dim);
+}
+
+.overlay-body {
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* ── narrow ───────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .feed-index {
+    max-width: 8.5rem;
+    bottom: 0.75rem;
+  }
+
+  .feed-head {
+    flex-wrap: wrap;
+    gap: 0.4rem 0.9rem;
+  }
+
+  .feed-status {
+    order: 3;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feed-dot,
+  .feed-hint {
+    animation: none;
+  }
+
+  .sbr,
+  .slab-label,
+  .slab-open {
+    transition: none;
+  }
+}

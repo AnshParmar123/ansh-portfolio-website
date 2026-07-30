@@ -1,0 +1,157 @@
+/**
+ * Shared token layer for both renderers.
+ *
+ * The look is an instrument readout, not a "sleek dark portfolio": mono labels,
+ * confidence scores, corner brackets, ruled tabular strips. The palette is a
+ * camera feed — near-black with a cold cast — plus exactly two signal colours.
+ * `--acquire` marks something the detector has found; `--lock` marks the one
+ * thing currently selected. Nothing else is coloured.
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+:root {
+  /* feed */
+  --feed: #06080b;
+  --feed-raised: #0b0f14;
+  --feed-line: rgba(150, 187, 200, 0.14);
+  --feed-line-strong: rgba(150, 187, 200, 0.3);
+
+  /* ink */
+  --ink: #e7eef2;
+  --ink-dim: rgba(231, 238, 242, 0.62);
+  --ink-faint: rgba(231, 238, 242, 0.36);
+
+  /* the only two accents */
+  --acquire: #d8ff3e;
+  --lock: #ff4b2b;
+
+  /* type */
+  --sans: "Geist", "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --step-hero: clamp(3rem, 11vw, 8.5rem);
+  --step-h2: clamp(1.65rem, 3.4vw, 2.9rem);
+  --step-h3: clamp(1.1rem, 1.7vw, 1.4rem);
+  --step-body: clamp(0.95rem, 1.05vw, 1.05rem);
+  --step-mono: clamp(0.66rem, 0.78vw, 0.78rem);
+
+  /* rhythm */
+  --pageX: clamp(1.15rem, 4vw, 4.5rem);
+  --sectionY: clamp(3.5rem, 6.5vw, 6.5rem);
+  --cWidth: 78rem;
+  --vh: 100svh;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--feed);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--step-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  text-wrap: balance;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--acquire);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/** The mono micro-label used throughout: section slugs, keys, confidences. */
+.hud {
+  font-family: var(--mono);
+  font-size: var(--step-mono);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.hud-acquire {
+  color: var(--acquire);
+}
+
+/** Shown only while the 3D chunk is in flight. */
+.boot-note {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--acquire);
+}
+
+/** Skip link — the flat site is the accessible path, so this must work. */
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.55rem 0.9rem;
+  background: var(--acquire);
+  color: #06080b;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transform: translateY(-160%);
+  transition: transform 0.18s ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
