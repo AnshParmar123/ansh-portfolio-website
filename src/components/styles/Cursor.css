@@ -9,34 +9,52 @@
   left: 0;
   width: var(--size);
   height: var(--size);
-  border-radius: 50px;
   pointer-events: none;
   z-index: 99;
-  background-color: var(--accentColor2, #e2557a);
-  box-shadow: 0px 0px 18px 0px rgba(226, 85, 122, 0.6);
   mix-blend-mode: difference;
   opacity: var(--cursor-opacity);
   transform: translate3d(var(--cursor-x), var(--cursor-y), 0)
     translate(-50%, -50%) scale(var(--cursor-scale));
-  transition: transform 0.18s ease-out, opacity 0.2s ease-out,
-    box-shadow 0.2s ease-out;
+  transition: transform 0.18s ease-out, opacity 0.2s ease-out;
   will-change: transform, opacity;
 }
-.cursor-icons {
-  --cursor-scale: 0.82;
-  height: calc(var(--cursorH) - 20px);
-  box-shadow: 0px 0px 12px 0px rgba(226, 85, 122, 0.45);
+.cursor-reticle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: cursor-breathe 2.4s ease-in-out infinite;
+}
+.cursor-reticle-dot {
+  fill: #fff;
+  stroke: none;
+}
+@keyframes cursor-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.86);
+  }
+}
+.cursor-icons .cursor-reticle {
+  animation: none;
+  transform: scale(0.72);
 }
 .cursor-disable {
   --cursor-opacity: 0;
-  --cursor-scale: 0.2;
+  --cursor-scale: 0.4;
 }
 @media only screen and (min-width: 600px) {
   .cursor-main {
-    --size: 42px;
+    --size: 40px;
   }
   .cursor-disable {
     --cursor-opacity: 0;
-    --cursor-scale: 0.2;
+    --cursor-scale: 0.4;
   }
 }

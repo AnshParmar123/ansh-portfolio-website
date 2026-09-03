@@ -74,7 +74,17 @@ const Cursor = () => {
     };
   }, []);
 
-  return <div className="cursor-main" ref={cursorRef}></div>;
+  return (
+    <div className="cursor-main" ref={cursorRef}>
+      <svg viewBox="0 0 40 40" className="cursor-reticle" aria-hidden="true">
+        <path d="M2 12V5a3 3 0 0 1 3-3h7" />
+        <path d="M28 2h7a3 3 0 0 1 3 3v7" />
+        <path d="M38 28v7a3 3 0 0 1-3 3h-7" />
+        <path d="M12 38H5a3 3 0 0 1-3-3v-7" />
+        <circle className="cursor-reticle-dot" cx="20" cy="20" r="1.6" />
+      </svg>
+    </div>
+  );
 };
 
 export default Cursor;
