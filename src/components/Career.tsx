@@ -2,11 +2,11 @@ import "./styles/Career.css";
 
 const timelineItems = [
   {
-    title: "Integrated MBA-Tech",
+    title: "Bachelor of Technology, Computer Science & Engineering",
     subtitle: "RAIT, DY Patil University",
     marker: "NOW",
     description:
-      "Pursuing an AIML-focused degree while strengthening both business thinking and technical problem-solving for applied AI products.",
+      "Pursuing a Computer Science & Engineering degree, focused on applied machine learning and building real-world AI systems.",
   },
   {
     title: "AI/ML Project Builder",
@@ -94,11 +94,11 @@ const Career = () => {
           <div className="academics-header">
             <div>
               <span className="academics-eyebrow">Academic Performance</span>
-              <h3>Current CGPA: 8.63 / 10</h3>
+              <h3>Current CGPA: 8.62 / 10</h3>
             </div>
             <p>
-              Semester-wise SGPA across the integrated MBA-Tech journey so far,
-              with current performance calculated from completed semesters.
+              Semester-wise SGPA across the programme so far, with current
+              performance calculated from completed semesters.
             </p>
           </div>
           <div className="academics-grid">

@@ -100,10 +100,14 @@ const WhatIDo = () => {
                 <div className="what-tags">Python</div>
                 <div className="what-tags">Java</div>
                 <div className="what-tags">JavaScript</div>
+                <div className="what-tags">TypeScript</div>
+                <div className="what-tags">SQL</div>
                 <div className="what-tags">HTML</div>
                 <div className="what-tags">CSS</div>
                 <div className="what-tags">React.js</div>
                 <div className="what-tags">Node.js</div>
+                <div className="what-tags">Astro</div>
+                <div className="what-tags">Flask</div>
                 <div className="what-tags">Tailwind CSS</div>
               </div>
               <div className="what-arrow"></div>
@@ -141,12 +145,20 @@ const WhatIDo = () => {
                 <div className="what-tags">NumPy</div>
                 <div className="what-tags">Pandas</div>
                 <div className="what-tags">Scikit-learn</div>
+                <div className="what-tags">XGBoost</div>
                 <div className="what-tags">TensorFlow</div>
+                <div className="what-tags">PyTorch</div>
+                <div className="what-tags">LangChain</div>
                 <div className="what-tags">Git</div>
                 <div className="what-tags">GitHub</div>
                 <div className="what-tags">VS Code</div>
                 <div className="what-tags">Jupyter</div>
+                <div className="what-tags">Streamlit</div>
+                <div className="what-tags">Playwright</div>
+                <div className="what-tags">pytest</div>
+                <div className="what-tags">n8n</div>
                 <div className="what-tags">Firebase</div>
+                <div className="what-tags">Vercel</div>
                 <div className="what-tags">Netlify</div>
               </div>
               <div className="what-arrow"></div>

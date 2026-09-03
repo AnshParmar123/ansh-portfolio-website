@@ -28,3 +28,4 @@ backup/
 .env
 .vercel
 .env*.local
+.env*
