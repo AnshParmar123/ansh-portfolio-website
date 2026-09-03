@@ -14,7 +14,7 @@ export const sections: SectionMeta[] = [
     label: "Work",
     heading: "Selected work",
     summary:
-      "Four systems built around computer vision, recognition, and analysis.",
+      "Four systems built around quantitative research, computer vision, and analysis.",
   },
   {
     id: "capability",

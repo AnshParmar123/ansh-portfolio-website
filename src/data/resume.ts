@@ -2,11 +2,11 @@ import type { AcademicYear, Certification, SkillGroup, TimelineEntry } from "./t
 
 export const education: TimelineEntry[] = [
   {
-    title: "Integrated MBA-Tech",
+    title: "Bachelor of Technology, Computer Science & Engineering",
     subtitle: "RAIT, DY Patil University",
     marker: "NOW",
     description:
-      "Pursuing an AIML-focused degree while strengthening both business thinking and technical problem-solving for applied AI products.",
+      "Pursuing a Computer Science & Engineering degree, focused on applied machine learning and building real-world AI systems.",
   },
   {
     title: "AI/ML Project Builder",
@@ -24,7 +24,7 @@ export const education: TimelineEntry[] = [
   },
 ];
 
-export const cgpa = "8.63";
+export const cgpa = "8.62";
 
 export const academicYears: AcademicYear[] = [
   {
@@ -69,18 +69,20 @@ export const academicYears: AcademicYear[] = [
   },
 ];
 
-/**
- * NOTE: this description is still placeholder copy written for the previous
- * build — Ansh has not supplied what he actually did in this internship. It is
- * resume-facing, so it needs replacing with real detail before launch.
- */
 export const experience: TimelineEntry[] = [
   {
-    title: "Intern, Intelligent Data Analytics",
-    subtitle: "DY Patil University",
-    marker: "MAY '26",
+    title: "Freelance AI Automation & Web Developer",
+    subtitle: "Self-Employed · Remote",
+    marker: "JUL '26 — PRESENT",
     description:
-      "Worked on data analytics workflows using Python, Pandas, and SQL to clean, explore, and visualize datasets. Built reusable analysis scripts and summarized findings into clear reports that supported the team's data-driven decisions.",
+      "Designed and shipped a production marketing website for a creative agency using Astro, TypeScript, and CSS, implementing on-page SEO (dynamic sitemap, robots.txt, schema.org markup), an accessibility-first motion system, and a Playwright test suite covering forms, navigation, and responsive layout across 12 viewport widths. Automated the client's lead-intake and follow-up workflow with n8n, routing website form submissions to email and WhatsApp automatically.",
+  },
+  {
+    title: "Data Analytics Intern",
+    subtitle: "DY Patil University",
+    marker: "MAY '26 — JUN '26",
+    description:
+      "Cleaned and engineered features across large, real-world datasets in Python (Pandas), building reusable scripts that turned raw data into concrete insights and summary reports for faculty stakeholders.",
   },
 ];
 
@@ -100,10 +102,14 @@ export const skills: SkillGroup[] = [
       "Python",
       "Java",
       "JavaScript",
+      "TypeScript",
+      "SQL",
       "HTML",
       "CSS",
       "React.js",
       "Node.js",
+      "Astro",
+      "Flask",
       "Tailwind CSS",
     ],
   },
@@ -116,12 +122,20 @@ export const skills: SkillGroup[] = [
       "NumPy",
       "Pandas",
       "Scikit-learn",
+      "XGBoost",
       "TensorFlow",
+      "PyTorch",
+      "LangChain",
       "Git",
       "GitHub",
       "VS Code",
       "Jupyter",
+      "Streamlit",
+      "Playwright",
+      "pytest",
+      "n8n",
       "Firebase",
+      "Vercel",
       "Netlify",
     ],
   },

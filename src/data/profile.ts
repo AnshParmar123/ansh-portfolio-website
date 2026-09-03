@@ -11,7 +11,7 @@ export const profile = {
   availability:
     "Open to internships, AI/ML roles, and collaborative product work.",
   highlights: ["Computer Vision", "AI Product Thinking", "Software Development"],
-  email: "anshudayparmar@gmail.com",
+  email: "p.anshu2005@gmail.com",
   resume: "/documents/Ansh_Parmar_Resume.pdf",
   tagline_sa: "कृष्णं वन्दे जगद्गुरुम् °•👁U👁•° 🌸",
 } as const;
