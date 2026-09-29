@@ -44,6 +44,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: { status: 405, message: `Method ${req.method} not allowed` } });
   }
 
+  const company = (req.body as Record<string, unknown> | undefined)?.company;
+  if (typeof company === 'string' && company.trim()) {
+    return res.status(204).end();
+  }
+
   const { errors, clean } = validate(req.body);
   if (errors.length || !clean) {
     return res.status(400).json({ error: { status: 400, message: 'Validation failed', details: errors } });
