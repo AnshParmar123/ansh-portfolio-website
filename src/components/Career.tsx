@@ -24,49 +24,6 @@ const timelineItems = [
   },
 ];
 
-const academicYears = [
-  {
-    year: "Year 1",
-    semesters: [
-      { label: "Sem 1", sgpa: "8.50" },
-      { label: "Sem 2", sgpa: "8.31" },
-      { label: "Sem 3", sgpa: "8.69" },
-    ],
-  },
-  {
-    year: "Year 2",
-    semesters: [
-      { label: "Sem 4", sgpa: "7.88" },
-      { label: "Sem 5", sgpa: "8.36" },
-      { label: "Sem 6", sgpa: "8.50" },
-    ],
-  },
-  {
-    year: "Year 3",
-    semesters: [
-      { label: "Sem 7", sgpa: "9.25" },
-      { label: "Sem 8", sgpa: "8.73" },
-      { label: "Sem 9", sgpa: "9.43" },
-    ],
-  },
-  {
-    year: "Year 4",
-    semesters: [
-      { label: "Sem 10", sgpa: "Upcoming" },
-      { label: "Sem 11", sgpa: "Upcoming" },
-      { label: "Sem 12", sgpa: "Upcoming" },
-    ],
-  },
-  {
-    year: "Year 5",
-    semesters: [
-      { label: "Sem 13", sgpa: "Upcoming" },
-      { label: "Sem 14", sgpa: "Upcoming" },
-      { label: "Sem 15", sgpa: "Upcoming" },
-    ],
-  },
-];
-
 const Career = () => {
   return (
     <div className="career-section section-container">
@@ -94,27 +51,8 @@ const Career = () => {
           <div className="academics-header">
             <div>
               <span className="academics-eyebrow">Academic Performance</span>
-              <h3>Current CGPA: 8.62 / 10</h3>
+              <h3>Overall CGPA: 8.62 / 10</h3>
             </div>
-            <p>
-              Semester-wise SGPA across the programme so far, with current
-              performance calculated from completed semesters.
-            </p>
-          </div>
-          <div className="academics-grid">
-            {academicYears.map((item) => (
-              <div className="academics-card" key={item.year}>
-                <h4>{item.year}</h4>
-                <div className="academics-semesters">
-                  {item.semesters.map((semester) => (
-                    <div className="academics-semester" key={semester.label}>
-                      <span>{semester.label}</span>
-                      <strong>{semester.sgpa}</strong>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
         <div className="interests-section">
