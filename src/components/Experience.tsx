@@ -3,8 +3,8 @@ import "./styles/Experience.css";
 
 const experienceItems = [
   {
-    title: "Freelance AI Automation & Web Developer",
-    subtitle: "Self-Employed · Remote",
+    title: "AI & Web Developer Intern",
+    subtitle: "Remote",
     marker: "JUL '26 — PRESENT",
     description:
       "Designed and shipped a production marketing website for a creative agency using Astro, TypeScript, and CSS, implementing on-page SEO (dynamic sitemap, robots.txt, schema.org markup), an accessibility-first motion system, and a Playwright test suite covering forms, navigation, and responsive layout across 12 viewport widths. Automated the client's lead-intake and follow-up workflow with n8n, routing website form submissions to email and WhatsApp automatically.",
