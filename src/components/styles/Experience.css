@@ -27,6 +27,24 @@
   margin-bottom: clamp(3rem, 7vw, 5.625rem);
   letter-spacing: 0.02em;
 }
+.experience-certificate-link {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  color: rgba(255, 243, 230, 0.9);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.experience-certificate-link:hover,
+.experience-certificate-link:focus-visible {
+  color: var(--accentColor);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  transform: translateX(2px);
+}
 @media only screen and (max-width: 1400px) {
   .experience-section h2 {
     font-size: clamp(2.5rem, 5vw, 3.125rem);

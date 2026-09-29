@@ -11,6 +11,7 @@ const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [company, setCompany] = useState("");
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<SubmitState>("idle");
   const [statusMessage, setStatusMessage] = useState("");
@@ -45,6 +46,7 @@ const ContactForm = () => {
           name: name.trim(),
           email: email.trim(),
           message: message.trim(),
+          company,
         }),
       });
       const body = await response.json();
@@ -55,6 +57,7 @@ const ContactForm = () => {
         setName("");
         setEmail("");
         setMessage("");
+        setCompany("");
         setFieldErrors({});
       } else {
         setStatus("error");
@@ -75,6 +78,18 @@ const ContactForm = () => {
     <div className="contact-box contact-form-box">
       <h4>Send a message</h4>
       <form className="contact-form" onSubmit={handleSubmit} noValidate>
+        <div className="contact-form-honeypot" aria-hidden="true">
+          <label htmlFor="cf-company">Company</label>
+          <input
+            id="cf-company"
+            name="company"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={company}
+            onChange={(event) => setCompany(event.target.value)}
+          />
+        </div>
         <div className="form-row">
           <label htmlFor="cf-name">Name</label>
           <input

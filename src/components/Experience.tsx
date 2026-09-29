@@ -15,6 +15,7 @@ const experienceItems = [
     marker: "MAY '26 — JUN '26",
     description:
       "Cleaned and engineered features across large, real-world datasets in Python (Pandas), building reusable scripts that turned raw data into concrete insights and summary reports for faculty stakeholders.",
+    certificate: "/documents/dy-patil-internship-certificate.pdf",
   },
 ];
 
@@ -33,6 +34,16 @@ const Experience = () => {
               <div className="career-info-left">
                 <h4>{item.title}</h4>
                 <h5>{item.subtitle}</h5>
+                {item.certificate && (
+                  <a
+                    className="experience-certificate-link"
+                    href={item.certificate}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Certificate ↗
+                  </a>
+                )}
               </div>
               <div className="career-info-center">
                 <span>{item.marker}</span>
