@@ -153,6 +153,7 @@ const Scene = () => {
       animate();
       return () => {
         isDisposed = true;
+        progress.stop();
         window.cancelAnimationFrame(animationFrameId);
         clearTimeout(debounce);
         scene.clear();
