@@ -19,8 +19,8 @@
     linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)),
     rgba(15, 8, 15, 0.9);
   box-shadow: var(--panelShadow);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .about-me h3 {
   font-size: clamp(1rem, 1.4vw, 1.2rem);
