@@ -52,7 +52,7 @@ a.contact-social {
 }
 a.contact-social:hover {
   color: #ffffff;
-  border-color: rgba(0, 245, 212, 0.55);
+  border-color: rgba(217, 79, 112, 0.55);
   transform: translateX(4px);
 }
 .contact-box h2 {
@@ -76,6 +76,11 @@ a.contact-social:hover {
   display: flex;
   gap: 10px;
   opacity: 0.5;
+}
+.contact-tagline {
+  margin-top: 14px;
+  font-size: 13px;
+  opacity: 0.45;
 }
 @media only screen and (max-width: 1600px) {
   .contact-box h2 {
