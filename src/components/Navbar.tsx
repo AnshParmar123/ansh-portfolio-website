@@ -62,6 +62,11 @@ const Navbar = () => {
     <>
       <div className={`header ${isScrolled ? "header-scrolled" : ""}`}>
         <a href="/#" className="navbar-title" data-cursor="disable">
+          <img
+            src="/images/dwarkadhish.png"
+            alt="Dwarkadhish Bhagwan"
+            className="navbar-deity"
+          />
           ANSH
         </a>
         <div className="navbar-connect">
