@@ -43,7 +43,9 @@
 .certificate-card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.028));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
+    rgba(15, 8, 15, 0.86);
   border: 1px solid rgba(230, 234, 242, 0.08);
   border-radius: 24px;
   overflow: hidden;

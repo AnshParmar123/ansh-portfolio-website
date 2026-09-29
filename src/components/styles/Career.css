@@ -41,7 +41,9 @@
   padding: clamp(1.4rem, 2.5vw, 2rem);
   border: 1px solid rgba(230, 234, 242, 0.08);
   border-radius: clamp(1.6rem, 3vw, 2rem);
-  background: rgba(255, 255, 255, 0.03);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(15, 8, 15, 0.86);
   box-shadow: var(--panelShadow);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -181,7 +183,9 @@
   align-items: stretch;
 }
 .academics-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(15, 8, 15, 0.86);
   border: 1px solid rgba(230, 234, 242, 0.08);
   border-radius: 22px;
   padding: 22px 20px;
@@ -253,7 +257,9 @@
   align-items: stretch;
 }
 .interest-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(15, 8, 15, 0.86);
   border: 1px solid rgba(230, 234, 242, 0.08);
   border-radius: 22px;
   padding: 22px 20px;

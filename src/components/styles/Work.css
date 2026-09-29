@@ -32,7 +32,9 @@
   padding: clamp(1.125rem, 2.2vw, 1.75rem);
   border: 1px solid rgba(230, 234, 242, 0.08);
   border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(15, 8, 15, 0.86);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   box-sizing: border-box;

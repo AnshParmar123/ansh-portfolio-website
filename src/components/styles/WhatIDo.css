@@ -50,7 +50,9 @@
   position: relative;
   padding: clamp(1.5rem, 3vw, 3.125rem);
   box-sizing: border-box;
-  background: rgba(255, 255, 255, 0.03);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(15, 8, 15, 0.86);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
