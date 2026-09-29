@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ansh-portfolio-website-phi.vercel.app/sitemap.xml
