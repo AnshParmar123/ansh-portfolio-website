@@ -16,6 +16,19 @@ const loadingStages = [
   "Experience layer syncing",
 ];
 
+const VISITED_KEY = "portfolio_visited";
+const isRepeatVisit =
+  typeof window !== "undefined" &&
+  window.sessionStorage.getItem(VISITED_KEY) === "1";
+
+// Repeat visits within the same session skip the "theater" delays entirely
+// so returning recruiters/reviewers aren't stuck watching the loader again.
+const COMPLETE_DELAY = isRepeatVisit ? 80 : 200;
+const READY_DELAY = isRepeatVisit ? 100 : 300;
+const FX_DELAY = isRepeatVisit ? 40 : 100;
+const REMOVE_DELAY = isRepeatVisit ? 150 : 400;
+const FALLBACK_TIMEOUT = isRepeatVisit ? 3000 : 6000;
+
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
   const [loaded, setLoaded] = useState(false);
@@ -25,6 +38,10 @@ const Loading = ({ percent }: { percent: number }) => {
   const displayPercent = loaded ? 100 : Math.min(percent, 100);
   const circumference = 2 * Math.PI * 52;
   const progressOffset = circumference - (displayPercent / 100) * circumference;
+
+  useEffect(() => {
+    window.sessionStorage.setItem(VISITED_KEY, "1");
+  }, []);
 
   useEffect(() => {
     const messageTimer = window.setInterval(() => {
@@ -41,12 +58,12 @@ const Loading = ({ percent }: { percent: number }) => {
       percent >= 100
         ? window.setTimeout(() => {
             setLoaded(true);
-          }, 450)
+          }, COMPLETE_DELAY)
         : undefined;
 
     const fallbackTimer = window.setTimeout(() => {
       setLoaded(true);
-    }, 15000);
+    }, FALLBACK_TIMEOUT);
 
     return () => {
       if (normalCompleteTimer) window.clearTimeout(normalCompleteTimer);
@@ -59,7 +76,7 @@ const Loading = ({ percent }: { percent: number }) => {
 
     const readyTimer = window.setTimeout(() => {
       setIsLoaded(true);
-    }, 850);
+    }, READY_DELAY);
 
     return () => window.clearTimeout(readyTimer);
   }, [loaded, isLoaded]);
@@ -79,15 +96,15 @@ const Loading = ({ percent }: { percent: number }) => {
             setClicked(true);
             removeDelay = window.setTimeout(() => {
               setIsLoading(false);
-            }, 850);
+            }, REMOVE_DELAY);
           }
-        }, 120);
+        }, FX_DELAY);
       })
       .catch(() => {
         setClicked(true);
         removeDelay = window.setTimeout(() => {
           setIsLoading(false);
-        }, 900);
+        }, REMOVE_DELAY);
       });
 
     return () => {
