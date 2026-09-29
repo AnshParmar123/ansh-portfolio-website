@@ -3,6 +3,9 @@ import { DRACOLoader, GLTF, GLTFLoader } from "three-stdlib";
 import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
 import { decryptFile } from "./decrypt";
 
+/** Matches the site's warm sunset accent (--accentColor in index.css). */
+const CHARACTER_TINT = 0xffb347;
+
 const setCharacter = (
   renderer: THREE.WebGLRenderer,
   scene: THREE.Scene,
@@ -34,6 +37,16 @@ const setCharacter = (
                 child.castShadow = true;
                 child.receiveShadow = true;
                 mesh.frustumCulled = true;
+
+                // Skip the laptop screen glow so its emissive material stays intact.
+                if (mesh.name !== "screenlight" && mesh.material) {
+                  const materials = Array.isArray(mesh.material)
+                    ? mesh.material
+                    : [mesh.material];
+                  materials.forEach((mat: any) => {
+                    if (mat.color) mat.color.set(CHARACTER_TINT);
+                  });
+                }
               }
             });
             resolve(gltf);
