@@ -69,6 +69,11 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   return (
     <div className="container-main">
       <SunsetScene />
+      <div className="brand-watermark" aria-hidden="true">
+        ANSH
+        <br />
+        PARMAR
+      </div>
       <Cursor />
       <Navbar />
       <SocialIcons />
