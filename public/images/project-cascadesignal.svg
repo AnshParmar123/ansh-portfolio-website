@@ -1,0 +1,41 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#0D1220"/>
+  <rect x="42" y="42" width="1116" height="636" rx="34" fill="url(#panel)"/>
+  <rect x="88" y="122" width="1024" height="404" rx="28" fill="#151F35"/>
+  <rect x="88" y="558" width="1024" height="90" rx="24" fill="#18223C"/>
+
+  <!-- intensity curve n(t) with self-exciting spikes -->
+  <path d="M120 470 L180 460 L210 300 L230 400 L260 380 L300 200 L320 340 L350 250 L380 150 L410 300 L450 260 L500 420 L560 200 L600 120 L650 320 L700 260 L760 420 L820 150 L870 90 L920 300 L980 240 L1040 440 L1080 470" stroke="#00F5D4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- event ticks (point process realizations) beneath the curve -->
+  <g stroke="#FFB067" stroke-width="6" stroke-linecap="round" opacity="0.85">
+    <line x1="180" y1="500" x2="180" y2="516"/>
+    <line x1="230" y1="500" x2="230" y2="516"/>
+    <line x1="300" y1="500" x2="300" y2="516"/>
+    <line x1="320" y1="500" x2="320" y2="516"/>
+    <line x1="380" y1="500" x2="380" y2="516"/>
+    <line x1="410" y1="500" x2="410" y2="516"/>
+    <line x1="560" y1="500" x2="560" y2="516"/>
+    <line x1="600" y1="500" x2="600" y2="516"/>
+    <line x1="650" y1="500" x2="650" y2="516"/>
+    <line x1="820" y1="500" x2="820" y2="516"/>
+    <line x1="870" y1="500" x2="870" y2="516"/>
+    <line x1="920" y1="500" x2="920" y2="516"/>
+    <line x1="1040" y1="500" x2="1040" y2="516"/>
+  </g>
+
+  <!-- threshold line -->
+  <line x1="120" y1="200" x2="1080" y2="200" stroke="#7B61FF" stroke-width="3" stroke-dasharray="10 10" opacity="0.7"/>
+
+  <text x="92" y="100" fill="#E6EAF2" font-size="44" font-family="Arial, sans-serif" font-weight="700">CascadeSignal</text>
+  <text x="92" y="686" fill="#9EB0CC" font-size="24" font-family="Arial, sans-serif">Hawkes-process early-warning signal for DeFi liquidation cascades</text>
+  <text x="1000" y="196" fill="#9EB0CC" font-size="20" font-family="Arial, sans-serif" text-anchor="end">alert threshold</text>
+  <text x="120" y="600" fill="#E6EAF2" font-size="22" font-family="Arial, sans-serif">n(t) branching-ratio signal · Aave v2 / v3 liquidation events</text>
+
+  <defs>
+    <linearGradient id="panel" x1="42" y1="42" x2="1158" y2="678" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B0F19"/>
+      <stop offset="1" stop-color="#1B2340"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -11,10 +11,10 @@ const Contact = () => {
             <h4>Email</h4>
             <p>
               <a
-                href="mailto:anshudayparmar@gmail.com"
+                href="mailto:p.anshu2005@gmail.com"
                 data-cursor="disable"
               >
-                anshudayparmar@gmail.com
+                p.anshu2005@gmail.com
               </a>
             </p>
             <p className="contact-note">
@@ -43,7 +43,7 @@ const Contact = () => {
               LinkedIn <MdArrowOutward />
             </a>
             <a
-              href="mailto:anshudayparmar@gmail.com"
+              href="mailto:p.anshu2005@gmail.com"
               data-cursor="disable"
               className="contact-social"
             >
