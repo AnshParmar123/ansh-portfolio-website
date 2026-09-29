@@ -88,11 +88,24 @@
   pointer-events: none;
 }
 .navbar-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 700;
   font-size: clamp(0.875rem, 1vw, 1.125rem);
   letter-spacing: 0.16em;
   padding: 0.45rem 0.25rem;
   color: rgba(255, 255, 255, 0.96);
+}
+.navbar-deity {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 20%;
+  box-shadow:
+    0 0 0 1.5px rgba(255, 179, 71, 0.55),
+    0 0 10px rgba(255, 179, 71, 0.35);
 }
 @media only screen and (min-width: 500px) {
   .header {
