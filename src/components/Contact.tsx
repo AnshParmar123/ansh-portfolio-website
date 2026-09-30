@@ -97,6 +97,7 @@ const ContactForm = () => {
             name="name"
             type="text"
             autoComplete="name"
+            autoCapitalize="words"
             required
             minLength={2}
             maxLength={100}
@@ -119,6 +120,8 @@ const ContactForm = () => {
             name="email"
             type="email"
             autoComplete="email"
+            autoCapitalize="none"
+            inputMode="email"
             required
             maxLength={254}
             value={email}
@@ -139,6 +142,7 @@ const ContactForm = () => {
             id="cf-message"
             name="message"
             rows={4}
+            autoCapitalize="sentences"
             required
             minLength={10}
             maxLength={2000}
