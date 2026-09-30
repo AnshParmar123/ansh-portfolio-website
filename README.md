@@ -10,6 +10,10 @@ and Vercel serverless functions.
 - `npm run lint` runs ESLint across the project.
 - `npm run preview` previews the production build locally.
 
+## Local setup
+
+Use Node.js 20, install dependencies with `npm install`, then run `npm run dev`.
+
 ## Notes
 
 The contact form posts to `/api/contact` and expects `RESEND_API_KEY` to be
