@@ -75,7 +75,11 @@ const Work = () => {
         <div className="work-flex">
           {projects.map((project) => (
             <div className="work-box" key={project.name}>
-              <WorkImage image={project.image} alt={project.name} />
+              <WorkImage
+                image={project.image}
+                alt={`${project.name} project preview`}
+                link={project.github}
+              />
               <div className="work-info">
                 <div className="work-title">
                   <div>
@@ -98,8 +102,12 @@ const Work = () => {
                   </ul>
                 </div>
                 <div className="work-actions">
-                  <a href="#contact" data-href="#contact">
-                    View Details
+                  <a
+                    href="#contact"
+                    data-href="#contact"
+                    aria-label={`Contact Ansh about ${project.name}`}
+                  >
+                    Discuss Project
                   </a>
                   {project.github ? (
                     <a
@@ -107,11 +115,12 @@ const Work = () => {
                       target="_blank"
                       rel="noreferrer"
                       data-cursor="disable"
+                      aria-label={`Open ${project.name} GitHub repository`}
                     >
                       GitHub
                     </a>
                   ) : (
-                    <span className="work-action-disabled">Not Deployed Yet</span>
+                    <span className="work-action-disabled">Available On Request</span>
                   )}
                 </div>
               </div>
