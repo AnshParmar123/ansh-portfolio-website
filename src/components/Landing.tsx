@@ -30,8 +30,9 @@ const Landing = ({ children }: PropsWithChildren) => {
                 href="#work"
                 className="landing-cta landing-cta-primary"
                 data-href="#work"
+                aria-label="View Ansh Parmar's featured projects"
               >
-                View Work
+                View Projects
               </a>
               <a
                 href="/documents/Ansh_Parmar_Resume.pdf"
@@ -39,6 +40,7 @@ const Landing = ({ children }: PropsWithChildren) => {
                 rel="noreferrer"
                 className="landing-cta landing-cta-secondary"
                 data-cursor="disable"
+                aria-label="Open Ansh Parmar resume PDF"
               >
                 Resume
               </a>
