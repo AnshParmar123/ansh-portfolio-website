@@ -91,6 +91,7 @@ const Navbar = () => {
                 data-href="#about"
                 href="#about"
                 className={activeSection === "#about" ? "nav-link-active" : ""}
+                aria-current={activeSection === "#about" ? "page" : undefined}
               >
                 <HoverLinks text="ABOUT" />
               </a>
@@ -100,6 +101,7 @@ const Navbar = () => {
                 data-href="#work"
                 href="#work"
                 className={activeSection === "#work" ? "nav-link-active" : ""}
+                aria-current={activeSection === "#work" ? "page" : undefined}
               >
                 <HoverLinks text="WORK" />
               </a>
@@ -109,6 +111,7 @@ const Navbar = () => {
                 data-href="#contact"
                 href="#contact"
                 className={activeSection === "#contact" ? "nav-link-active" : ""}
+                aria-current={activeSection === "#contact" ? "page" : undefined}
               >
                 <HoverLinks text="CONTACT" />
               </a>
