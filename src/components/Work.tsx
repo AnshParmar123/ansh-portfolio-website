@@ -74,7 +74,7 @@ const Work = () => {
         </h2>
         <div className="work-flex">
           {projects.map((project) => (
-            <div className="work-box" key={project.name}>
+            <article className="work-box" key={project.name}>
               <WorkImage
                 image={project.image}
                 alt={`${project.name} project preview`}
@@ -124,7 +124,7 @@ const Work = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
