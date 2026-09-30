@@ -1,0 +1,9 @@
+{
+  "name": "Ansh Parmar Portfolio",
+  "short_name": "Ansh Portfolio",
+  "description": "Ansh Parmar's AI and machine learning portfolio.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0712",
+  "theme_color": "#0d0712"
+}
