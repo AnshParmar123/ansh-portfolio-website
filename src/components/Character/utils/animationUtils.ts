@@ -3,8 +3,8 @@ import { GLTF } from "three-stdlib";
 import { eyebrowBoneNames } from "../../../data/boneData";
 
 const setAnimations = (gltf: GLTF) => {
-  let character = gltf.scene;
-  let mixer = new THREE.AnimationMixer(character);
+  const character = gltf.scene;
+  const mixer = new THREE.AnimationMixer(character);
   // Only one clip ever drives the full body at a time (introAnimation).
   // Previously "typing" was also played simultaneously, and Three.js blends
   // overlapping clips rather than letting one win, which left the arms
@@ -56,7 +56,7 @@ const setAnimations = (gltf: GLTF) => {
     }, 2500);
   }
   function hover(gltf: GLTF, hoverDiv: HTMLDivElement) {
-    let eyeBrowUpAction = createBoneAction(
+    const eyeBrowUpAction = createBoneAction(
       gltf,
       mixer,
       "browup",

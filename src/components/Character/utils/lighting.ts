@@ -2,6 +2,11 @@ import * as THREE from "three";
 import { RGBELoader } from "three-stdlib";
 import { gsap } from "gsap";
 
+type ScreenLightMesh = THREE.Mesh<
+  THREE.BufferGeometry,
+  THREE.MeshStandardMaterial
+>;
+
 const setLighting = (scene: THREE.Scene) => {
   const directionalLight = new THREE.DirectionalLight(0x9db0ff, 0);
   directionalLight.intensity = 0;
@@ -27,8 +32,8 @@ const setLighting = (scene: THREE.Scene) => {
       scene.environmentRotation.set(5.76, 85.85, 1);
     });
 
-  function setPointLight(screenLight: any) {
-    if (screenLight.material.opacity > 0.9) {
+  function setPointLight(screenLight: ScreenLightMesh | null) {
+    if (screenLight && screenLight.material.opacity > 0.9) {
       pointLight.intensity = screenLight.material.emissiveIntensity * 20;
     } else {
       pointLight.intensity = 0;

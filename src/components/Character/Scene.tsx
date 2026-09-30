@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import setCharacter from "./utils/character";
 import setLighting from "./utils/lighting";
-import { useLoading } from "../../context/LoadingProvider";
+import { useLoading } from "../../context/loadingContext";
 import handleResize from "./utils/resizeUtils";
 import {
   handleMouseMove,
@@ -11,7 +11,12 @@ import {
   handleTouchMove,
 } from "./utils/mouseUtils";
 import setAnimations from "./utils/animationUtils";
-import { setProgress } from "../Loading";
+import { setProgress } from "../utils/progress";
+
+type ScreenLightMesh = THREE.Mesh<
+  THREE.BufferGeometry,
+  THREE.MeshStandardMaterial
+>;
 
 const Scene = () => {
   const canvasDiv = useRef<HTMLDivElement | null>(null);
@@ -20,9 +25,11 @@ const Scene = () => {
   const characterRef = useRef<THREE.Object3D | null>(null);
   const { setLoading } = useLoading();
   useEffect(() => {
-    if (canvasDiv.current) {
-      let rect = canvasDiv.current.getBoundingClientRect();
-      let container = { width: rect.width, height: rect.height };
+    const canvasElement = canvasDiv.current;
+
+    if (canvasElement) {
+      const rect = canvasElement.getBoundingClientRect();
+      const container = { width: rect.width, height: rect.height };
       const aspect = container.width / container.height;
       const scene = sceneRef.current;
 
@@ -35,7 +42,7 @@ const Scene = () => {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1;
-      canvasDiv.current.appendChild(renderer.domElement);
+      canvasElement.appendChild(renderer.domElement);
 
       const camera = new THREE.PerspectiveCamera(14.5, aspect, 0.1, 1000);
       camera.position.z = 10;
@@ -44,7 +51,7 @@ const Scene = () => {
       camera.updateProjectionMatrix();
 
       let headBone: THREE.Object3D | null = null;
-      let screenLight: any | null = null;
+      let screenLight: ScreenLightMesh | null = null;
       let mixer: THREE.AnimationMixer;
 
       const clock = new THREE.Clock();
@@ -70,11 +77,15 @@ const Scene = () => {
             hoverCleanup = animations.hover(gltf, hoverDivRef.current);
           }
           mixer = animations.mixer;
-          let character = gltf.scene;
+          const character = gltf.scene;
           characterRef.current = character;
           scene.add(character);
           headBone = character.getObjectByName("spine006") || null;
-          screenLight = character.getObjectByName("screenlight") || null;
+          const possibleScreenLight = character.getObjectByName("screenlight");
+          screenLight =
+            possibleScreenLight instanceof THREE.Mesh
+              ? (possibleScreenLight as ScreenLightMesh)
+              : null;
           progress.loaded().then(() => {
             if (isDisposed) return;
             setTimeout(() => {
@@ -162,8 +173,8 @@ const Scene = () => {
         window.removeEventListener("resize", resizeHandler);
         document.removeEventListener("visibilitychange", visibilityHandler);
         document.removeEventListener("mousemove", onMouseMove);
-        if (canvasDiv.current) {
-          canvasDiv.current.removeChild(renderer.domElement);
+        if (canvasElement.contains(renderer.domElement)) {
+          canvasElement.removeChild(renderer.domElement);
         }
         if (landingDiv) {
           landingDiv.removeEventListener("touchstart", onTouchStart);
@@ -172,7 +183,7 @@ const Scene = () => {
         }
       };
     }
-  }, []);
+  }, [setLoading]);
 
   return (
     <>

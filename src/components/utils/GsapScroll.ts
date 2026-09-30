@@ -1,6 +1,12 @@
 import * as THREE from "three";
 import gsap from "gsap";
 
+type TimelineMesh = THREE.Mesh<THREE.BufferGeometry, THREE.MeshStandardMaterial>;
+
+const isTimelineMesh = (object: THREE.Object3D): object is TimelineMesh => {
+  return object instanceof THREE.Mesh && object.material instanceof THREE.MeshStandardMaterial;
+};
+
 export function setCharTimeline(
   character: THREE.Object3D<THREE.Object3DEventMap> | null,
   camera: THREE.PerspectiveCamera
@@ -32,10 +38,12 @@ export function setCharTimeline(
       invalidateOnRefresh: true,
     },
   });
-  let screenLight: any, monitor: any;
-  character?.children.forEach((object: any) => {
+  let screenLight: TimelineMesh | undefined;
+  let monitor: TimelineMesh | undefined;
+  character?.children.forEach((object) => {
     if (object.name === "Plane004") {
-      object.children.forEach((child: any) => {
+      object.children.forEach((child) => {
+        if (!isTimelineMesh(child)) return;
         child.material.transparent = true;
         child.material.opacity = 0;
         if (child.material.name === "Material.027") {
@@ -44,7 +52,7 @@ export function setCharTimeline(
         }
       });
     }
-    if (object.name === "screenlight") {
+    if (object.name === "screenlight" && isTimelineMesh(object)) {
       object.material.transparent = true;
       object.material.opacity = 0;
       object.material.emissive.set("#C8BFFF");
@@ -58,9 +66,9 @@ export function setCharTimeline(
       screenLight = object;
     }
   });
-  let neckBone = character?.getObjectByName("spine005");
+  const neckBone = character?.getObjectByName("spine005");
   if (window.innerWidth > 1024) {
-    if (character) {
+    if (character && monitor && screenLight && neckBone) {
       tl1
         .fromTo(character.rotation, { y: 0 }, { y: 0.7, duration: 1 }, 0)
         .to(camera.position, { z: 22 }, 0)
@@ -84,7 +92,7 @@ export function setCharTimeline(
           0
         )
         .to(character.rotation, { y: 0.92, x: 0.12, delay: 3, duration: 3 }, 0)
-        .to(neckBone!.rotation, { x: 0.6, delay: 2, duration: 3 }, 0)
+        .to(neckBone.rotation, { x: 0.6, delay: 2, duration: 3 }, 0)
         .to(monitor.material, { opacity: 1, duration: 0.8, delay: 3.2 }, 0)
         .to(screenLight.material, { opacity: 1, duration: 0.8, delay: 4.5 }, 0)
         .fromTo(
