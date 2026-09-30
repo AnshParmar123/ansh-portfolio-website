@@ -82,7 +82,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       <SocialIcons />
       {isDesktopView && children}
       <div id="smooth-wrapper">
-        <div id="smooth-content">
+        <main id="main-content" tabIndex={-1}>
           <div className="container-main">
             <Landing>{!isDesktopView && children}</Landing>
             <About />
@@ -98,7 +98,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             )}
             <Contact />
           </div>
-        </div>
+        </main>
       </div>
     </div>
   );
