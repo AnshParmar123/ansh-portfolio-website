@@ -241,8 +241,19 @@ const TechStack = () => {
   }, []);
 
   return (
-    <div className="techstack" ref={sectionRef}>
-      <h2> My Techstack</h2>
+    <div
+      className="techstack"
+      ref={sectionRef}
+      role="region"
+      aria-labelledby="tech-stack-title"
+      aria-describedby="tech-stack-description"
+    >
+      <h2 id="tech-stack-title"> My Techstack</h2>
+      <p id="tech-stack-description" className="sr-only">
+        Interactive floating technology logos for Ansh Parmar's development
+        stack, including React, Next.js, Node.js, Express, MongoDB, MySQL,
+        TypeScript, and JavaScript.
+      </p>
       <MemoizedTechStackScene
         isInteractive={isInteractive}
         materials={materials}
