@@ -46,7 +46,7 @@ const ContactForm = () => {
           name: name.trim(),
           email: email.trim(),
           message: message.trim(),
-          company,
+          company: company.trim(),
         }),
       });
       const body = await response.json();
@@ -97,11 +97,19 @@ const ContactForm = () => {
             name="name"
             type="text"
             autoComplete="name"
+            required
+            minLength={2}
+            maxLength={100}
             value={name}
             onChange={(event) => setName(event.target.value)}
             aria-invalid={Boolean(fieldErrors.name)}
+            aria-describedby={fieldErrors.name ? "cf-name-error" : undefined}
           />
-          {fieldErrors.name && <span className="form-error">{fieldErrors.name}</span>}
+          {fieldErrors.name && (
+            <span className="form-error" id="cf-name-error">
+              {fieldErrors.name}
+            </span>
+          )}
         </div>
 
         <div className="form-row">
@@ -111,11 +119,18 @@ const ContactForm = () => {
             name="email"
             type="email"
             autoComplete="email"
+            required
+            maxLength={254}
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             aria-invalid={Boolean(fieldErrors.email)}
+            aria-describedby={fieldErrors.email ? "cf-email-error" : undefined}
           />
-          {fieldErrors.email && <span className="form-error">{fieldErrors.email}</span>}
+          {fieldErrors.email && (
+            <span className="form-error" id="cf-email-error">
+              {fieldErrors.email}
+            </span>
+          )}
         </div>
 
         <div className="form-row">
@@ -124,19 +139,31 @@ const ContactForm = () => {
             id="cf-message"
             name="message"
             rows={4}
+            required
+            minLength={10}
+            maxLength={2000}
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             aria-invalid={Boolean(fieldErrors.message)}
+            aria-describedby={fieldErrors.message ? "cf-message-error" : undefined}
           />
-          {fieldErrors.message && <span className="form-error">{fieldErrors.message}</span>}
+          {fieldErrors.message && (
+            <span className="form-error" id="cf-message-error">
+              {fieldErrors.message}
+            </span>
+          )}
         </div>
 
-        <button type="submit" disabled={status === "submitting"}>
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          aria-busy={status === "submitting"}
+        >
           {status === "submitting" ? "Sending…" : "Send Message"}
         </button>
 
         {statusMessage && (
-          <p className={`form-status form-status-${status}`} role="status">
+          <p className={`form-status form-status-${status}`} role="status" aria-live="polite">
             {statusMessage}
           </p>
         )}
