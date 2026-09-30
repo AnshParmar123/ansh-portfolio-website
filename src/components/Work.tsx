@@ -69,10 +69,10 @@ const Work = () => {
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
-        <h2>
+        <h2 id="work-heading">
           My <span>Work</span>
         </h2>
-        <div className="work-flex">
+        <div className="work-flex" aria-labelledby="work-heading">
           {projects.map((project) => (
             <article className="work-box" key={project.name}>
               <WorkImage
