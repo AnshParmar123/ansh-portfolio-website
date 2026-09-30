@@ -107,7 +107,7 @@ const ContactForm = () => {
             aria-describedby={fieldErrors.name ? "cf-name-error" : undefined}
           />
           {fieldErrors.name && (
-            <span className="form-error" id="cf-name-error">
+            <span className="form-error" id="cf-name-error" role="alert">
               {fieldErrors.name}
             </span>
           )}
@@ -130,7 +130,7 @@ const ContactForm = () => {
             aria-describedby={fieldErrors.email ? "cf-email-error" : undefined}
           />
           {fieldErrors.email && (
-            <span className="form-error" id="cf-email-error">
+            <span className="form-error" id="cf-email-error" role="alert">
               {fieldErrors.email}
             </span>
           )}
@@ -152,7 +152,7 @@ const ContactForm = () => {
             aria-describedby={fieldErrors.message ? "cf-message-error" : undefined}
           />
           {fieldErrors.message && (
-            <span className="form-error" id="cf-message-error">
+            <span className="form-error" id="cf-message-error" role="alert">
               {fieldErrors.message}
             </span>
           )}
