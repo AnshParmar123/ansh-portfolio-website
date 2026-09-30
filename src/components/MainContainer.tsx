@@ -68,6 +68,9 @@ const MainContainer = ({ children }: PropsWithChildren) => {
 
   return (
     <div className="container-main">
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <SunsetScene />
       <div className="brand-watermark" aria-hidden="true">
         ANSH
