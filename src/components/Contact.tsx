@@ -143,6 +143,7 @@ const ContactForm = () => {
             name="message"
             rows={4}
             autoCapitalize="sentences"
+            autoComplete="off"
             required
             minLength={10}
             maxLength={2000}
