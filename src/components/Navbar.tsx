@@ -58,6 +58,12 @@ const Navbar = () => {
       sectionObserver.disconnect();
     };
   }, []);
+
+  const scrollHome = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setActiveSection("#about");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   return (
     <>
       <header className={`header ${isScrolled ? "header-scrolled" : ""}`}>
@@ -66,6 +72,7 @@ const Navbar = () => {
           className="navbar-title"
           data-cursor="disable"
           aria-label="Ansh Parmar home"
+          onClick={scrollHome}
         >
           <img
             src="/images/dwarkadhish.png"
