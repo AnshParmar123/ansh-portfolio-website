@@ -60,8 +60,13 @@ const Navbar = () => {
   }, []);
   return (
     <>
-      <div className={`header ${isScrolled ? "header-scrolled" : ""}`}>
-        <a href="/#" className="navbar-title" data-cursor="disable">
+      <header className={`header ${isScrolled ? "header-scrolled" : ""}`}>
+        <a
+          href="/#"
+          className="navbar-title"
+          data-cursor="disable"
+          aria-label="Ansh Parmar home"
+        >
           <img
             src="/images/dwarkadhish.png"
             alt="Dwarkadhish Bhagwan"
@@ -72,36 +77,38 @@ const Navbar = () => {
         <div className="navbar-connect">
           कृष्णं वन्दे जगद्गुरुम् °•👁U👁•° 🌸
         </div>
-        <ul>
-          <li>
-            <a
-              data-href="#about"
-              href="#about"
-              className={activeSection === "#about" ? "nav-link-active" : ""}
-            >
-              <HoverLinks text="ABOUT" />
-            </a>
-          </li>
-          <li>
-            <a
-              data-href="#work"
-              href="#work"
-              className={activeSection === "#work" ? "nav-link-active" : ""}
-            >
-              <HoverLinks text="WORK" />
-            </a>
-          </li>
-          <li>
-            <a
-              data-href="#contact"
-              href="#contact"
-              className={activeSection === "#contact" ? "nav-link-active" : ""}
-            >
-              <HoverLinks text="CONTACT" />
-            </a>
-          </li>
-        </ul>
-      </div>
+        <nav aria-label="Primary navigation">
+          <ul>
+            <li>
+              <a
+                data-href="#about"
+                href="#about"
+                className={activeSection === "#about" ? "nav-link-active" : ""}
+              >
+                <HoverLinks text="ABOUT" />
+              </a>
+            </li>
+            <li>
+              <a
+                data-href="#work"
+                href="#work"
+                className={activeSection === "#work" ? "nav-link-active" : ""}
+              >
+                <HoverLinks text="WORK" />
+              </a>
+            </li>
+            <li>
+              <a
+                data-href="#contact"
+                href="#contact"
+                className={activeSection === "#contact" ? "nav-link-active" : ""}
+              >
+                <HoverLinks text="CONTACT" />
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
 
       <div className="landing-circle1"></div>
       <div className="landing-circle2"></div>
