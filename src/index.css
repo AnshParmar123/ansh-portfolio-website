@@ -70,6 +70,13 @@ a {
 a:hover {
   color: var(--accentColor);
 }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accentColor);
+  outline-offset: 4px;
+}
 main {
   opacity: 1;
   transition: opacity 0.3s ease;
@@ -203,6 +210,15 @@ div {
 @media (prefers-reduced-motion: reduce) {
   :root {
     scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 
   .brand-watermark,
