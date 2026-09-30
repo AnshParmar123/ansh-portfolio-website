@@ -18,3 +18,6 @@ Use Node.js 20, install dependencies with `npm install`, then run `npm run dev`.
 
 The contact form posts to `/api/contact` and expects `RESEND_API_KEY` to be
 configured in the deployment environment.
+
+For local contact-form testing, add `RESEND_API_KEY` to your Vercel environment;
+never commit the key to this repository.
