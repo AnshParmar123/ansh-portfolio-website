@@ -21,3 +21,7 @@ configured in the deployment environment.
 
 For local contact-form testing, add `RESEND_API_KEY` to your Vercel environment;
 never commit the key to this repository.
+
+## Quality checks
+
+Run `npm run lint` before a change and `npm run build` before deployment.
