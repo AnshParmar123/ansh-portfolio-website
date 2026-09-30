@@ -10,7 +10,11 @@ const SocialIcons = () => {
     <div className="icons-section">
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
-          <a href="mailto:anshudayparmar@gmail.com" data-cursor="disable">
+          <a
+            href="mailto:p.anshu2005@gmail.com"
+            data-cursor="disable"
+            aria-label="Email Ansh Parmar"
+          >
             <FaEnvelope />
           </a>
         </span>
@@ -20,6 +24,7 @@ const SocialIcons = () => {
             target="_blank"
             rel="noreferrer"
             data-cursor="disable"
+            aria-label="Open Ansh Parmar GitHub profile"
           >
             <FaGithub />
           </a>
@@ -30,6 +35,7 @@ const SocialIcons = () => {
             target="_blank"
             rel="noreferrer"
             data-cursor="disable"
+            aria-label="Open Ansh Parmar LinkedIn profile"
           >
             <FaLinkedinIn />
           </a>
