@@ -16,6 +16,7 @@ const projects = [
       "100% major-cascade detection, walk-forward validated",
       "0.14–0.18 false alarms per week out-of-sample",
     ],
+    github: "https://github.com/AnshParmar123/CascadeSignal",
   },
   {
     name: "LipSync AI",
