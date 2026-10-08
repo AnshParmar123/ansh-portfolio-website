@@ -3,6 +3,14 @@ import "./styles/Experience.css";
 
 const experienceItems = [
   {
+    title: "Full Stack Development Intern",
+    subtitle: "DecodeLabs · Virtual",
+    marker: "SEP '26 — OCT '26",
+    description:
+      "Completed the DecodeLabs Virtual Internship Program in Full Stack Development, applying hands-on problem-solving skills across real-world projects and collaborative tasks.",
+    certificate: "/documents/decodelabs-full-stack-internship-certificate.pdf",
+  },
+  {
     title: "AI & Web Developer Intern",
     subtitle: "3DOTS CREATIVE SOLUTIONS · Remote",
     marker: "JUL '26 — PRESENT",
