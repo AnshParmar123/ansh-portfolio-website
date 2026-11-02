@@ -4,10 +4,9 @@ const About = () => {
   return (
     <div className="about-section" id="about">
       <div className="about-me">
-        <h3 className="title">About Me</h3>
+        <h3 className="title depth-heading" data-text="About Me">About Me</h3>
         <p className="para about-lead">
-          I am Ansh Parmar, a Computer Science & Engineering student at RAIT,
-          DY Patil University. I am passionate about building intelligent
+          I am <mark>Ansh Parmar</mark>, a <mark>Computer Science & Engineering student at RAIT, DY Patil University</mark>. I am passionate about building intelligent
           systems that combine machine learning with real-world applications.
         </p>
         <p className="para about-secondary">

@@ -22,14 +22,14 @@ const WhatIDo = () => {
     <section className="whatIDO" aria-labelledby="capabilities-heading">
       <div className="what-intro">
         <p className="what-eyebrow">Capabilities</p>
-        <h2 id="capabilities-heading">How I make ideas tangible.</h2>
+        <h2 id="capabilities-heading" className="depth-heading" data-text="How I make ideas tangible.">How I make ideas tangible.</h2>
       </div>
       <div className="capability-list">
         {capabilities.map((capability) => (
           <article className="capability-row" key={capability.index}>
             <span className="capability-index">{capability.index}</span>
             <div>
-              <h3>{capability.title}</h3>
+              <h3 className="depth-heading" data-text={capability.title}>{capability.title}</h3>
               <p>{capability.description}</p>
             </div>
             <div className="capability-stack" aria-label={`${capability.title} stack`}>

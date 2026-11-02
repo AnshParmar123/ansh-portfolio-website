@@ -1,8 +1,8 @@
 import "./App.css";
-import Showcase from "./components/Showcase";
+import MainContainer from "./components/MainContainer";
 
 const App = () => {
-  return <Showcase />;
+  return <MainContainer />;
 };
 
 export default App;

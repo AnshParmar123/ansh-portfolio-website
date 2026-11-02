@@ -1,14 +1,55 @@
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/loadingContext";
 
 const loadingLog = [
-  "compiling render tree",
-  "hydrating components",
-  "optimizing render pipeline",
-  "linking asset pipeline",
-  "finalizing experience",
+  "decrypting neural profile",
+  "loading ai/ml modules",
+  "linking project nodes",
+  "verifying system integrity",
+  "access granted",
 ];
+
+const matrixGlyphs = "アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ<>/{}[]";
+
+/** Lightweight canvas rain — deliberately isolated to the short loader lifecycle. */
+const MatrixRain = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const context = canvas?.getContext("2d");
+    if (!canvas || !context) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let frame = 0;
+    let columns: number[] = [];
+    const fontSize = 18;
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      canvas.width = innerWidth * dpr;
+      canvas.height = innerHeight * dpr;
+      canvas.style.width = `${innerWidth}px`;
+      canvas.style.height = `${innerHeight}px`;
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
+      columns = Array.from({ length: Math.ceil(innerWidth / fontSize) }, () => Math.random() * -innerHeight / fontSize);
+    };
+    const draw = () => {
+      context.fillStyle = reduced ? "rgba(3, 5, 4, .82)" : "rgba(3, 5, 4, .12)";
+      context.fillRect(0, 0, innerWidth, innerHeight);
+      context.font = `${fontSize}px monospace`;
+      columns.forEach((drop, index) => {
+        context.fillStyle = Math.random() > .96 ? "#d7ff3f" : "rgba(0, 210, 55, .52)";
+        context.fillText(matrixGlyphs[Math.floor(Math.random() * matrixGlyphs.length)], index * fontSize, drop * fontSize);
+        if (drop * fontSize > innerHeight && Math.random() > .975) columns[index] = 0;
+        else columns[index] += reduced ? .18 : .62 + Math.random() * .3;
+      });
+      if (!reduced) frame = requestAnimationFrame(draw);
+    };
+    resize(); draw();
+    addEventListener("resize", resize);
+    return () => { cancelAnimationFrame(frame); removeEventListener("resize", resize); };
+  }, []);
+  return <canvas className="loading-matrix-rain" ref={canvasRef} aria-hidden="true" />;
+};
 
 const VISITED_KEY = "portfolio_visited";
 const isRepeatVisit =
@@ -34,7 +75,8 @@ const CHARGE_DURATION = isRepeatVisit ? 550 : 2600;
 const CHARGE_TARGET = 97;
 const RELEASE_DURATION = 550;
 const COMPLETE_DELAY = isRepeatVisit ? 80 : 200;
-const READY_DELAY = isRepeatVisit ? 120 : 500;
+// Leave enough time for the distinct ACCESS GRANTED / door-opening stage.
+const READY_DELAY = isRepeatVisit ? 1600 : 2300;
 const FX_DELAY = isRepeatVisit ? 40 : 120;
 const REMOVE_DELAY = isRepeatVisit ? 150 : 450;
 const FALLBACK_TIMEOUT = isRepeatVisit ? 3000 : 8000;
@@ -172,28 +214,11 @@ const Loading = ({ percent }: { percent: number }) => {
   useEffect(() => {
     if (!isLoaded) return;
 
-    let animationDelay: number | undefined;
     let removeDelay: number | undefined;
-    import("./utils/initialFX")
-      .then((module) => {
-        animationDelay = window.setTimeout(() => {
-          try {
-            module.initialFX?.();
-          }
-          finally {
-            setClicked(true);
-            removeDelay = window.setTimeout(() => {
-              setIsLoading(false);
-            }, REMOVE_DELAY);
-          }
-        }, FX_DELAY);
-      })
-      .catch(() => {
-        setClicked(true);
-        removeDelay = window.setTimeout(() => {
-          setIsLoading(false);
-        }, REMOVE_DELAY);
-      });
+    const animationDelay = window.setTimeout(() => {
+      setClicked(true);
+      removeDelay = window.setTimeout(() => setIsLoading(false), REMOVE_DELAY);
+    }, FX_DELAY);
 
     return () => {
       if (animationDelay) window.clearTimeout(animationDelay);
@@ -207,12 +232,12 @@ const Loading = ({ percent }: { percent: number }) => {
     <>
       <div className="loading-header">
         <a href="/#" className="loader-mark" data-cursor="disable">
-          Ansh Parmar
+          root@ansh:~$
         </a>
         <div className="loading-header-right">
           <div className={`loader-status ${clicked ? "loader-status-out" : ""}`} aria-hidden="true">
             <span className="loader-status-dot"></span>
-            {loaded ? "Ready" : "Loading"}
+            {loaded ? "Access granted" : "Booting"}
           </div>
           {!loaded && (
             <button type="button" className="loader-skip" onClick={handleSkip}>
@@ -231,6 +256,10 @@ const Loading = ({ percent }: { percent: number }) => {
           <span className="loading-aurora-blob loading-aurora-3"></span>
         </div>
         <div className="loading-grid" aria-hidden="true"></div>
+        <MatrixRain />
+        <div className="loading-code-rain" aria-hidden="true"><span>01001001 01000001 01010010 01001001</span><span>ACCESS::NEURAL_FIELD::SECURE</span><span>0xA3F9 // 0xFF21 // 0x7C91</span><span>ssh://ansh.parmar/portfolio</span><span>AUTHENTICATED // ENCRYPTED</span></div>
+        <div className="loading-command-stream" aria-hidden="true"><p>root@ansh:~$ nmap --scan neural-field.local <b>PORTS OPEN</b></p><p>root@ansh:~$ sudo inject --profile ai_ml_dev <b>SUCCESS</b></p><p>root@ansh:~$ cat /var/log/access.log <b>AUTH TOKEN VALID</b></p><p>root@ansh:~$ ./decode --key 0xA3F9 <b>DECRYPTED</b></p><p>root@ansh:~$ connect --uplink secure <b>CONNECTED</b></p><p>root@ansh:~$ deploy portfolio --mode immersive <b>READY</b></p></div>
+        <div className={`access-gate ${loaded ? "access-gate-visible" : ""}`} aria-hidden="true"><div className="access-door access-door-left"></div><div className="access-door access-door-right"></div><div className="access-message"><span>AUTHORIZATION VERIFIED</span><strong>ACCESS GRANTED</strong><em>WELCOME TO ANSH PARMAR'S SYSTEM</em></div></div>
         <div className="loading-grain" aria-hidden="true"></div>
         <div className="loading-glow" aria-hidden="true"></div>
         <div className={`loading-flash ${loaded ? "loading-flash-active" : ""}`} aria-hidden="true"></div>
@@ -240,37 +269,20 @@ const Loading = ({ percent }: { percent: number }) => {
           ref={stageRef}
         >
           <p className="loading-eyebrow">
-            Portfolio <span>&middot;</span> {String(displayPercent).padStart(2, "0")}%
+            Neural system <span>//</span> {String(displayPercent).padStart(2, "0")}%
           </p>
 
-          <h1 className="loading-title" aria-label="Ansh Parmar">
-            <span className="loading-title-track">Ansh Parmar</span>
-            <span
-              className="loading-title-fill"
-              style={
-                {
-                  "--reveal": `${visualPercent}%`,
-                  transitionDuration: `${visualDuration}ms`,
-                } as CSSProperties
-              }
-              aria-hidden="true"
-            >
-              Ansh Parmar
-            </span>
+          <h1 className="loading-title" aria-label="Ansh Parmar system boot">
+            <span className="loading-title-track">ANSH PARMAR</span>
           </h1>
-
-          <div
-            className="loading-meter"
-            role="progressbar"
-            aria-valuenow={displayPercent}
-            aria-valuemin={0}
-            aria-valuemax={100}
-          >
-            <div
-              className="loading-meter-fill"
-              style={{ transform: `scaleX(${fillScale})`, transitionDuration: `${visualDuration}ms` }}
-            >
-              <span className="loading-meter-head" aria-hidden="true"></span>
+          <div className="terminal-boot" aria-label="System boot status">
+            <div className="terminal-top"><span></span><span></span><span></span><b>ansh@portfolio — secure shell</b></div>
+            <p><i>$</i> sudo establish_identity --user=ansh_parmar</p>
+            <p><i>✓</i> identity verified <em>[AI/ML DEVELOPER]</em></p>
+            <p><i>$</i> ./boot_neural_field --mode=secure</p>
+            <p className="terminal-progress"><i>→</i> loading experience modules <strong>{String(displayPercent).padStart(2, "0")}%</strong></p>
+            <div className="loading-meter" role="progressbar" aria-valuenow={displayPercent} aria-valuemin={0} aria-valuemax={100}>
+              <div className="loading-meter-fill" style={{ transform: `scaleX(${fillScale})`, transitionDuration: `${visualDuration}ms` }}><span className="loading-meter-head" aria-hidden="true"></span></div>
             </div>
           </div>
         </div>
@@ -278,12 +290,13 @@ const Loading = ({ percent }: { percent: number }) => {
         <div className="loading-hud" aria-hidden="true">
           <span className="loading-hud-tag">sys</span>
           <span className="loading-hud-line" key={messageIndex}>
-            {loaded ? "experience.ready()" : loadingLog[messageIndex]}
+            {loaded ? "system.online()" : loadingLog[messageIndex]}
           </span>
           <span className="loading-hud-cursor"></span>
         </div>
+        <div className="loading-network" aria-hidden="true"><span>NODE_01 ONLINE</span><span>UPLINK STABLE</span><span>ENCRYPTION AES-256</span></div>
 
-        <p className="loading-signature">Made with ❤️ by Ansh Parmar</p>
+        <p className="loading-signature">AI / ML // SYSTEM BOOT</p>
       </div>
     </>
   );

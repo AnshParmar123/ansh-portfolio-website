@@ -70,7 +70,7 @@ const Certifications = () => {
   return (
     <section className="certifications-section section-container" id="certifications">
       <div className="certifications-header">
-        <h2>
+        <h2 className="cert-heading">
           Certifications <span>&</span> Credentials
         </h2>
         <p>
@@ -97,7 +97,7 @@ const Certifications = () => {
             </a>
             <div className="certificate-info">
               <p className="certificate-issuer">{certificate.issuer}</p>
-              <h3>{certificate.title}</h3>
+              <h3 className="certificate-title">{certificate.title}</h3>
               <p className="certificate-date">{certificate.date}</p>
               <p className="certificate-meta">{certificate.meta}</p>
             </div>

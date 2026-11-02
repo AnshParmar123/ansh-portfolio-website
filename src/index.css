@@ -254,6 +254,49 @@ div {
   font-family: "DM Mono", monospace;
 }
 
+.depth-heading {
+  position: relative;
+  z-index: 1;
+  color: var(--textColor);
+  text-shadow:
+    1px 1px 0 #c5ed32,
+    2px 2px 0 #c5ed32,
+    3px 3px 0 #9ccf3a,
+    4px 4px 0 #7967ff,
+    5px 5px 0 #7967ff,
+    6px 6px 0 #5a46d0,
+    7px 7px 0 #ff5ea8,
+    8px 8px 0 #b84278,
+    9px 9px 0 rgba(12, 9, 28, 0.9),
+    10px 10px 0 rgba(12, 9, 28, 0.9),
+    16px 19px 25px rgba(0, 0, 0, 0.42);
+  transition: text-shadow 240ms ease, transform 240ms ease;
+}
+
+.depth-heading:hover {
+  transform: translate(-2px, -2px);
+  text-shadow:
+    1px 1px 0 #d7ff3f,
+    3px 3px 0 #d7ff3f,
+    5px 5px 0 #7967ff,
+    7px 7px 0 #7967ff,
+    9px 9px 0 #ff5ea8,
+    11px 11px 0 #7d2b55,
+    20px 24px 30px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 600px) {
+  .depth-heading {
+    text-shadow:
+      1px 1px 0 #c5ed32,
+      2px 2px 0 #9ccf3a,
+      3px 3px 0 #7967ff,
+      4px 4px 0 #5a46d0,
+      5px 5px 0 #ff5ea8,
+      8px 10px 16px rgba(0, 0, 0, 0.42);
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

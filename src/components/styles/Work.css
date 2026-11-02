@@ -20,6 +20,14 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* Projects: clean white structure with a lime highlight instead of all-neon type. */
+.work-section h2.depth-heading {
+  color: #f7f8f1;
+  -webkit-text-fill-color: #f7f8f1;
+}
+.work-section h2.depth-heading > .work-word-white { color:#f7f8f1; -webkit-text-fill-color:#f7f8f1; }
+.work-section h2.depth-heading > .work-word-lime { color:#d7ff3f; -webkit-text-fill-color:#d7ff3f; text-shadow:1px 1px 0 rgba(215,255,63,.86),3px 3px 0 rgba(121,103,255,.65),5px 5px 0 rgba(255,94,168,.52),8px 10px 15px rgba(0,0,0,.42); }
+
 .work-flex {
   display: grid;
   grid-template-columns: repeat(2, minmax(min(100%, 22rem), 1fr));
@@ -108,6 +116,8 @@
   font-weight: 500;
   margin: 0;
 }
+.work-title .project-name-white { color:#f7f8f1; -webkit-text-fill-color:#f7f8f1; }
+.work-title .project-name-lime { color:#d7ff3f; -webkit-text-fill-color:#d7ff3f; text-shadow:1px 1px 0 rgba(215,255,63,.86),3px 3px 0 rgba(121,103,255,.65),5px 5px 0 rgba(255,94,168,.52),8px 10px 15px rgba(0,0,0,.42); }
 
 .work-title p {
   margin: 8px 0 0;
@@ -185,6 +195,13 @@
   gap: 12px;
   margin-top: 4px;
 }
+.work-case-study { border:0; padding:0; background:transparent; color:var(--accentColor); font:inherit; cursor:pointer; }
+.project-modal { position:fixed; inset:0; z-index:10000; display:grid; place-items:center; padding:1.25rem; background:rgba(3,4,5,.78); backdrop-filter:blur(15px); }
+.project-modal-card { position:relative; width:min(100%,48rem); max-height:min(80vh,48rem); overflow:auto; padding:clamp(1.5rem,4vw,3rem); border:1px solid rgba(215,255,63,.28); background:linear-gradient(135deg,rgba(121,103,255,.14),transparent 42%),#0b0d11; box-shadow:0 2rem 8rem rgba(0,0,0,.65); }
+.project-modal-card>p:first-child,.project-modal-card strong { color:var(--accentColor); font:500 .68rem/1.4 "DM Mono",monospace; letter-spacing:.13em; text-transform:uppercase; }
+.project-modal-card h3 { margin:1rem 0; font-size:clamp(2.5rem,6vw,5rem); line-height:.84; letter-spacing:-.09em; }
+.project-modal-card>p:not(:first-child) { color:rgba(242,242,237,.78); line-height:1.75; }.project-modal-tagline { font-size:1.15rem; color:#f7f8f1!important; }
+.project-modal-card>div { display:grid; gap:.55rem; margin-top:1.5rem; }.project-modal-card span,.project-modal-card li { color:rgba(242,242,237,.68); line-height:1.6; }.project-modal-card ul { margin:0; padding-left:1.2rem; }.project-modal-card>a { display:inline-block; margin-top:2rem; color:var(--accentColor); font-family:"DM Mono",monospace; }.project-modal-close { position:absolute; top:.7rem; right:1rem; border:0; background:transparent; color:#fff; font-size:2rem; cursor:pointer; }
 
 .work-actions a,
 .work-action-disabled {

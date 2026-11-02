@@ -8,11 +8,13 @@ import Landing from "./Landing";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import SignalField from "./SignalField";
+import SmoothScroll from "./SmoothScroll";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import setSplitText from "./utils/splitText";
 
 const TechStack = lazy(() => import("./TechStack"));
+const LivingNeuralField = lazy(() => import("../three/Background/LivingNeuralField"));
 
 const MainContainer = () => {
 
@@ -60,7 +62,9 @@ const MainContainer = () => {
 
   return (
     <div className="container-main">
+      <SmoothScroll />
       <SignalField />
+      <Suspense fallback={null}><LivingNeuralField /></Suspense>
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>

@@ -7,6 +7,26 @@
   padding-top: clamp(5.75rem, 9vw, 7rem);
   isolation: isolate;
 }
+.hero-prism {
+  position: absolute;
+  z-index: 1;
+  right: clamp(2rem, 9vw, 10rem);
+  top: 14%;
+  width: min(38vw, 34rem);
+  height: min(38vw, 34rem);
+  opacity: .94;
+  filter: drop-shadow(0 2rem 3.5rem rgba(121, 103, 255, .23));
+  pointer-events: none;
+}
+.hero-prism::after {
+  content: "SIGNAL / 01";
+  position: absolute;
+  right: 2%;
+  bottom: 4%;
+  color: rgba(242, 242, 237, .48);
+  font: 500 .62rem/1 "DM Mono", monospace;
+  letter-spacing: .15em;
+}
 .landing-section::before {
   content: "";
   position: absolute;
@@ -208,30 +228,61 @@
   color: transparent;
   position: relative;
   isolation: isolate;
-  text-shadow: none;
+  text-shadow:
+    2px 2px 0 #d7ff3f,
+    4px 4px 0 #d7ff3f,
+    6px 6px 0 #a3ff72,
+    8px 8px 0 #7967ff,
+    10px 10px 0 #7967ff,
+    12px 12px 0 #5947cb,
+    14px 14px 0 #ff5ea8,
+    16px 16px 0 #ff5ea8,
+    18px 18px 0 #7f314f,
+    20px 20px 0 #38182c,
+    27px 30px 34px rgba(0, 0, 0, 0.58);
 }
 .landing-intro h1 span {
   display: inline-block;
   margin-top: 6px;
   margin-left: 0.14em;
-  background: inherit;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: currentColor;
+}
+.landing-intro h1 .hero-name-first {
+  color: #ffd37a;
+  background: linear-gradient(135deg, #ffe28a 0%, #ffb36b 30%, #ff7777 62%, #e75cff 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow:
+    2px 2px 0 #ffcf70,
+    4px 4px 0 #ffae63,
+    6px 6px 0 #ff936b,
+    8px 8px 0 #ff7777,
+    10px 10px 0 #ff7777,
+    12px 12px 0 #e75cff,
+    14px 14px 0 #e75cff,
+    16px 16px 0 #a542a9,
+    18px 18px 0 #6b2b72,
+    20px 20px 0 #3a1b48,
+    22px 22px 0 #22132e,
+    30px 34px 38px rgba(0, 0, 0, 0.62);
 }
-.landing-intro h1::after {
-  content: "ANSH\A PARMAR";
-  white-space: pre;
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  color: var(--accentColor3);
-  opacity: 0.25;
-  filter: blur(13px);
-  transform: translate(0.18em, 0.24em) scaleY(-0.5);
-  -webkit-text-fill-color: var(--accentColor3);
-  pointer-events: none;
+.landing-intro h1 .hero-name:not(.hero-name-first) {
+  color: #d7ff3f;
+  text-shadow:
+    2px 2px 0 #b8dc36,
+    4px 4px 0 #7967ff,
+    6px 6px 0 #7967ff,
+    8px 8px 0 #ff5ea8,
+    10px 10px 0 #ff5ea8,
+    12px 12px 0 #6b2e54,
+    14px 14px 0 #38182c,
+    21px 24px 30px rgba(0, 0, 0, 0.58);
 }
+.landing-intro h1::after { content: none; }
 
 .landing-tagline {
   margin: 16px 0 0;
@@ -285,12 +336,14 @@
   font-size: clamp(0.8125rem, 0.95vw, 0.9rem);
   font-weight: 600;
   letter-spacing: 0.03em;
+  will-change: transform;
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease,
     background-color 0.25s ease,
     color 0.25s ease;
 }
+.magnetic-link { transition: transform 180ms cubic-bezier(.22, 1, .36, 1), box-shadow .25s ease, background-color .25s ease, color .25s ease; }
 .landing-cta-primary {
   color: #06101b;
   background: linear-gradient(110deg, #78e3ff, #a78bfa);
@@ -378,6 +431,15 @@
   }
 }
 @media screen and (max-width: 640px) {
+  .hero-prism {
+    display: block;
+    top: 3.5rem;
+    right: -2.5rem;
+    width: min(62vw, 18rem);
+    height: min(62vw, 18rem);
+    opacity: .62;
+  }
+  .hero-prism::after { display: none; }
   .landing-scroll-cue {
     display: none;
   }
@@ -402,7 +464,7 @@
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
-.landing-info h3 {
+.landing-role-label {
   font-size: clamp(1.125rem, 1.5vw, 1.375rem);
   letter-spacing: 2px;
   font-weight: 300;
@@ -420,35 +482,14 @@ h2.landing-info-h2 {
   font-weight: 600;
   position: relative;
   margin-left: -5px;
-  overflow: hidden;
   text-transform: uppercase;
   letter-spacing: 2px;
+  color: var(--textColor);
+  text-shadow: 2px 2px 0 #d7ff3f, 4px 4px 0 #7967ff, 6px 6px 0 #ff5ea8, 10px 13px 20px rgba(0, 0, 0, 0.46);
 }
-.landing-h2-1 {
-  position: relative;
-}
-.landing-h2-2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-.landing-info-h2::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 120%;
-  z-index: 3;
-  border-radius: 0.75rem;
-  background: rgba(7, 17, 31, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  -webkit-mask-image: linear-gradient(0deg, black 40%, transparent 100%);
-  mask-image: linear-gradient(0deg, black 40%, transparent 100%);
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
+.landing-info-h2 span { display: block; animation: roleEnter 480ms cubic-bezier(.22, 1, .36, 1); }
+@keyframes roleEnter { from { opacity: 0; transform: translateY(.55em) rotateX(-55deg); } to { opacity: 1; transform: translateY(0) rotateX(0); } }
+@media (prefers-reduced-motion: reduce) { .landing-info-h2 span { animation: none; } }
 @media screen and (min-width: 500px) {
   .landing-circle2 {
     display: block;
@@ -600,6 +641,7 @@ h2.landing-info-h2 {
   align-items: end;
   gap: clamp(3rem, 9vw, 10rem);
   min-height: min(42rem, calc(100svh - 8rem));
+  z-index: 1;
 }
 
 .landing-intro,
@@ -630,15 +672,14 @@ h2.landing-info-h2 {
   font-size: clamp(4.4rem, 10.8vw, 11.5rem);
   line-height: 0.77;
   letter-spacing: -0.1em;
-  background: none;
   color: var(--textColor);
   -webkit-text-fill-color: currentColor;
 }
 
 .landing-intro h1 span {
-  margin: 0.14em 0 0;
+  margin: 0;
   background: none;
-  -webkit-text-fill-color: var(--accentColor);
+  -webkit-text-fill-color: currentColor;
 }
 
 .landing-intro h1::after {
@@ -652,6 +693,20 @@ h2.landing-info-h2 {
   transform: none;
   -webkit-text-fill-color: initial;
 }
+
+.landing-intro h1 .hero-name {
+  display: block;
+  position: relative;
+  z-index: 1;
+  color: var(--textColor);
+  text-shadow:
+    1px 1px 0 rgba(215, 255, 63, 0.9),
+    2px 2px 0 rgba(121, 103, 255, 0.82),
+    3px 3px 0 rgba(255, 94, 168, 0.58),
+    10px 12px 24px rgba(0, 0, 0, 0.42);
+}
+
+.hero-name-first { margin-bottom: 0.12em !important; }
 
 .landing-tagline {
   max-width: 42ch;
@@ -751,3 +806,27 @@ h2.landing-info-h2 {
   .landing-intro h1 { font-size: clamp(4rem, 19vw, 6.75rem); }
   .landing-info { padding-left: 1.25rem; }
 }
+
+/* Signature hero treatment: ANSH is the warm, moving counterpoint to PARMAR. */
+.landing-intro h1 .hero-name.hero-name-first {
+  color: transparent;
+  background: linear-gradient(105deg, #fff0ad 0%, #ffbd6b 26%, #ff707f 54%, #e75cff 76%, #fff0ad 100%);
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    2px 2px 0 #ffcf70,
+    4px 4px 0 #ffae63,
+    6px 6px 0 #ff7777,
+    8px 8px 0 #e75cff,
+    10px 10px 0 #e75cff,
+    12px 12px 0 #9f3c94,
+    14px 14px 0 #64295d,
+    16px 16px 0 #3b1e3c,
+    18px 18px 0 #211521,
+    26px 30px 36px rgba(0, 0, 0, .66);
+  animation: ansh-gradient-sweep 6s ease-in-out infinite;
+}
+@keyframes ansh-gradient-sweep { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@media (prefers-reduced-motion: reduce) { .landing-intro h1 .hero-name.hero-name-first { animation: none; } }

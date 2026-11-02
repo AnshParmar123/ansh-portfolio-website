@@ -43,6 +43,7 @@
   letter-spacing: 0.01em;
   color: rgba(230, 234, 242, 0.94);
 }
+.about-me mark { padding: 0 .08em; background: transparent; color: #f2f2ed; font-weight: 700; text-shadow: 1px 1px 0 #d7ff3f, 2px 2px 0 #7967ff, 4px 5px 10px rgba(0,0,0,.38); }
 .about-me .about-secondary {
   margin-top: 1rem;
   font-size: clamp(1rem, 1.3vw, 1.125rem);
@@ -198,6 +199,33 @@
 
 .about-points div + div { border-left: 1px solid rgba(242, 242, 237, 0.16); padding-left: 1.5rem; }
 .about-points span { color: var(--accentColor); font-family: "DM Mono", monospace; }
+
+/* About uses a large editorial introduction, with emphasis kept deliberate. */
+.about-me h3.depth-heading {
+  display: inline-block;
+  margin-bottom: 1.55rem;
+  color: var(--textColor);
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.075em;
+  line-height: .9;
+  text-transform: none;
+  text-shadow: 1px 1px 0 #d7ff3f, 3px 3px 0 #7967ff, 5px 5px 0 #ff5ea8, 9px 11px 18px rgba(0,0,0,.4);
+}
+.about-me .about-lead {
+  max-width: 36ch;
+  font-size: clamp(1.7rem, 3vw, 3rem);
+  line-height: 1.12;
+}
+.about-me .about-lead mark {
+  background: linear-gradient(120deg, #d7ff3f, #8ef6ff 44%, #a78bfa 72%, #ff5ea8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: 1px 1px 0 rgba(215,255,63,.48), 3px 4px 9px rgba(0,0,0,.32);
+}
 
 @media only screen and (max-width: 760px) {
   .about-points { grid-template-columns: 1fr; margin-top: 3.5rem; }

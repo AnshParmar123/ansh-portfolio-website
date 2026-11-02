@@ -1,16 +1,26 @@
+import { useEffect, useState } from "react";
+import HeroPrism from "./HeroPrism";
+import MagneticLink from "./MagneticLink";
 import "./styles/Landing.css";
 
+const roles = ["AI/ML Student", "AI Builder", "Developer"];
+
 const Landing = () => {
+  const [role, setRole] = useState(0);
+  useEffect(() => {
+    const rotation = window.setInterval(() => setRole((current) => (current + 1) % roles.length), 2600);
+    return () => window.clearInterval(rotation);
+  }, []);
   return (
     <>
       <div className="landing-section" id="landingDiv">
+        <HeroPrism />
         <div className="landing-container">
           <div className="landing-intro">
-            <h2>Hello! I'm</h2>
-            <h1>
-              ANSH
-              <br />
-              <span>&nbsp;PARMAR</span>
+            <h2>Hi, my name is</h2>
+            <h1 className="hero-name-stack">
+              <span className="hero-name hero-name-first">ANSH</span>
+              <span className="hero-name">PARMAR</span>
             </h1>
             <p className="landing-tagline">
               Building intelligent AI systems that solve real-world problems
@@ -25,15 +35,15 @@ const Landing = () => {
               Open to internships, AI/ML roles, and collaborative product work.
             </p>
             <div className="landing-cta-row">
-              <a
+              <MagneticLink
                 href="#work"
                 className="landing-cta landing-cta-primary"
                 data-href="#work"
                 aria-label="View Ansh Parmar's featured projects"
               >
                 View Projects
-              </a>
-              <a
+              </MagneticLink>
+              <MagneticLink
                 href="/documents/Ansh_Parmar_Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
@@ -42,7 +52,7 @@ const Landing = () => {
                 aria-label="Open Ansh Parmar resume PDF"
               >
                 Resume
-              </a>
+              </MagneticLink>
             </div>
             <dl className="landing-proof" aria-label="Portfolio highlights">
               <div>
@@ -60,10 +70,9 @@ const Landing = () => {
             </dl>
           </div>
           <div className="landing-info">
-            <h3>An AIML Student</h3>
+            <p className="landing-role-label">Currently building as</p>
             <h2 className="landing-info-h2">
-              <div className="landing-h2-1">AI Builder</div>
-              <div className="landing-h2-2">Developer</div>
+              <span key={roles[role]}>{roles[role]}</span>
             </h2>
           </div>
         </div>

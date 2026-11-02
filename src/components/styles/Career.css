@@ -169,6 +169,9 @@
   font-weight: 500;
   overflow-wrap: anywhere;
 }
+.academics-header .cgpa-heading { color: var(--textColor); text-shadow: 1px 1px 0 rgba(215, 255, 63, .72), 3px 4px 10px rgba(0, 0, 0, .35); }
+.cgpa-heading strong { display: inline-block; color: var(--accentColor); font-size: 1.22em; text-shadow: 2px 2px 0 #7967ff, 4px 4px 0 #ff5ea8, 8px 10px 17px rgba(0,0,0,.5); }
+.cgpa-heading span { color: rgba(230, 234, 242, .66); font-weight: 400; }
 .academics-header p {
   max-width: 460px;
   min-width: 0;

@@ -28,7 +28,7 @@ const Career = () => {
   return (
     <div className="career-section section-container">
       <div className="career-container">
-        <h2>Education & Focus</h2>
+        <h2 className="depth-heading" data-text="Education & Focus">Education & Focus</h2>
         <div className="career-info">
           <div className="career-timeline" aria-hidden="true">
             <div className="career-line"></div>
@@ -51,7 +51,7 @@ const Career = () => {
           <div className="academics-header">
             <div>
               <span className="academics-eyebrow">Academic Performance</span>
-              <h3>Overall CGPA: 8.7 / 10</h3>
+              <h3 className="cgpa-heading">Overall CGPA: <strong>8.7</strong> <span>/ 10</span></h3>
               <p>Latest result: Semester 11 SGPA - 9.33 / 10</p>
             </div>
           </div>
@@ -59,7 +59,7 @@ const Career = () => {
         <div className="interests-section">
           <div className="interests-header">
             <span className="academics-eyebrow">Beyond Academics</span>
-            <h3>Personal Interests</h3>
+            <h3 className="depth-heading" data-text="Personal Interests">Personal Interests</h3>
             <p>
               Outside of building projects, I enjoy staying active through
               sports and spending time reading. These interests keep me
