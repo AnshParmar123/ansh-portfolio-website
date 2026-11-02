@@ -1,24 +1,19 @@
-import { lazy, PropsWithChildren, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import About from "./About";
 import Career from "./Career";
 import Certifications from "./Certifications";
 import Contact from "./Contact";
-import Cursor from "./Cursor";
 import Experience from "./Experience";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
-import SunsetScene from "./Scenery/SunsetScene";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import setSplitText from "./utils/splitText";
 
 const TechStack = lazy(() => import("./TechStack"));
 
-const MainContainer = ({ children }: PropsWithChildren) => {
-  const [isDesktopView, setIsDesktopView] = useState<boolean>(
-    window.innerWidth > 1024
-  );
+const MainContainer = () => {
 
   useEffect(() => {
     let resizeFrame = 0;
@@ -27,10 +22,6 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       window.cancelAnimationFrame(resizeFrame);
       resizeFrame = window.requestAnimationFrame(() => {
         setSplitText();
-        setIsDesktopView((current) => {
-          const next = window.innerWidth > 1024;
-          return current === next ? current : next;
-        });
       });
     };
 
@@ -71,31 +62,26 @@ const MainContainer = ({ children }: PropsWithChildren) => {
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
-      <SunsetScene />
       <div className="brand-watermark" aria-hidden="true">
         ANSH
         <br />
         PARMAR
       </div>
-      <Cursor />
       <Navbar />
       <SocialIcons />
-      {isDesktopView && children}
       <div id="smooth-wrapper">
         <main id="main-content" tabIndex={-1}>
           <div className="container-main">
-            <Landing>{!isDesktopView && children}</Landing>
+            <Landing />
             <About />
             <WhatIDo />
             <Career />
             <Experience />
             <Certifications />
             <Work />
-            {isDesktopView && (
-              <Suspense fallback={null}>
-                <TechStack />
-              </Suspense>
-            )}
+            <Suspense fallback={null}>
+              <TechStack />
+            </Suspense>
             <Contact />
           </div>
         </main>

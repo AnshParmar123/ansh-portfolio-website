@@ -136,6 +136,57 @@
     top: calc(100% + 0.55rem);
   }
 }
+
+/* Editorial rebuild */
+.header,
+.header.header-scrolled {
+  width: var(--cWidth);
+  padding: 1.35rem 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(to bottom, rgba(16, 17, 17, 0.94), rgba(16, 17, 17, 0));
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.navbar-title {
+  gap: 0.35rem;
+  padding: 0;
+  color: var(--textColor);
+  font-family: "DM Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+
+.navbar-title span { color: var(--accentColor); }
+.navbar-deity,
+.navbar-connect { display: none !important; }
+
+.header ul { gap: 1.2rem; }
+.header ul a {
+  min-height: auto;
+  padding: 0;
+  border-radius: 0;
+  color: rgba(242, 242, 237, 0.58);
+  font-family: "DM Mono", monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+}
+.header ul a:hover,
+.header ul a.nav-link-active {
+  color: var(--accentColor);
+  background: transparent;
+  box-shadow: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .header,
+  .header.header-scrolled { padding-block: 1rem; }
+  .header ul { gap: 0.8rem; }
+  .header ul a { font-size: 0.58rem; }
+}
 @media only screen and (max-width: 899px) {
   .header {
     align-items: center;

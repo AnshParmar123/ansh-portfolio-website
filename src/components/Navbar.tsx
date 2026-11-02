@@ -74,16 +74,8 @@ const Navbar = () => {
           aria-label="Ansh Parmar home"
           onClick={scrollHome}
         >
-          <img
-            src="/images/dwarkadhish.png"
-            alt="Dwarkadhish Bhagwan"
-            className="navbar-deity"
-          />
-          ANSH
+          ANSH <span>PARMAR</span>
         </a>
-        <div className="navbar-connect">
-          कृष्णं वन्दे जगद्गुरुम् °•👁U👁•° 🌸
-        </div>
         <nav aria-label="Primary navigation">
           <ul>
             <li>

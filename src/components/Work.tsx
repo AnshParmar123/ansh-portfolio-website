@@ -70,9 +70,14 @@ const Work = () => {
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
+        <p className="work-eyebrow">Selected projects · 2025—2026</p>
         <h2 id="work-heading">
-          My <span>Work</span>
+          Built for <span>real-world</span> use.
         </h2>
+        <p className="work-intro">
+          Applied AI, research systems, and software products designed around
+          clear problems, measurable outcomes, and usable interfaces.
+        </p>
         <div className="work-flex" aria-labelledby="work-heading">
           {projects.map((project) => (
             <article className="work-box" key={project.name}>

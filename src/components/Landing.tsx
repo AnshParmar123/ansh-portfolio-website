@@ -1,7 +1,6 @@
-import { PropsWithChildren } from "react";
 import "./styles/Landing.css";
 
-const Landing = ({ children }: PropsWithChildren) => {
+const Landing = () => {
   return (
     <>
       <div className="landing-section" id="landingDiv">
@@ -71,7 +70,6 @@ const Landing = ({ children }: PropsWithChildren) => {
         <div className="landing-scroll-cue" aria-hidden="true">
           <span></span>
         </div>
-        {children}
       </div>
     </>
   );
