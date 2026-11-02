@@ -51,7 +51,8 @@ const Career = () => {
           <div className="academics-header">
             <div>
               <span className="academics-eyebrow">Academic Performance</span>
-              <h3>Overall CGPA: 8.62 / 10</h3>
+              <h3>Overall CGPA: 8.69 / 10</h3>
+              <p>Latest result: Semester 11 SGPA - 9.33 / 10</p>
             </div>
           </div>
         </div>
