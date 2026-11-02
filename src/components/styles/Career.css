@@ -309,6 +309,66 @@
       0px 0px 110px 20px #ffe0c2;
   }
 }
+
+/* Editorial rebuild shared by Education and Experience */
+.career-section,
+.experience-section {
+  margin: 0 auto;
+  padding: clamp(7rem, 14vw, 12rem) 0;
+}
+
+.career-section h2,
+.experience-section h2 {
+  max-width: 11ch;
+  margin: 0 0 4.5rem;
+  background: none;
+  color: var(--textColor);
+  -webkit-text-fill-color: currentColor;
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 600;
+  letter-spacing: -0.08em;
+  line-height: 0.88;
+  text-align: left;
+}
+
+.career-info {
+  width: 100%;
+  gap: 0;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid rgba(242, 242, 237, 0.16);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.career-timeline { display: none; }
+
+.career-info-box {
+  grid-template-columns: minmax(13rem, 0.65fr) minmax(8rem, 0.3fr) minmax(18rem, 1fr);
+  gap: clamp(1.25rem, 4vw, 4rem);
+  padding: clamp(1.8rem, 3.5vw, 3rem) 0;
+  border-bottom: 1px solid rgba(242, 242, 237, 0.16);
+}
+
+.career-info-left { padding: 0; gap: 0.5rem; }
+.career-info h4 { color: var(--textColor); font-size: clamp(1.25rem, 2vw, 2rem); letter-spacing: -0.045em; }
+.career-info h5 { color: var(--accentColor); font-family: "DM Mono", monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.career-info-center { justify-content: flex-start; }
+.career-info-center span { min-width: 0; padding: 0; border: 0; border-radius: 0; background: transparent; color: rgba(242, 242, 237, 0.52); font-family: "DM Mono", monospace; font-size: 0.66rem; }
+.career-info-box p { padding: 0; border: 0; border-radius: 0; background: transparent; color: var(--mutedText); font-size: 0.95rem; line-height: 1.75; }
+
+.academics-section { margin-top: clamp(5rem, 9vw, 8rem); }
+.academics-header { align-items: flex-start; margin: 0; }
+.academics-header h3 { font-size: clamp(2.25rem, 4vw, 4.5rem); letter-spacing: -0.07em; }
+
+@media only screen and (max-width: 760px) {
+  .career-info-box { grid-template-columns: 1fr; gap: 1rem; }
+  .career-info-center { order: -1; }
+  .career-section h2, .experience-section h2 { margin-bottom: 3rem; }
+}
 @keyframes timeline2 {
   0% {
     box-shadow: 0px 0px 5px 2px #ffc38a;

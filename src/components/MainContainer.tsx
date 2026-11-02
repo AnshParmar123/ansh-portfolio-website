@@ -7,6 +7,7 @@ import Experience from "./Experience";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
+import SignalField from "./SignalField";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import setSplitText from "./utils/splitText";
@@ -59,6 +60,7 @@ const MainContainer = () => {
 
   return (
     <div className="container-main">
+      <SignalField />
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
