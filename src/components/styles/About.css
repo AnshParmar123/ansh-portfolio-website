@@ -13,11 +13,11 @@
   padding: clamp(1.8rem, 3vw, 2.4rem);
   width: min(100%, 46rem);
   max-width: 100%;
-  border: 1px solid rgba(230, 234, 242, 0.08);
+  border: 1px solid rgba(120, 227, 255, 0.14);
   border-radius: var(--panelRadius);
   background:
-    linear-gradient(160deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)),
-    rgba(15, 8, 15, 0.9);
+    linear-gradient(145deg, rgba(120, 227, 255, 0.09), rgba(167, 139, 250, 0.035)),
+    rgba(7, 17, 31, 0.78);
   box-shadow: var(--panelShadow);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -27,7 +27,8 @@
   text-transform: uppercase;
   letter-spacing: 0.22em;
   font-weight: 700;
-  color: var(--accentColor2);
+  color: var(--accentColor);
+  font-family: "DM Mono", monospace;
   margin: 0 0 1.1rem;
 }
 
@@ -59,10 +60,10 @@
 }
 .about-points div {
   padding: 1rem 1rem 1rem 1.1rem;
-  border: 1px solid rgba(230, 234, 242, 0.08);
-  border-left: 2px solid rgba(255, 111, 97, 0.32);
+  border: 1px solid rgba(120, 227, 255, 0.1);
+  border-left: 2px solid rgba(167, 139, 250, 0.6);
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(120, 227, 255, 0.035);
   color: rgba(230, 234, 242, 0.72);
   font-size: 15px;
   line-height: 1.75;

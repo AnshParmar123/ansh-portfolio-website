@@ -14,7 +14,10 @@
 }
 
 .work-section h2 > span {
-  color: var(--accentColor);
+  background: linear-gradient(100deg, var(--accentColor), var(--accentColor2));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .work-flex {
@@ -30,13 +33,13 @@
   gap: clamp(1.125rem, 2vw, 1.5rem);
   min-width: 0;
   padding: clamp(1.125rem, 2.2vw, 1.75rem);
-  border: 1px solid rgba(230, 234, 242, 0.08);
+  border: 1px solid rgba(120, 227, 255, 0.12);
   border-radius: 28px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-    rgba(15, 8, 15, 0.86);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+    linear-gradient(145deg, rgba(120, 227, 255, 0.08), rgba(167, 139, 250, 0.025)),
+    rgba(7, 17, 31, 0.8);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   box-sizing: border-box;
   transition:
     transform 0.3s ease,
@@ -47,12 +50,13 @@
 
 .work-box:hover {
   transform: translateY(-6px) scale(1.015);
-  border-color: rgba(255, 111, 97, 0.26);
+  border-color: rgba(167, 139, 250, 0.48);
   box-shadow:
-    0 18px 42px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(217, 79, 112, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  background: rgba(255, 255, 255, 0.06);
+    0 20px 52px rgba(0, 4, 12, 0.32),
+    0 0 0 1px rgba(120, 227, 255, 0.09),
+    0 0 34px rgba(167, 139, 250, 0.1),
+    inset 0 1px 0 rgba(234, 245, 255, 0.08);
+  background: rgba(13, 31, 48, 0.9);
 }
 
 .work-image {
@@ -63,7 +67,7 @@
   justify-content: center;
   padding: 10px;
   border-radius: 18px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(135deg, rgba(120, 227, 255, 0.1), rgba(167, 139, 250, 0.055));
   box-sizing: border-box;
 }
 
@@ -108,6 +112,7 @@
 .work-title p {
   margin: 8px 0 0;
   color: var(--accentColor);
+  font-family: "DM Mono", monospace;
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -189,9 +194,9 @@
   min-width: 128px;
   padding: 11px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(230, 234, 242, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(230, 234, 242, 0.9);
+  border: 1px solid rgba(120, 227, 255, 0.18);
+  background: rgba(120, 227, 255, 0.045);
+  color: rgba(234, 245, 255, 0.9);
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -204,11 +209,11 @@
 
 .work-actions a:hover {
   transform: translateY(-2px);
-  border-color: rgba(255, 111, 97, 0.34);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(167, 139, 250, 0.58);
+  background: rgba(167, 139, 250, 0.12);
   box-shadow:
-    0 10px 24px rgba(0, 0, 0, 0.18),
-    0 0 22px rgba(217, 79, 112, 0.08);
+    0 10px 24px rgba(0, 4, 12, 0.24),
+    0 0 22px rgba(120, 227, 255, 0.12);
 }
 
 .work-action-disabled {

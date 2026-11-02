@@ -1,14 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap");
 
 :root {
-  font-family: "Geist", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Manrope", "Segoe UI", Roboto, Arial, sans-serif;
 
   font-optical-sizing: auto;
   font-style: normal;
   line-height: 1.5;
   scroll-behavior: smooth;
   color-scheme: light dark;
-  color: #eae5ec;
+  color: #eaf5ff;
   background-color: var(--backgroundColor);
 
   font-synthesis: none;
@@ -18,16 +18,17 @@
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  --accentColor: #ffb347;
-  --accentColor2: #e2557a;
-  --accentColor3: #6b3868;
-  --backgroundColor: #0d0712;
-  --textColor: #e6eaf2;
-  --mutedText: rgba(230, 234, 242, 0.72);
-  --panelBg: rgba(255, 255, 255, 0.045);
-  --panelBorder: rgba(230, 234, 242, 0.09);
-  --panelShadow: 0 24px 64px rgba(0, 0, 0, 0.26);
-  --panelRadius: clamp(1.35rem, 2vw, 1.8rem);
+  --accentColor: #78e3ff;
+  --accentColor2: #a78bfa;
+  --accentColor3: #ff5ea8;
+  --backgroundColor: #07111f;
+  --surfaceColor: #0d1b2b;
+  --textColor: #eaf5ff;
+  --mutedText: rgba(202, 221, 239, 0.68);
+  --panelBg: rgba(13, 27, 43, 0.68);
+  --panelBorder: rgba(142, 202, 230, 0.14);
+  --panelShadow: 0 28px 80px rgba(0, 4, 12, 0.42);
+  --panelRadius: clamp(1.25rem, 2vw, 1.75rem);
   --vh: 100vh;
   --vh: 100svh;
   --pageX: clamp(1rem, 3vw, 3.5rem);
@@ -55,7 +56,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Geist", "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: "Manrope", "Segoe UI", Roboto, Arial, sans-serif;
   text-wrap: balance;
 }
 body {
@@ -96,7 +97,11 @@ body {
   min-height: 100%;
   height: auto;
   color: var(--textColor);
-  background: var(--backgroundColor);
+  background:
+    radial-gradient(circle at 14% 8%, rgba(120, 227, 255, 0.12), transparent 28rem),
+    radial-gradient(circle at 88% 40%, rgba(167, 139, 250, 0.1), transparent 34rem),
+    radial-gradient(circle at 54% 100%, rgba(255, 94, 168, 0.06), transparent 35rem),
+    var(--backgroundColor);
   flex-grow: 1;
   --cWidth: min(calc(100% - (var(--pageX) * 2)), 112rem);
   --cMaxWidth: 120rem;
@@ -137,9 +142,9 @@ div {
   letter-spacing: 0.08em;
   text-align: center;
   white-space: pre-line;
-  color: rgba(8, 3, 10, 0.4);
-  mix-blend-mode: multiply;
-  filter: blur(1px);
+  color: rgba(120, 227, 255, 0.028);
+  mix-blend-mode: screen;
+  filter: blur(0.5px);
   pointer-events: none;
   z-index: -25;
   animation: watermarkFloat 22s ease-in-out infinite;
@@ -150,18 +155,18 @@ div {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  opacity: 0.4;
+  opacity: 0.55;
   background:
     linear-gradient(
       90deg,
       transparent 0%,
-      rgba(255, 255, 255, 0.018) 48%,
+      rgba(120, 227, 255, 0.035) 48%,
       transparent 100%
     ),
     linear-gradient(
       0deg,
       transparent 0%,
-      rgba(255, 255, 255, 0.014) 48%,
+      rgba(167, 139, 250, 0.025) 48%,
       transparent 100%
     );
   background-size: 120px 120px;
@@ -205,6 +210,13 @@ div {
   box-shadow: var(--panelShadow);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+.eyebrow,
+.academics-eyebrow,
+.work-title p,
+.certificate-issuer {
+  font-family: "DM Mono", monospace;
 }
 
 .sr-only {

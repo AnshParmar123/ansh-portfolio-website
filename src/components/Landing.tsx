@@ -45,6 +45,20 @@ const Landing = ({ children }: PropsWithChildren) => {
                 Resume
               </a>
             </div>
+            <dl className="landing-proof" aria-label="Portfolio highlights">
+              <div>
+                <dt>CGPA</dt>
+                <dd>8.7</dd>
+              </div>
+              <div>
+                <dt>Projects</dt>
+                <dd>04</dd>
+              </div>
+              <div>
+                <dt>Experience</dt>
+                <dd>03</dd>
+              </div>
+            </dl>
           </div>
           <div className="landing-info">
             <h3>An AIML Student</h3>
