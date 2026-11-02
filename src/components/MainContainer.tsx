@@ -64,11 +64,6 @@ const MainContainer = () => {
       <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
-      <div className="brand-watermark" aria-hidden="true">
-        ANSH
-        <br />
-        PARMAR
-      </div>
       <Navbar />
       <SocialIcons />
       <div id="smooth-wrapper">
