@@ -181,7 +181,7 @@ const Contact = () => {
   return (
     <div className="contact-section section-container" id="contact">
       <div className="contact-container">
-        <h3>Contact</h3>
+        <h3 className="depth-heading" data-text="Contact">Contact</h3>
         <div className="contact-flex">
           <div className="contact-box">
             <h4>Email</h4>

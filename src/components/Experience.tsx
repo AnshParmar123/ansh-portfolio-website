@@ -31,7 +31,7 @@ const Experience = () => {
   return (
     <div className="experience-section section-container" id="experience">
       <div className="experience-container">
-        <h2>Experience</h2>
+        <h2 className="depth-heading" data-text="Experience">Experience</h2>
         <div className="career-info">
           <div className="career-timeline" aria-hidden="true">
             <div className="career-line"></div>
@@ -40,7 +40,7 @@ const Experience = () => {
           {experienceItems.map((item) => (
             <div className="career-info-box" key={item.marker}>
               <div className="career-info-left">
-                <h4>{item.title}</h4>
+                <h4 className="experience-role">{item.title}</h4>
                 <h5>{item.subtitle}</h5>
                 {item.certificate && (
                   <a

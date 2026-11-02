@@ -248,7 +248,7 @@ const TechStack = () => {
       aria-labelledby="tech-stack-title"
       aria-describedby="tech-stack-description"
     >
-      <h2 id="tech-stack-title"> My Techstack</h2>
+      <h2 id="tech-stack-title" className="depth-heading" data-text="My Techstack"> My Techstack</h2>
       <p id="tech-stack-description" className="sr-only">
         Interactive floating technology logos for Ansh Parmar's development
         stack, including React, Next.js, Node.js, Express, MongoDB, MySQL,

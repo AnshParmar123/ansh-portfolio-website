@@ -22,6 +22,18 @@
   line-height: 0.98;
   font-weight: 500;
 }
+.certifications-header .cert-heading {
+  font-family: "DM Mono", monospace;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 500;
+  letter-spacing: -0.08em;
+  color: var(--textColor);
+  text-shadow:
+    1px 1px 0 #d7ff3f,
+    2px 2px 0 #7967ff,
+    3px 3px 0 #ff5ea8,
+    5px 6px 10px rgba(0, 0, 0, 0.36);
+}
 
 .certifications-header h2 span {
   color: var(--accentColor);
@@ -44,9 +56,9 @@
   display: flex;
   flex-direction: column;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
-    rgba(15, 8, 15, 0.86);
-  border: 1px solid rgba(230, 234, 242, 0.08);
+    linear-gradient(145deg, rgba(120, 227, 255, 0.075), rgba(167, 139, 250, 0.025)),
+    rgba(7, 17, 31, 0.78);
+  border: 1px solid rgba(120, 227, 255, 0.12);
   border-radius: 24px;
   overflow: hidden;
   backdrop-filter: blur(8px);
@@ -57,10 +69,11 @@
 
 .certificate-card:hover {
   transform: translateY(-6px) scale(1.01);
-  border-color: rgba(255, 111, 97, 0.28);
+  border-color: rgba(167, 139, 250, 0.48);
   box-shadow:
     0 22px 46px rgba(0, 0, 0, 0.18),
-    0 0 0 1px rgba(217, 79, 112, 0.04);
+    0 0 0 1px rgba(120, 227, 255, 0.08),
+    0 0 28px rgba(167, 139, 250, 0.1);
 }
 
 .certificate-image-link {
@@ -98,6 +111,17 @@
   font-size: clamp(1.125rem, 1.6vw, 1.375rem);
   line-height: 1.35;
   font-weight: 500;
+}
+.certificate-info .certificate-title {
+  font-family: "DM Mono", monospace;
+  font-size: clamp(.98rem, 1.35vw, 1.14rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  color: var(--textColor);
+  text-shadow:
+    1px 1px 0 rgba(215, 255, 63, .82),
+    2px 2px 0 rgba(121, 103, 255, .68),
+    4px 5px 9px rgba(0, 0, 0, .3);
 }
 
 .certificate-date {

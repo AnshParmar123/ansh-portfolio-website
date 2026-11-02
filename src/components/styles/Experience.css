@@ -18,7 +18,7 @@
   line-height: 1;
   font-weight: 400;
   text-align: center;
-  background: linear-gradient(0deg, #ffb347 0%, #ff6f61 45%, #fff3e6 100%);
+  background: linear-gradient(105deg, #eaf5ff 0%, #78e3ff 48%, #a78bfa 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -30,13 +30,32 @@
 .experience-certificate-link {
   align-self: flex-start;
   margin-top: 0.25rem;
-  color: rgba(255, 243, 230, 0.9);
+  color: rgba(202, 235, 255, 0.9);
   font-size: 0.8125rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+  font-family: "DM Mono", monospace;
   text-decoration: none;
   text-transform: uppercase;
   transition: color 0.2s ease, transform 0.2s ease;
+}
+.experience-section .experience-role {
+  display: inline-block;
+  color: var(--textColor);
+  text-shadow:
+    1px 1px 0 #d7ff3f,
+    2px 2px 0 #7967ff,
+    3px 3px 0 #ff5ea8,
+    5px 6px 10px rgba(0, 0, 0, 0.38);
+  transition: transform 220ms ease, text-shadow 220ms ease;
+}
+.experience-section .career-info-box:hover .experience-role {
+  transform: translate(-1px, -1px);
+  text-shadow:
+    1px 1px 0 #d7ff3f,
+    3px 3px 0 #7967ff,
+    5px 5px 0 #ff5ea8,
+    8px 10px 14px rgba(0, 0, 0, 0.44);
 }
 .experience-certificate-link:hover,
 .experience-certificate-link:focus-visible {
@@ -44,6 +63,12 @@
   text-decoration: underline;
   text-underline-offset: 0.25em;
   transform: translateX(2px);
+}
+
+.experience-section h2.depth-heading {
+  background: none;
+  color: var(--textColor);
+  -webkit-text-fill-color: var(--textColor);
 }
 @media only screen and (max-width: 1400px) {
   .experience-section h2 {

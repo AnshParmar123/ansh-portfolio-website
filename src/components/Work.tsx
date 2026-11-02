@@ -1,5 +1,23 @@
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
+import { useState } from "react";
+
+const projectTitleParts: Record<string, string[]> = {
+  CascadeSignal: ["Cascade", "Signal"],
+  "LipSync AI": ["LipSync", "AI"],
+  InsightX: ["Insight", "X"],
+  "Smart Attendance System": ["Smart", "Attendance", "System"],
+};
+
+const ProjectTitle = ({ name }: { name: string }) => (
+  <>
+    {(projectTitleParts[name] ?? [name]).map((part, index) => (
+      <span key={part} className={index % 2 === 0 ? "project-name-white" : "project-name-lime"}>
+        {index > 0 ? " " : ""}{part}
+      </span>
+    ))}
+  </>
+);
 
 const projects = [
   {
@@ -67,15 +85,23 @@ const projects = [
 ];
 
 const Work = () => {
+  const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
-        <h2 id="work-heading">
-          My <span>Work</span>
+        <p className="work-eyebrow">Selected projects · 2025—2026</p>
+        <h2 id="work-heading" className="depth-heading" data-text="Built for real-world use.">
+          <span className="work-word-white">Built</span>{" "}
+          <span className="work-word-lime">for real-world</span>{" "}
+          <span className="work-word-white">use.</span>
         </h2>
+        <p className="work-intro">
+          Applied AI, research systems, and software products designed around
+          clear problems, measurable outcomes, and usable interfaces.
+        </p>
         <div className="work-flex" aria-labelledby="work-heading">
           {projects.map((project) => (
-            <article className="work-box" key={project.name}>
+            <article className="work-box" key={project.name} onMouseEnter={() => window.dispatchEvent(new CustomEvent("neural-field-energy", { detail: true }))} onMouseLeave={() => window.dispatchEvent(new CustomEvent("neural-field-energy", { detail: false }))}>
               <WorkImage
                 image={project.image}
                 alt={`${project.name} project preview`}
@@ -84,7 +110,9 @@ const Work = () => {
               <div className="work-info">
                 <div className="work-title">
                   <div>
-                    <h4>{project.name}</h4>
+                    <h4 className="depth-heading" data-text={project.name}>
+                      <ProjectTitle name={project.name} />
+                    </h4>
                     <p>{project.category}</p>
                   </div>
                 </div>
@@ -103,6 +131,7 @@ const Work = () => {
                   </ul>
                 </div>
                 <div className="work-actions">
+                  <button type="button" className="work-case-study" onClick={() => setSelectedProject(project)}>Case Study ↗</button>
                   <a
                     href="#contact"
                     data-href="#contact"
@@ -129,6 +158,7 @@ const Work = () => {
           ))}
         </div>
       </div>
+      {selectedProject && <div className="project-modal" role="dialog" aria-modal="true" aria-labelledby="case-study-title" onClick={() => setSelectedProject(null)}><article className="project-modal-card" onClick={(event) => event.stopPropagation()}><button className="project-modal-close" type="button" aria-label="Close case study" onClick={() => setSelectedProject(null)}>×</button><p>{selectedProject.category} / Case study</p><h3 id="case-study-title"><ProjectTitle name={selectedProject.name} /></h3><p className="project-modal-tagline">{selectedProject.tagline}</p><p>{selectedProject.description}</p><div><strong>Tech stack</strong><span>{selectedProject.tech}</span></div><div><strong>Highlights</strong><ul>{selectedProject.features.map((feature) => <li key={feature}>{feature}</li>)}</ul></div>{selectedProject.github && <a href={selectedProject.github} target="_blank" rel="noreferrer">View on GitHub ↗</a>}</article></div>}
     </div>
   );
 };
