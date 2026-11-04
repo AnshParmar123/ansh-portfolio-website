@@ -16,7 +16,7 @@ const Showcase = () => {
     <header className="showcase-nav">
       <a href="#top" className="showcase-brand">ANSH<span>PARMAR</span></a>
       <nav><a href="#work">Work</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav>
-      <a className="showcase-resume" href="/documents/Ansh_Parmar_Resume.pdf" target="_blank" rel="noreferrer">Resume ↗</a>
+      <a className="showcase-resume" href="/documents/Ansh_Parmar_Resume.pdf?v=2" target="_blank" rel="noreferrer">Resume ↗</a>
     </header>
 
     <section className="showcase-hero" id="top">

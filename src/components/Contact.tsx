@@ -226,7 +226,7 @@ const Contact = () => {
               Email <MdArrowOutward />
             </a>
             <a
-              href="/documents/Ansh_Parmar_Resume.pdf"
+              href="/documents/Ansh_Parmar_Resume.pdf?v=2"
               target="_blank"
               rel="noreferrer"
               data-cursor="disable"
