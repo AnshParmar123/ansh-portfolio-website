@@ -11,7 +11,7 @@ const SocialIcons = () => {
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
           <a
-            href="mailto:p.anshu2005@gmail.com"
+            href="mailto:anshparmar.work@gmail.com"
             data-cursor="disable"
             aria-label="Email Ansh Parmar"
           >

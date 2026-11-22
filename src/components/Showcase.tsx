@@ -24,7 +24,7 @@ const Showcase = () => {
         <p className="showcase-kicker">AI/ML builder · Full-stack developer</p>
         <h1><span>ANSH</span><span className="showcase-depth">PARMAR</span></h1>
         <p className="showcase-lead">I build intelligent systems that turn complex signals into useful decisions.</p>
-        <div className="showcase-actions"><a href="#work">Explore selected work <b>↓</b></a><a href="mailto:p.anshu2005@gmail.com">Start a conversation <b>↗</b></a></div>
+        <div className="showcase-actions"><a href="#work">Explore selected work <b>↓</b></a><a href="mailto:anshparmar.work@gmail.com">Start a conversation <b>↗</b></a></div>
         <dl className="showcase-stats"><div><dt>CGPA</dt><dd>8.7</dd></div><div><dt>Focus</dt><dd>AI/ML</dd></div><div><dt>Projects</dt><dd>04</dd></div></dl>
       </div>
       <div className="showcase-hero-visual"><SignalArchitectureCanvas /><div className="showcase-visual-caption"><span>Live model</span><strong>Signal architecture</strong><em>Move your cursor</em></div></div>
@@ -46,7 +46,7 @@ const Showcase = () => {
       <article><span>2026</span><div><h3>Data Analytics Intern</h3><p>DY Patil University</p></div><a href="/documents/dy-patil-internship-certificate.pdf" target="_blank" rel="noreferrer">Credential ↗</a></article>
     </div></section>
 
-    <section className="showcase-contact" id="contact"><p>Have an interesting problem?</p><h2>Let’s build<br /><span>something useful.</span></h2><a href="mailto:p.anshu2005@gmail.com">p.anshu2005@gmail.com ↗</a><div><a href="https://github.com/AnshParmar123" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ansh-parmar/" target="_blank" rel="noreferrer">LinkedIn</a></div></section>
+    <section className="showcase-contact" id="contact"><p>Have an interesting problem?</p><h2>Let’s build<br /><span>something useful.</span></h2><a href="mailto:anshparmar.work@gmail.com">anshparmar.work@gmail.com ↗</a><div><a href="https://github.com/AnshParmar123" target="_blank" rel="noreferrer">GitHub</a><a href="https://www.linkedin.com/in/ansh-parmar/" target="_blank" rel="noreferrer">LinkedIn</a></div></section>
   </main>;
 };
 
