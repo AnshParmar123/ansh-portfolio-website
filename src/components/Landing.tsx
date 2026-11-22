@@ -44,7 +44,7 @@ const Landing = () => {
                 View Projects
               </MagneticLink>
               <MagneticLink
-                href="/documents/Ansh_Parmar_Resume.pdf?v=3"
+                href="/documents/Ansh_Parmar_Resume.pdf?v=4"
                 target="_blank"
                 rel="noreferrer"
                 className="landing-cta landing-cta-secondary"
